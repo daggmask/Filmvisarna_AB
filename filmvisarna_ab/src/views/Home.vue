@@ -1,31 +1,17 @@
-<template>
-  <ul>
-      <li v-for="movie in movies"
-        v-bind:key="movie.title">
-        <h2>{{movie.title}}</h2>
 
-      </li>
-  </ul>
+
+<template>
+ <MovieList></MovieList>
 </template>
 
 <script>
-export default {
-    data(){
-        return {
-            movies:[
-                {
-                    title: 'grinch'
-                },
-                {
-                    title: 'Dagboken'
-                },
-                {
-                    title: 'afterlife'
-                },
 
-            ]
-        }
-    }
+import MovieList from '@/components/MovieList.vue'
+export default {
+
+    components:[
+        MovieList,
+    ],
 
 }
 </script>

@@ -27,7 +27,7 @@ export default {
     methods:{
         toMovieShowing(movie){
             this.$store.commit('movieShowing', movie);
-            this.$router.push({path:'/movies/'+ movie.title})
+            this.$router.push({path:'/movies/'+ movie.url})
         }
     }
 }

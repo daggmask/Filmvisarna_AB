@@ -2,7 +2,8 @@
   <ul class="container col">
       <li v-for="movie in movies"
         v-bind:key="movie.title"
-        class="container movie-items" >
+        class="container movie-items" 
+        @click="toMovieShowing(movie.title)">
         <div class="container posterDiv">
             <img :src="movie.poster" alt="MoviePoster">
         </div>
@@ -21,6 +22,11 @@ export default {
     computed: {
         movies() {
             return this.$store.state.movies;
+        }
+    },
+    methods:{
+        toMovieShowing(movie){
+            this.$router.push({path:'/movies/'+ movie})
         }
     }
 }

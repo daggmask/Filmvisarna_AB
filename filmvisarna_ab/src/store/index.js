@@ -9,7 +9,8 @@ export default new Vuex.Store({
                 {
                     title: 'The Grinch',
                     genre: 'comedy',
-                    poster: 'https://cdn.cdon.com/media-dynamic/images/product/movie/dvd/image1/grinchen_nordic-34239133-frntl.jpg'
+                    poster: 'https://cdn.cdon.com/media-dynamic/images/product/movie/dvd/image1/grinchen_nordic-34239133-frntl.jpg',
+                    trailer:'5o2lk20zHaw'
                 },
                 {
                     title: 'Dagboken',

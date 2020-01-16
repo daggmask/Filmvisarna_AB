@@ -10,7 +10,11 @@
 
 <script>
 export default {
-
+computed: {
+  movie() {
+    return this.$store.state.movieDisplay;
+  }
+}
 }
 </script>
 

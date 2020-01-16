@@ -1,9 +1,9 @@
 <template>
   <ul class="container col">
-      <li v-for="movie in movies"
-        v-bind:key="movie.title"
+      <li v-for="(movie, i) in movies"
+        v-bind:key="movie.title + i"
         class="container movie-items" 
-        @click="toMovieShowing(movie.title)">
+        @click="toMovieShowing(movie)">
         <div class="container posterDiv">
             <img :src="movie.poster" alt="MoviePoster">
         </div>
@@ -26,7 +26,8 @@ export default {
     },
     methods:{
         toMovieShowing(movie){
-            this.$router.push({path:'/movies/'+ movie})
+            this.$store.commit('movieShowing', movie);
+            this.$router.push({path:'/movies/'+ movie.title})
         }
     }
 }

@@ -54,8 +54,13 @@ export default new Vuex.Store({
                 },
 
             ],
+            movieDisplay: Object,
+            
   },
   mutations: {
+    movieShowing(state, value) {
+      state.movieDisplay = value;
+    }
   },
   actions: {
   },

@@ -12,7 +12,9 @@ export default new Vuex.Store({
                     genre: 'comedy',
                     poster: 'https://cdn.cdon.com/media-dynamic/images/product/movie/dvd/image1/grinchen_nordic-34239133-frntl.jpg',
                     trailer:'5o2lk20zHaw',
-                    synopsis: 'Hejsan svejsan skitläskig film. Ingen jul.'
+                    length: '100',
+                    rating: '5',
+                    synopsis: `The Grinch is a bitter, grouchy, cave-dwelling creature who hates Christmas. He resides on the snowy Mount Crumpit, a steep high mountain just north of the town of Whoville, home of the merry and warm-hearted Whos. His heart has been "two sizes too small". His only companion is his unloved, but loyal dog, Max.`
                 },
                 theDiary: {
                     url: 'theDiary',

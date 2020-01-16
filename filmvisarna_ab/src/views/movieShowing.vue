@@ -1,9 +1,18 @@
 <template>
-  <div>
-    <h1>Tjena</h1>
-    
-    <h2 class="title">{{movie.title}}</h2>
-    <p class="synopsis">{{movie.synopsis}}</p>
+  <div class="container col">
+    <iframe class="trailer" :src="'https://www.youtube.com/embed/' + movie.trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="movieInfo">
+      <div class="container movieInfoRow">
+      <h2 class="title">{{movie.title}}</h2>
+      <h3> {{movie.genre}} </h3>
+      </div>
+
+      <div class="container movieInfoRow">
+        <h3> {{movie.length}}min </h3>
+        <h3> {{movie.rating}}/5 </h3>
+      </div>
+      <p class="synopsis">{{movie.synopsis}}</p>
+    </div>
     <!-- Visning komponent -->
   </div>
 </template>
@@ -20,7 +29,22 @@ computed: {
 
 <style scoped>
 .trailer{
-  width: 70%;
-  height: auto;
+  width: 100%;
+  height: 50vh;
+}
+.movieInfo{
+  padding: 3% 7%;
+}
+.synopsis{
+  font-size: 1.3em;
+    text-align: justify;
+    padding-top: 3%;
+}
+.title{
+  font-size: 2em;
+}
+.movieInfoRow{
+  justify-content: space-between;
+  align-items: baseline
 }
 </style>

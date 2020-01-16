@@ -1,14 +1,16 @@
 <template>
-  <ul>
+  <ul class="container col">
       <li v-for="movie in movies"
         v-bind:key="movie.title"
-        class="container">
-        <div class="container">
+        class="container movie-items" >
+        <div class="container posterDiv">
             <img :src="movie.poster" alt="MoviePoster">
         </div>
-        <div class="container col" :style="">
+        <div class="container col movieInfo" :style="{ backgroundImage: 'url(' + movie.poster  + ')', backgroundPosition:'center'}">
+            <div class="colorBackground">
             <h2>{{ movie.title }}</h2>
             <p>{{ movie.genre }}</p>
+            </div>
         </div>
       </li>
   </ul>
@@ -29,15 +31,41 @@ export default {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color: white;
 }
 .container{
     display: flex;
+    
 }
 .col{
     flex-direction: column;
+    width: 100%;
 }
 img{
     max-width: 20vw;
     height: auto;
+    
+}
+.colorBackground{
+    /* background-color: rgb(3, 3, 3,0.4); */
+     background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2)); 
+    height: 100%;
+}
+.movie-items{
+    width: 70%;
+    justify-items: center;
+    margin-top: 1.5%;
+}
+
+ul{
+    align-items: center
+    
+}
+.posterDiv{
+    width: 30%
+}
+
+.movieInfo{
+    width: 67%
 }
 </style>

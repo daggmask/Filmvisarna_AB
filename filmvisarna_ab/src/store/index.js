@@ -14,12 +14,12 @@ export default new Vuex.Store({
                 {
                     title: 'Dagboken',
                     genre: 'drama',
-                    poster: ''
+                    poster: 'https://images-na.ssl-images-amazon.com/images/I/51gwFLbBumL._SY445_.jpg'
                 },
                 {
                     title: 'afterlife',
                     genre: 'action',
-                    poster: ''
+                    poster: 'https://static.posters.cz/image/750/posters/resident-evil-2-city-key-art-i70157.jpg'
                 },
 
             ],

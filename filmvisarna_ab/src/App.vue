@@ -1,11 +1,22 @@
 <template>
   <div id="app">
+    <a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>
     <!-- Header -->
     <router-view></router-view>
     <!-- Footer -->
     <!-- Menu -->
   </div>
 </template>
+
+<script>
+export default {
+          methods:{
+      publishMovies(){
+        this.$store.dispatch("publishMovies")
+      }
+    }
+}
+</script>
 
 <style>
 *{

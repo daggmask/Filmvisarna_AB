@@ -1,16 +1,17 @@
 <template>
+
   <ul class="container col">
       <li v-for="(movie, i) in movies"
         v-bind:key="movie.title + i"
-        class="container movie-items" 
+        class="container movie-items hoverable" 
         @click="toMovieShowing(movie)">
         <div class="container posterDiv">
-            <img :src="movie.poster" alt="MoviePoster">
+            <img :src="movie.images[0]" alt="MoviePoster" class="responsive-img" id="moviePoster">
         </div>
-        <div class="movieInfo" :style="{ backgroundImage: 'url(' + movie.poster  + ')', backgroundPosition:'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover',}">
+        <div class="movieInfo" :style="{ backgroundImage: 'url(' + movie.images[1]  + ')', backgroundPosition:'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover',}">
             <div class="colorBackground container col">
-            <h2>{{ movie.title }}</h2>
-            <p>{{ movie.genre }}</p>
+            <h2 class="flow-text">{{ movie.title }}</h2>
+            <p class="flow-text">{{ movie.genre }}</p>
             </div>
         </div>
       </li>
@@ -29,7 +30,10 @@ export default {
             this.$store.commit('movieShowing', movie);
             this.$router.push({path:'/movies/'+ movie.url})
         }
-    }
+    },
+        created(){
+      this.$store.dispatch("getMovies")
+    },
 }
 </script>
 
@@ -46,13 +50,15 @@ img{
     padding-bottom: 3%;
          background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2)); 
     height: 100%;
+    width: 100%;
 }
 .movie-items{
-    width: 70%;
     justify-items: center;
     margin-top: 1.5%;
 }
-
+#moviePoster{
+    width: 100%;
+}
 ul{
     align-items: center
     
@@ -62,6 +68,6 @@ ul{
 }
 
 .movieInfo{
-    width: 67%
+    width: 100%
 }
 </style>

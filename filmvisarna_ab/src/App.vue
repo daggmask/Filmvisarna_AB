@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button @click="publishMovies">Publish movies</button>
+    <a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>
     <!-- Header -->
     <router-view></router-view>
     <!-- Footer -->

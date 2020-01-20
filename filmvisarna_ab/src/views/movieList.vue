@@ -10,8 +10,8 @@
         </div>
         <div class="movieInfo" :style="{ backgroundImage: 'url(' + movie.images[1]  + ')', backgroundPosition:'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover',}">
             <div class="colorBackground container col">
-            <h2>{{ movie.title }}</h2>
-            <p>{{ movie.genre }}</p>
+            <h2 class="flow-text">{{ movie.title }}</h2>
+            <p class="flow-text">{{ movie.genre }}</p>
             </div>
         </div>
       </li>

@@ -11,7 +11,7 @@
         <h3> {{movie.length}}min </h3>
         <h3> {{movie.rating}}/5 </h3>
       </div>
-      <p class="synopsis">{{movie.synopsis}}</p>
+      <p class="synopsis">{{movie.description}}</p>
     </div>
     <!-- Visning komponent -->
   </div>
@@ -21,7 +21,14 @@
 export default {
 computed: {
   movie() {
-    return this.$store.state.movies[this.$route.params.movie];
+    let movies = this.$store.state.movies;
+    for(let movie of movies){
+      if(movie.movieId === this.$route.params.movie ){
+        return movie;
+      }
+    }
+    //return this.$store.state.movies[this.$route.params.movie];
+    return null;
   }
 },
     created(){

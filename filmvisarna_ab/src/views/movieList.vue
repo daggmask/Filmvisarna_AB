@@ -6,9 +6,9 @@
         class="container movie-items" 
         @click="toMovieShowing(movie)">
         <div class="container posterDiv">
-            <img :src="movie.poster" alt="MoviePoster">
+            <img :src="movie.images[0]" alt="MoviePoster">
         </div>
-        <div class="movieInfo" :style="{ backgroundImage: 'url(' + movie.poster  + ')', backgroundPosition:'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover',}">
+        <div class="movieInfo" :style="{ backgroundImage: 'url(' + movie.images[1]  + ')', backgroundPosition:'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover',}">
             <div class="colorBackground container col">
             <h2>{{ movie.title }}</h2>
             <p>{{ movie.genre }}</p>
@@ -28,7 +28,7 @@ export default {
     methods:{
         toMovieShowing(movie){
             this.$store.commit('movieShowing', movie);
-            this.$router.push({path:'/movies/'+ movie.url})
+            this.$router.push({path:'/movies/'+ movie.movieId})
         }
     },
         created(){

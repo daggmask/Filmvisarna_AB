@@ -1,4 +1,5 @@
 <template>
+
   <ul class="container col">
       <li v-for="(movie, i) in movies"
         v-bind:key="movie.title + i"
@@ -29,7 +30,10 @@ export default {
             this.$store.commit('movieShowing', movie);
             this.$router.push({path:'/movies/'+ movie.url})
         }
-    }
+    },
+        created(){
+      this.$store.dispatch("getMovies")
+    },
 }
 </script>
 

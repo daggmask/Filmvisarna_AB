@@ -1,11 +1,22 @@
 <template>
   <div id="app">
+    <button @click="publishMovies">Publish movies</button>
     <!-- Header -->
     <router-view></router-view>
     <!-- Footer -->
     <!-- Menu -->
   </div>
 </template>
+
+<script>
+export default {
+          methods:{
+      publishMovies(){
+        this.$store.dispatch("publishMovies")
+      }
+    }
+}
+</script>
 
 <style>
 *{

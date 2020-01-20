@@ -23,7 +23,10 @@ computed: {
   movie() {
     return this.$store.state.movies[this.$route.params.movie];
   }
-}
+},
+    created(){
+      this.$store.dispatch("getMovies")
+    },
 }
 </script>
 

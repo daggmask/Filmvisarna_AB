@@ -3,7 +3,7 @@
   <ul class="container col">
       <li v-for="(movie, i) in movies"
         v-bind:key="movie.title + i"
-        class="container movie-items hoverable" 
+        class="container movie-items" 
         @click="toMovieShowing(movie)">
         <div class="container posterDiv">
             <img :src="movie.images[0]" alt="MoviePoster" class="responsive-img" id="moviePoster">

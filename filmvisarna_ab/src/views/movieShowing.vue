@@ -1,6 +1,6 @@
 <template>
   <div class="container col">
-    <iframe class="trailer" :src="'https://www.youtube.com/embed/' + movie.trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="trailer responsive-video" :src="'https://www.youtube.com/embed/' + movie.trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <div class="movieInfo">
       <div class="container movieInfoRow">
       <h2 class="title">{{movie.title}}</h2>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button @click="publishMovies">Publish movies</button>
+    <a @click="publishMovies" class="btn-floating pulse publish"><i class="material-icons">publish</i></a>
     <!-- Header -->
     <router-view></router-view>
     <!-- Footer -->
@@ -28,6 +28,9 @@ export default {
 }
 .container{
   display: flex;
+}
+.publish{
+  margin: 2%;
 }
 .col{
   flex-direction: column;

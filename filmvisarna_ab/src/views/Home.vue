@@ -59,6 +59,9 @@ export default {
     padding: 0;
     box-shadow: 0 0 5px 10px rgba(72, 0, 255, 0.5);
 }
+.carousel .pic{
+height: 100%;
+}
 img {
   position: absolute;
   opacity: 1;

@@ -1,5 +1,5 @@
 <template>
-  <div  class="carousel" >
+  <div class="carousel container" >
     <img :src= movie.images[1]
     v-for="(movie, i) in movies"
     v-bind:key="movie.title + i + movie.images[1]"
@@ -57,7 +57,7 @@ export default {
 .carousel{
     margin: 0;
     padding: 0;
-    box-shadow: 0 0 5px 10px rgba(72, 0, 255, 0.5);
+    left:15%;
 }
 .carousel .pic{
 height: 100%;
@@ -68,7 +68,7 @@ img {
   animation: display 15s infinite;
 }
 .pic{
-    width: 100vw;
+    width: 70vw;
 }
 img:nth-child(2) {
   animation-delay: 3s;

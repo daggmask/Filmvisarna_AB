@@ -1,62 +1,49 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {db} from '@/firebase.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    movies:[
-                {
-                    title: 'The Grinch',
-                    genre: 'comedy',
-                    poster: 'https://cdn.cdon.com/media-dynamic/images/product/movie/dvd/image1/grinchen_nordic-34239133-frntl.jpg'
-                },
-                {
-                    title: 'Dagboken',
-                    genre: 'drama',
-                    poster: 'https://images-na.ssl-images-amazon.com/images/I/51gwFLbBumL._SY445_.jpg'
-                },
-                {
-                    title: 'Afterlife',
-                    genre: 'action',
-                    poster: 'https://static.posters.cz/image/750/posters/resident-evil-2-city-key-art-i70157.jpg'
-                },
-                {
-                    title: 'The Grinch',
-                    genre: 'comedy',
-                    poster: 'https://cdn.cdon.com/media-dynamic/images/product/movie/dvd/image1/grinchen_nordic-34239133-frntl.jpg'
-                },
-                {
-                    title: 'Dagboken',
-                    genre: 'drama',
-                    poster: 'https://images-na.ssl-images-amazon.com/images/I/51gwFLbBumL._SY445_.jpg'
-                },
-                {
-                    title: 'Afterlife',
-                    genre: 'action',
-                    poster: 'https://static.posters.cz/image/750/posters/resident-evil-2-city-key-art-i70157.jpg'
-                },
-                {
-                    title: 'The Grinch',
-                    genre: 'comedy',
-                    poster: 'https://cdn.cdon.com/media-dynamic/images/product/movie/dvd/image1/grinchen_nordic-34239133-frntl.jpg'
-                },
-                {
-                    title: 'Dagboken',
-                    genre: 'drama',
-                    poster: 'https://images-na.ssl-images-amazon.com/images/I/51gwFLbBumL._SY445_.jpg'
-                },
-                {
-                    title: 'Afterlife',
-                    genre: 'action',
-                    poster: 'https://static.posters.cz/image/750/posters/resident-evil-2-city-key-art-i70157.jpg'
-                },
-
-            ],
+    publishMovies: false,
+    movies:[],
+                
+              
+            movieDisplay: Object,
+            
   },
   mutations: {
+    movieShowing(state, value) {
+      state.movieDisplay = value;
+      
+    },
+    setMovies(state, data){
+      state.movies = data
+      },
+
+      publishMovies(state){
+      state.publishMovies=true;
+      }
   },
   actions: {
+    async getMovies({commit}){
+      let querySnapshot = await db.collection("movies").get()
+      let data = []
+      querySnapshot.forEach((document) => {
+        data.push(document.data())
+      })
+      commit('setMovies', data)
+     },
+
+     async publishMovies({commit}){
+      let documents = require('@/data/movies.json')
+      for(let document of documents){
+       let res = await db.collection('movies').add(document)
+       console.log('publishmovies res' + res)
+      } 
+      commit('publishMovies') 
+    }
   },
   modules: {
   }

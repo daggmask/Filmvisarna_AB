@@ -1,16 +1,25 @@
+
+
 <template>
   <div id="app">
     <a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>
     <!-- Header -->
     <router-view></router-view>
+    <Footer></Footer>
     <!-- Footer -->
     <!-- Menu -->
   </div>
 </template>
 
 <script>
+import Footer from '@/components/footer.vue'
+
 export default {
-          methods:{
+  components:{
+    Footer,
+  },
+  
+    methods:{
       publishMovies(){
         this.$store.dispatch("publishMovies")
       }

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>
+    <navBar></navBar>
     <!-- Header -->
     <router-view></router-view>
     <!-- Footer -->
@@ -9,7 +10,11 @@
 </template>
 
 <script>
+import navBar from '@/components/menu.vue'
 export default {
+  components:{
+    navBar,
+  },
           methods:{
       publishMovies(){
         this.$store.dispatch("publishMovies")

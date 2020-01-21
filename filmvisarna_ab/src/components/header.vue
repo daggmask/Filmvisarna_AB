@@ -3,11 +3,18 @@
     <i class="material-icons">
 local_movies
 </i>
-<h1>Filmvisarna</h1>
+<h1 @click="goToHomePage">Filmvisarna</h1>
 </div>
 </template>
 
 <script>
+export default{
+  methods:{
+        goToHomePage(){
+            this.$router.push({path:'/'})
+        }
+  }
+}
 </script>
 
 <style scoped>
@@ -31,6 +38,7 @@ h1{
 font-family: 'Righteous', cursive;
 margin-top:0%;
 margin-bottom: 1%;
+cursor:pointer
 }
 .material-icons{
     font-size: 60PX;

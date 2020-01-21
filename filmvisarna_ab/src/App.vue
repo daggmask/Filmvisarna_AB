@@ -1,25 +1,32 @@
+
+
 <template>
   <div id="app">
-    <a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>
+    <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
+    <mainHeader></mainHeader>
     <navBar></navBar>
-    <!-- Header -->
     <router-view></router-view>
-    <!-- Footer -->
+    <Footer></Footer>
     <!-- Menu -->
   </div>
 </template>
 
 <script>
+import mainHeader from '@/components/header.vue'
+import Footer from '@/components/footer.vue'
 import navBar from '@/components/menu.vue'
 export default {
   components:{
+    Footer,
     navBar,
+    mainHeader
   },
-          methods:{
+  
+    methods:{
       publishMovies(){
         this.$store.dispatch("publishMovies")
       }
-    }
+    },
 }
 </script>
 
@@ -41,5 +48,6 @@ export default {
   width: 100vw;
   min-height: 100vh;
   background-color: rgb(0, 0, 0);
+  
 }
 </style>

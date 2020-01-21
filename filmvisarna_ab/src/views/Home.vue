@@ -61,6 +61,7 @@ export default {
 .carousel{
     margin: 0;
     padding: 0;
+    
 }
 .carousel .pic{
 height: 100%;
@@ -85,5 +86,11 @@ img:nth-child(4) {
 }
 img:nth-child(5) {
   animation-delay: 12s;
+}
+@media screen and (max-width: 768px){
+    .pic{
+        width: 100vw;
+        left: 0%
+    }
 }
 </style>

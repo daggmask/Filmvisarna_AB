@@ -2,7 +2,8 @@
   <div  class="carousel" >
     <img :src= movie.images[1]
     v-for="(movie, i) in movies"
-    v-bind:key="movie.movieId + i"
+    v-bind:key="movie.title + i + movie.images[1]"
+    :movie="movie"
     @click="toMovieShowing(movie)"  
     class="responsive-img pic">
   </div>
@@ -56,13 +57,11 @@ export default {
 .carousel{
     margin: 0;
     padding: 0;
-}
-.carousel:hover{
-    box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 5px 10px rgba(72, 0, 255, 0.5);
 }
 img {
   position: absolute;
-  opacity: 0;
+  opacity: 1;
   animation: display 15s infinite;
 }
 .pic{

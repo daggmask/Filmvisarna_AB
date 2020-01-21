@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import Footer from '@/components/footer.vue'
-
 import mainHeader from '@/components/header.vue'
+import Footer from '@/components/footer.vue'
 export default {
   components:{
     Footer,
+    mainHeader
   },
   
     methods:{
@@ -24,9 +24,6 @@ export default {
         this.$store.dispatch("publishMovies")
       }
     },
-    components: {
-      mainHeader
-    }
 }
 </script>
 

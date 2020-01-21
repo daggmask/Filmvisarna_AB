@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>
-    <!-- Header -->
+    <Mheader></Mheader>
     <router-view></router-view>
     <!-- Footer -->
     <!-- Menu -->
@@ -9,11 +9,15 @@
 </template>
 
 <script>
+import Mheader from '@/components/header.vue'
 export default {
           methods:{
       publishMovies(){
         this.$store.dispatch("publishMovies")
       }
+    },
+    components: {
+      Mheader
     }
 }
 </script>

@@ -7,9 +7,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     publishMovies: false,
-    movies:{
-
-              },
+    movies:[],
+                
+              
             movieDisplay: Object,
             
   },

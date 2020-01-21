@@ -39,36 +39,40 @@ export default {
 @keyframes display {
   0% {
     transform: translateX(100%);
-    opacity: 1;
+    opacity: 0;
   }
   10% {
     transform: translateX(0);
+    opacity: 1;
   }
   20% {
     transform: translateX(0);
+    opacity: 1;
   }
   30% {
     transform: translateX(-100%);
+    opacity: 0;
   }
   100% {
     transform: translateX(-100%);
+    opacity: 0;
   }
 }
 .carousel{
     margin: 0;
     padding: 0;
-    left:15%;
 }
 .carousel .pic{
 height: 100%;
 }
 img {
   position: absolute;
-  opacity: 0;
+  opacity: 1;
   animation: display 15s infinite;
 }
 .pic{
     width: 70vw;
+    left: 15%;
 }
 img:nth-child(2) {
   animation-delay: 3s;

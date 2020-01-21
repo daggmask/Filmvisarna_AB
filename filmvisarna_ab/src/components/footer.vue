@@ -35,7 +35,8 @@ export default {
 <style>
 .footback{
     background: linear-gradient(to bottom, black, #01579b);
-    margin-top: 5%;
+    margin-top: 19%;
+    
     
 }
 .conttext{

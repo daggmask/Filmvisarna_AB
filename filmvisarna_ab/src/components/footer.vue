@@ -1,5 +1,5 @@
 <template>
-          <footer class="page-footer light-blue darken-4 footback">
+          <footer class="page-footer light-blue darken-4 footback footer">
           <div class="container conttext"> 
             <div class="row containfoot">
             
@@ -36,9 +36,11 @@ export default {
 .footback{
     background: linear-gradient(to bottom, black, #01579b);
     margin-top: 5%;
+    
 }
 .conttext{
     font-size: 0.8em;
+    
 }
 .headline{
     text-align: center;
@@ -54,6 +56,10 @@ export default {
     font-size: 0.9em;
     margin-top: 5%;
     
+}
+.pagefooter{
+    margin-top:0%;
+   
 }
 
 

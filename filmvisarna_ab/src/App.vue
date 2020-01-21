@@ -6,7 +6,6 @@
     <!-- Header -->
     <router-view></router-view>
     <Footer></Footer>
-    <!-- Footer -->
     <!-- Menu -->
   </div>
 </template>
@@ -45,5 +44,6 @@ export default {
   width: 100vw;
   min-height: 100vh;
   background-color: rgb(0, 0, 0);
+  
 }
 </style>

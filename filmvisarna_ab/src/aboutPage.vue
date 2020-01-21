@@ -1,16 +1,10 @@
 <template>
 <div class="homePage">
-    <div class="row">
-    <div class="col s12 m5">
-      <div class="card-panel teal">
-        <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-        </span>
-      </div>
-    </div>
-  </div>
-<div class="google-map" :id="mapName"></div>
-
+    <div class="text">
+   <h1>Om Filmvisarna</h1>
+   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo accusamus consequatur minima voluptates a autem fuga consectetur similique deleniti fugiat provident rerum voluptate, dignissimos quis natus est ex tempora vitae earum quisquam excepturi possimus. Aliquam, dolorum recusandae reiciendis dolorem, incidunt dolores est adipisci eos aspernatur quisquam eius, atque alias architecto?</p>
+   <h4>Hitta Hit:</h4>
+</div>
 </div>
 </template>
 
@@ -23,9 +17,16 @@
   }
 .homePage{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    margin:0%;
 }
+.text{
+width: 40%;
+background-color: rgb(17, 34, 70);
+border-radius: 3%
+}
+
 
 </style>

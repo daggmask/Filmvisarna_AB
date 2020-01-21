@@ -2,8 +2,8 @@
 
 <template>
   <div id="app">
-    <a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>
-    <!-- Header -->
+    <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
+    <mainHeader></mainHeader>
     <router-view></router-view>
     <Footer></Footer>
     <!-- Menu -->
@@ -11,8 +11,8 @@
 </template>
 
 <script>
+import mainHeader from '@/components/header.vue'
 import Footer from '@/components/footer.vue'
-
 export default {
   components:{
     Footer,
@@ -22,6 +22,9 @@ export default {
       publishMovies(){
         this.$store.dispatch("publishMovies")
       }
+    },
+    components: {
+      mainHeader
     }
 }
 </script>

@@ -67,7 +67,7 @@ height: 100%;
 }
 img {
   position: absolute;
-  opacity: 1;
+  opacity: 0;
   animation: display 15s infinite;
 }
 .pic{

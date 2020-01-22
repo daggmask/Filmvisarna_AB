@@ -34,7 +34,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 @keyframes display {
   0% {
@@ -61,6 +61,7 @@ export default {
 .carousel{
     margin: 0;
     padding: 0;
+    
 }
 .carousel .pic{
 height: 100%;
@@ -72,7 +73,8 @@ img {
 }
 .pic{
     width: 70vw;
-    left: 15%;
+    left: 15vw;
+    margin-top: 4%;
 }
 img:nth-child(2) {
   animation-delay: 3s;
@@ -85,5 +87,11 @@ img:nth-child(4) {
 }
 img:nth-child(5) {
   animation-delay: 12s;
+}
+@media screen and (max-width: 768px){
+    .pic{
+        width: 100vw;
+        left: 0vw;
+    }
 }
 </style>

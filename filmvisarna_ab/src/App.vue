@@ -48,6 +48,11 @@ export default {
   width: 100vw;
   min-height: 100vh;
   background-color: rgb(0, 0, 0);
+  flex-direction: column;
+  display: flex;
   
+}
+main{
+  flex: 1;
 }
 </style>

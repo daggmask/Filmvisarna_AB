@@ -1,10 +1,7 @@
 <template>
-<div class="head">
-    <i class="material-icons">
-local_movies
-</i>
-<h1 @click="goToHomePage">Filmvisarna</h1>
-</div>
+<header> 
+<h1 @click="goToHomePage">FILMVISARNA</h1>
+</header>
 </template>
 
 <script>
@@ -19,13 +16,13 @@ export default{
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 *{
   box-sizing: border-box;
 }
 
-.head{
+header{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -33,17 +30,21 @@ export default{
     background-color: rgb(7, 8, 95);
     background: linear-gradient(to top, black, #01579b);
     align-items: center;
+    padding: 3vh;
+    width: 100%;
 }
 h1{
-font-family: 'Righteous', cursive;
+font-family: 'Monoton', cursive;
 margin-top:0%;
-margin-bottom: 1%;
-cursor:pointer
+margin-bottom: 0%;
+cursor:pointer;
+font-size: 2em;
 }
 .material-icons{
     font-size: 60PX;
     align-items: center;
     justify-content: center;
+
     
 }
 

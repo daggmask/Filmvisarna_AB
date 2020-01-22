@@ -22,7 +22,7 @@ export default{
   box-sizing: border-box;
 }
 
-.head{
+header{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -38,7 +38,7 @@ font-family: 'Monoton', cursive;
 margin-top:0%;
 margin-bottom: 0%;
 cursor:pointer;
-font-size: 2em
+font-size: 2em;
 }
 .material-icons{
     font-size: 60PX;

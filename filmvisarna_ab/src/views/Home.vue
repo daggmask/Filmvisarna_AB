@@ -34,7 +34,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 @keyframes display {
   0% {

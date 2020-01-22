@@ -40,7 +40,7 @@ computed: {
 <style scoped>
 .trailer{
   width: 100%;
-  height: 50vh;
+  height: 40vh;
 }
 .movieInfo{
   padding: 3% 7%;

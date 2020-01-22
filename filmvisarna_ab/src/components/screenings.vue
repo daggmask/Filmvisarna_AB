@@ -39,12 +39,15 @@ export default {
       let screenings = this.$store.state.screenings;
       let movieScreenings = []
       for(let screening of screenings) {
-        if(screening.film === this.movie.title  && screening.date === date) {
+        if(screening.film === this.movie.title && screening.date === date) {
           movieScreenings.push(screening);
         }
       }
       return movieScreenings;
     },
+  },
+  created(){
+    this.$store.dispatch("getScreenings");
   },
 }
 </script>

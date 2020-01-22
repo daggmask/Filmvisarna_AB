@@ -1,9 +1,7 @@
 <template>
-<div class="head">
-
-   
+<header> 
 <h1 @click="goToHomePage">FILMVISARNA</h1>
-</div>
+</header>
 </template>
 
 <script>

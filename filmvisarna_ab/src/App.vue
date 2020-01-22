@@ -4,7 +4,9 @@
   <div id="app">
     <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
     <mainHeader></mainHeader>
-    <router-view></router-view>
+    <main>
+      <router-view></router-view>
+    </main>
     <Footer></Footer>
     <!-- Menu -->
   </div>
@@ -45,6 +47,11 @@ export default {
   width: 100vw;
   min-height: 100vh;
   background-color: rgb(0, 0, 0);
+  flex-direction: column;
+  display: flex;
   
+}
+main{
+  flex: 1;
 }
 </style>

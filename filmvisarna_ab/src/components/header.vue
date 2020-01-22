@@ -1,9 +1,7 @@
 <template>
-<div class="head">
-
-   
+<header> 
 <h1 @click="goToHomePage">FILMVISARNA</h1>
-</div>
+</header>
 </template>
 
 <script>
@@ -24,7 +22,7 @@ export default{
   box-sizing: border-box;
 }
 
-.head{
+header{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -33,12 +31,14 @@ export default{
     background: linear-gradient(to top, black, #01579b);
     align-items: center;
     padding: 3vh;
+    width: 100%;
 }
 h1{
 font-family: 'Monoton', cursive;
 margin-top:0%;
 margin-bottom: 0%;
-cursor:pointer
+cursor:pointer;
+font-size: 2em;
 }
 .material-icons{
     font-size: 60PX;

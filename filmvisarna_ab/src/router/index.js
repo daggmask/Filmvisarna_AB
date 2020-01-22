@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MovieList from '../views/movieList.vue'
 import Movie from '../views/movieShowing.vue'
+import aboutPage from '@/views/aboutPage.vue'
 import homePage from '@/views/Home.vue'
 
 Vue.use(VueRouter)
@@ -13,10 +14,16 @@ const routes = [
     component: homePage
   },
   {
-    path: '/movies',
-    name: 'movielist',
-    component: MovieList
+    path: '/about',
+    name: 'aboutPage',
+    component: aboutPage
   },
+  {
+  path: '/movies',
+  name: 'movielist',
+  component: MovieList
+ },
+  
   {
     path:'/movies/:movie',
     name:'movie',

@@ -33,12 +33,14 @@ export default{
     background: linear-gradient(to top, black, #01579b);
     align-items: center;
     padding: 3vh;
+    width: 100%;
 }
 h1{
 font-family: 'Monoton', cursive;
 margin-top:0%;
 margin-bottom: 0%;
-cursor:pointer
+cursor:pointer;
+font-size: 2em
 }
 .material-icons{
     font-size: 60PX;

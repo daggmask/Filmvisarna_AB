@@ -1,9 +1,9 @@
 <template>
-          <footer class="page-footer light-blue darken-4 footback footer">
+          <footer class="page-footer light-blue darken-4 footback">
           <div class="container conttext"> 
             <div class="row containfoot">
             
-            <div class="col s6">
+            <div class="col s6 ">
                 <h6 class="white-text">Kontakt</h6>
                 <p>filmvisarnaAB@gmail.com</p>
                 <p class="grey-text text-lighten-4">Kalkstensvägen 7, Lund</p>
@@ -35,13 +35,13 @@ export default {
 <style>
 .footback{
     background: linear-gradient(to bottom, black, #01579b);
-    margin-top: 20%;
-    
-    
+    position: fixed;
+    bottom: 0%;
+    left:0%;
+    width: 100%;
 }
 .conttext{
     font-size: 0.8em;
-    
 }
 .headline{
     text-align: center;
@@ -56,11 +56,6 @@ export default {
 .copy{
     font-size: 0.9em;
     margin-top: 5%;
-    
-}
-.pagefooter{
-    margin-top:0%;
-   
 }
 
 

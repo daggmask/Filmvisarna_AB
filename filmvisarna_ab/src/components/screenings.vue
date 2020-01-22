@@ -21,6 +21,9 @@
 
 <script>
 export default {
+  props: {
+    movie: Object,
+  },
   computed: {
     dates(){
       let screenings = this.$store.state.screenings;

@@ -6,6 +6,7 @@
     :movie="movie"
     @click="toMovieShowing(movie)"  
     class="responsive-img pic">
+    <p class="movieTitle">movie text</p>
   </div>
 </template>
 
@@ -70,6 +71,11 @@ img {
   position: absolute;
   opacity: 0;
   animation: display 15s infinite;
+}
+.movieTitle{
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
 }
 .pic{
     width: 70vw;

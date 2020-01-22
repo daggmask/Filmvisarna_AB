@@ -73,7 +73,8 @@ img {
 }
 .pic{
     width: 70vw;
-    left: 15%;
+    left: 15vw;
+    margin-top: 4%;
 }
 img:nth-child(2) {
   animation-delay: 3s;
@@ -90,7 +91,7 @@ img:nth-child(5) {
 @media screen and (max-width: 768px){
     .pic{
         width: 100vw;
-        left: 0%
+        left: 0vw;
     }
 }
 </style>

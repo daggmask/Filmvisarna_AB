@@ -35,9 +35,6 @@ export default {
 <style>
 .footback{
     background: linear-gradient(to bottom, black, #01579b);
-    position: fixed;
-    bottom: 0%;
-    left:0%;
     width: 100%;
 }
 .conttext{

@@ -7,24 +7,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     publishMovies: false,
-    movies:[],
-                
-              
-            movieDisplay: Object,
-            
+    movies: [],
+    screenings: [] ,           
   },
   mutations: {
     movieShowing(state, value) {
       state.movieDisplay = value;
-      
     },
     setMovies(state, data){
       state.movies = data
-      },
-
-      publishMovies(state){
+    },
+    setScreenings(state, data){
+      state.screenings = data;
+    },
+    publishMovies(state){
       state.publishMovies=true;
-      }
+    }
   },
   actions: {
     async getMovies({commit}){

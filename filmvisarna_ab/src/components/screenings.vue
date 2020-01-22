@@ -21,7 +21,19 @@
 
 <script>
 export default {
-
+  computed: {
+    dates(){
+      let screenings = this.$store.state.screenings;
+      let dates = [];
+      for(let screening of screenings) {
+        if(this.movie.title === screening.film){
+          dates.push(screening.date);
+        }
+      }
+      dates = Array.from(new Set(dates))
+      return dates;
+    },
+  },
 }
 </script>
 

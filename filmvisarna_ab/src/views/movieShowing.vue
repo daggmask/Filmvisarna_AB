@@ -13,12 +13,17 @@
       </div>
       <p class="synopsis">{{movie.description}}</p>
     </div>
-    <!-- Visning komponent -->
+    <screenings :movie="movie" />
   </div>
 </template>
 
 <script>
+import screenings from "@/components/screenings.vue"
+
 export default {
+  components: {
+    screenings,
+  },
 computed: {
   movie() {
     let movies = this.$store.state.movies;

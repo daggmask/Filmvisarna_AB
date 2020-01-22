@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MovieList from '../views/movieList.vue'
 import Movie from '../views/movieShowing.vue'
-import aboutPage from '@/aboutPage.vue'
+import aboutPage from '@/views/aboutPage.vue'
 
 Vue.use(VueRouter)
 

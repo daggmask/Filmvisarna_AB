@@ -4,6 +4,7 @@
   <div id="app">
     <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
     <mainHeader></mainHeader>
+    <navBar></navBar>
     <router-view></router-view>
     <Footer></Footer>
     <!-- Menu -->
@@ -13,9 +14,11 @@
 <script>
 import mainHeader from '@/components/header.vue'
 import Footer from '@/components/footer.vue'
+import navBar from '@/components/menu.vue'
 export default {
   components:{
     Footer,
+    navBar,
     mainHeader
   },
   
@@ -45,6 +48,11 @@ export default {
   width: 100vw;
   min-height: 100vh;
   background-color: rgb(0, 0, 0);
+  flex-direction: column;
+  display: flex;
   
+}
+main{
+  flex: 1;
 }
 </style>

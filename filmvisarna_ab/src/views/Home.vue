@@ -1,5 +1,5 @@
 <template>
-  <div  class="carousel" >
+  <div class="carousel container" >
     <img :src= movie.images[1]
     v-for="(movie, i) in movies"
     v-bind:key="movie.title + i + movie.images[1]"
@@ -39,25 +39,29 @@ export default {
 @keyframes display {
   0% {
     transform: translateX(100%);
-    opacity: 1;
+    opacity: 0;
   }
   10% {
     transform: translateX(0);
+    opacity: 1;
   }
   20% {
     transform: translateX(0);
+    opacity: 1;
   }
   30% {
     transform: translateX(-100%);
+    opacity: 0;
   }
   100% {
     transform: translateX(-100%);
+    opacity: 0;
   }
 }
 .carousel{
     margin: 0;
     padding: 0;
-    box-shadow: 0 0 5px 10px rgba(72, 0, 255, 0.5);
+    
 }
 .carousel .pic{
 height: 100%;
@@ -68,7 +72,8 @@ img {
   animation: display 15s infinite;
 }
 .pic{
-    width: 100vw;
+    width: 70vw;
+    left: 15%;
 }
 img:nth-child(2) {
   animation-delay: 3s;
@@ -81,5 +86,11 @@ img:nth-child(4) {
 }
 img:nth-child(5) {
   animation-delay: 12s;
+}
+@media screen and (max-width: 768px){
+    .pic{
+        width: 100vw;
+        left: 0%
+    }
 }
 </style>

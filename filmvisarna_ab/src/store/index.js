@@ -35,7 +35,14 @@ export default new Vuex.Store({
       })
       commit('setMovies', data)
      },
-
+     async getScreenings({commit}){
+      let querySnapshot = await db.collection("screenings").get();
+      let data = [];
+      querySnapshot.forEach((document) => {
+        data.push(document.data());
+      })
+      commit('setScreenings', data);
+     },
      async publishMovies({commit}){
       let documents = require('@/data/movies.json')
       for(let document of documents){

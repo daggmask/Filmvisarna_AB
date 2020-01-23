@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .footback{
     background: linear-gradient(to bottom, black, #01579b);
     width: 100%;

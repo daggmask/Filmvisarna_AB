@@ -11,13 +11,13 @@
         </a>
         <ul class="left hide-on-med-and-down container">
           <li>
-            <router-link class="desktopLinks" to="/">Hem</router-link>
+            <router-link class="btn-large waves-effect waves-light black desktopLinks" to="/">Hem</router-link>
           </li>
           <li>
-            <router-link class="desktopLinks" to="/movies">Filmer</router-link>
+            <router-link class="btn-large waves-effect waves-light black desktopLinks" to="/movies">Filmer</router-link>
           </li>
           <li>
-            <router-link class="desktopLinks" to="/about">Om oss</router-link>
+            <router-link class="btn-large waves-effect waves-light black desktopLinks" to="/about">Om oss</router-link>
           </li>
         </ul>
       </div>
@@ -74,6 +74,7 @@ export default {
   font-family: "Monoton", cursive;
   margin: 0.3em;
   color: white;
+  background:rgb(0, 0, 0);
 }
 .navContainer {
   background-color: #1b456400;

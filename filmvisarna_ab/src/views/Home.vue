@@ -47,10 +47,11 @@ export default {
     width: 600%;
     margin: 0;
     left: 0;
-    animation: 20s slider infinite;
+    animation: 40s slider infinite;
 }
 #slider figure img{
     height: 50vh;
+    width: 100vw;
     margin-top: 4%;
 }
 @keyframes slider{

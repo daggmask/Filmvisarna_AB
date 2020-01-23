@@ -16,7 +16,10 @@
 export default {
     computed: {
         movies() {
-            return this.$store.state.movies;
+            let movie = this.$store.state.movies
+            movie.push(movie[0])
+            return movie
+            // return this.$store.state.movies;
         }
     },
     methods:{
@@ -51,7 +54,7 @@ export default {
 }
 #slider figure img{
     height: 50vh;
-    width: 17%;
+    width: 100vw;
     float: left;
 }
 @keyframes slider{

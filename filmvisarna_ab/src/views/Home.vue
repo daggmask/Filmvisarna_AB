@@ -40,23 +40,23 @@ export default {
 <style scoped>
 
 #slider{
-    overflow: auto;
+    overflow: hidden;
 }
 #slider figure{
     position: relative;
     width: 600%;
     margin: 0;
     left: 0;
-    animation: 40s slider infinite;
+    animation: 20s slider infinite;
 }
 #slider figure img{
     height: 50vh;
-    width: 100vw;
-    margin-top: 4%;
+    width: 17%;
+    float: left;
 }
 @keyframes slider{
 0%{
-    left: 100%;
+    left: 0;
 }
 100%{
     left: -500%;

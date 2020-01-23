@@ -70,7 +70,7 @@ height: 100%;
 img {
   position: absolute;
   opacity: 0;
-  animation: display 15s infinite;
+  animation: display 20s infinite;
 }
 .movieTitle{
   position: absolute;
@@ -83,16 +83,16 @@ img {
     margin-top: 4%;
 }
 img:nth-child(2) {
-  animation-delay: 3s;
+  animation-delay: 4s;
 }
 img:nth-child(3) {
-  animation-delay: 6s;
+  animation-delay: 8s;
 }
 img:nth-child(4) {
-  animation-delay: 9s;
+  animation-delay: 12s;
 }
 img:nth-child(5) {
-  animation-delay: 12s;
+  animation-delay: 16s;
 }
 @media screen and (max-width: 768px){
     .pic{

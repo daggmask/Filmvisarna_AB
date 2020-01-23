@@ -4,8 +4,10 @@
   <div id="app">
     <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
     <mainHeader></mainHeader>
+    <main>
     <navBar></navBar>
     <router-view></router-view>
+    </main>
     <Footer></Footer>
     <!-- Menu -->
   </div>

@@ -7,9 +7,14 @@
     :movie="movie"
     @click="toMovieShowing(movie)"  
     class="responsive-img pic">
-    <p class="movieTitle">movie text</p>
-    </figure>
+
+    <p v-for="(movie, i) in movies"
+    v-bind:key="movie.title + i"
+    class="movieTitle">
+    {{movie.title}}
+    </p>
   </div>
+
 </template>
 
 <script>

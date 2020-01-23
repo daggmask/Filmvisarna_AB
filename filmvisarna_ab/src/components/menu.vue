@@ -48,12 +48,10 @@ export default {
     openSlideMenu() {
       document.getElementById("side-menu").style.width = "100%";
       document.getElementById("side-menu").style.height = "130%";
-      document.getElementById("main").style.marginLeft = "100%";
     },
     closeSlideMenu() {
       document.getElementById("side-menu").style.width = "0%";
       document.getElementById("side-menu").style.height = "0";
-      document.getElementById("main").style.marginLeft = "0";
     }
   }
 };

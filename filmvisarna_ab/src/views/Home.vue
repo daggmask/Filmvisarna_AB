@@ -44,7 +44,7 @@ export default {
 }
 #slider figure{
     position: relative;
-    width: 600%;
+    width: 500%;
     margin: 0;
     left: 0;
     animation: 20s slider infinite;
@@ -55,31 +55,10 @@ export default {
 }
 @keyframes slider{
 0%{
-    left: 0;
-}
-20%{
-    left: 0;
-}
-25%{
-    left: -100%;
-}
-45%{
-    left: -100%;
-}
-50%{
-    left: -200%;
-}
-70%{
-    left: -200%;
-}
-75%{
-    left: -300%;
-}
-95%{
-    left: -300%;
+    left: 100%;
 }
 100%{
-    left: -400%;
+    left: -170%;
 }
 }
 </style>

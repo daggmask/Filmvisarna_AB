@@ -2,7 +2,7 @@
   <div class="container col">
     <iframe class="trailer responsive-video" :src="'https://www.youtube.com/embed/' + movie.trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-    <div class="col s12 m7">
+    <div class="col s12">
       <h3 class="header">{{movie.title}}</h3>
         <div class="card horizontal black">
           <div class="card-image">
@@ -18,11 +18,27 @@
         </div>
       </div>
     </div>
+    <div class="divider"></div>
      <div class="row">
       <div class="col s12">
-        <div class="card-panel black">
+        <div class="card-panel black moviedisc">
           <span class="white-text">{{movie.description}}</span>
         </div>
+        <div class="card-panel black smallmovieinfo">
+          <div class="subheader">Regissör:</div>
+          <div class="">{{movie.director}}</div>
+          
+          <div class="subheader">Produktions länder:</div>
+          <div><span v-for="country of movie.productionCountries" :key="country" >{{country}}, </span></div>
+          
+          <div class="subheader">Undertext:</div>
+          <div>{{movie.subtitles}}</div>
+           
+          <div class="subheader">Produktions år:</div>
+          <div>{{movie.productionYear}}</div>
+        </div>
+        
+         
       </div>
     </div>
   </div>
@@ -53,21 +69,6 @@ computed: {
   width: 100%;
   height: 40vh;
 }
-.movieInfo{
-  padding: 3% 7%;
-}
-.synopsis{
-  font-size: 1.3em;
-    text-align: justify;
-    padding-top: 3%;
-}
-.title{
-  font-size: 2em;
-}
-.movieInfoRow{
-  justify-content: space-between;
-  align-items: baseline
-}
 .img{
   max-width: 15vw;
   height: auto;
@@ -83,5 +84,26 @@ computed: {
 }
 .languagetext{
   font-size: 0.7em;
+}
+.subheader{
+  font-size: 0.9em;
+  margin-top: 0.5%;
+}
+#moviePoster{
+  width: 35vw;
+}
+.smallmovieinfo{
+  padding-top: 0%
+}
+.moviedisc{
+  padding-bottom: 2%;
+}
+@media screen and (min-width: 768px){
+  #moviePoster{
+    width: 15vw;
+  }
+  .moviedisc{
+    width: 50vw;
+  }
 }
 </style>

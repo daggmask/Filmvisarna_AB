@@ -1,5 +1,6 @@
 <template>
     <footer class="page-footer light-blue darken-4 footback">
+        
         <div class="container conttext"> 
             <div class="row containfoot">
                 <div class="col s12 ">

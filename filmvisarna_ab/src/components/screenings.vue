@@ -1,25 +1,43 @@
 <template>
-  <div class="container col">
-    <div class="row no-margin">
-      <div class="btn light-blue darken-4 col s4 offset-s4"
-      @click="isOpen = !isOpen, active = active">
-        <span>Välj datum</span>
+  <div class="container col screenings">
+    <div class="row">
+      <div class="col s12">
+        <a href="#"
+        class="btn light-blue darken-4 col s6 offset-s3"
+        @click="isOpen = !isOpen"
+        >
+          Välj datum
+        </a>
       </div>
     </div>
-    <div v-if="isOpen">
-      <div class="row no-margin"
+
+    <div class="row"
+    v-if="isOpen">
+      <div class="col s12"
       v-for="(date, i) in dates"
-      :key="i + date"
-      @click="setDate(date), isOpen = !isOpen">
-        <div
-        class="btn light-blue darken-3 col s4 offset-s4 date"
-        >
+      :key="i + date">
+        <a href="#"
+        class="btn light-blue darken-2 col s6 offset-s3"
+        @click="setDate(date), isOpen = !isOpen">
         {{ date }}
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="col s8 offset-s2"
+        v-for="(screening, i) in screeningsOnSelectedDate"
+        :key="i + screening">
+          <div class="col s3">
+            {{ screening.time }}
+          </div>
+          <div class="col s9">
+            <span class="col s12">{{ screening.auditorium }}</span>
+            <span class="col s12">Platser kvar</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container  ">
-      
     </div>
   </div>
 </template>
@@ -30,10 +48,19 @@ export default {
     
   },
   computed: {
+    screenings(){
+      let allScreenings = this.$store.state.screenings;
+      let currentMovieScreenings = [];
+      for(let screening of allScreenings){
+        if(screening.film === this.movieTitle){
+          currentMovieScreenings.push(screening);
+        }
+      }
+      return currentMovieScreenings;
+    },
     dates(){
-      let screenings = this.$store.state.screenings;
       let dates = [];
-      for(let screening of screenings) {
+      for(let screening of this.screenings) {
         if(this.movieTitle === screening.film){
           dates.push(screening.date);
         }
@@ -41,40 +68,36 @@ export default {
       dates = Array.from(new Set(dates))
       return dates;
     },
-  },
-  methods: {
-    screenings(date){
-      let screenings = this.$store.state.screenings;
-      let movieScreenings = []
-      for(let screening of screenings) {
-        if(screening.film === this.movieTitle && screening.date === date) {
-          movieScreenings.push(screening);
+    screeningsOnSelectedDate(){
+      let screeningsOnSelectedDate = []
+      for(let screening of this.screenings){
+        if(screening.date === this.date){
+          screeningsOnSelectedDate.push(screening);
         }
       }
-      return movieScreenings;
-    },
+      return screeningsOnSelectedDate;
+    }
+  },
+  methods: {
     setDate(date){
       this.date = date;
     }
   },
   created(){
     this.$store.dispatch("getScreenings");
+    this.date = new Date();
   },
   data() {
     return {
       movieTitle: "Parasit",
       date: String,
       isOpen: false,
-      active: false,
     }
   }
 }
 </script>
   
 <style scoped>
-  .date{
-    text-align: center;
-  }
   .no-margin{
     margin-bottom: 0px;
   }

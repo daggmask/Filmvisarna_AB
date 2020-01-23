@@ -1,5 +1,6 @@
 <template>
-  <div class="carousel container" >
+  <div id="slider">
+      <figure>
     <img :src= movie.images[1]
     v-for="(movie, i) in movies"
     v-bind:key="movie.title + i + movie.images[1]"
@@ -7,6 +8,7 @@
     @click="toMovieShowing(movie)"  
     class="responsive-img pic">
     <p class="movieTitle">movie text</p>
+    </figure>
   </div>
 </template>
 
@@ -37,67 +39,48 @@ export default {
 
 <style scoped>
 
-@keyframes display {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  10% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  20% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  30% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
+#slider{
+    overflow: auto;
 }
-.carousel{
+#slider figure{
+    position: relative;
+    width: 600%;
     margin: 0;
-    padding: 0;
-    
+    left: 0;
+    animation: 20s slider infinite;
 }
-.carousel .pic{
-height: 100%;
-}
-img {
-  position: absolute;
-  opacity: 0;
-  animation: display 20s infinite;
-}
-.movieTitle{
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-}
-.pic{
-    width: 70vw;
-    left: 15vw;
+#slider figure img{
+    height: 50vh;
     margin-top: 4%;
 }
-img:nth-child(2) {
-  animation-delay: 4s;
+@keyframes slider{
+0%{
+    left: 0;
 }
-img:nth-child(3) {
-  animation-delay: 8s;
+20%{
+    left: 0;
 }
-img:nth-child(4) {
-  animation-delay: 12s;
+25%{
+    left: -100%;
 }
-img:nth-child(5) {
-  animation-delay: 16s;
+45%{
+    left: -100%;
 }
-@media screen and (max-width: 768px){
-    .pic{
-        width: 100vw;
-        left: 0vw;
-    }
+50%{
+    left: -200%;
+}
+70%{
+    left: -200%;
+}
+75%{
+    left: -300%;
+}
+95%{
+    left: -300%;
+}
+100%{
+    left: -400%;
+}
 }
 </style>
+

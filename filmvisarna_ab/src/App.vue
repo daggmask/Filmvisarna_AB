@@ -5,7 +5,7 @@
     <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
     <mainHeader></mainHeader>
     <main>
-    <navBar></navBar>
+    <Menu></Menu>
     <router-view></router-view>
     </main>
     <Footer></Footer>
@@ -16,11 +16,11 @@
 <script>
 import mainHeader from '@/components/header.vue'
 import Footer from '@/components/footer.vue'
-import navBar from '@/components/menu.vue'
+import Menu from '@/components/menu.vue'
 export default {
   components:{
     Footer,
-    navBar,
+    Menu,
     mainHeader
   },
   

@@ -16,23 +16,25 @@
       :key="i + date">
         <a href="#"
         class="btn-large light-blue darken-2 col s12 date"
-        @click="setDate(date), isOpen = !isOpen">
+        @click="setDate(date), isOpen = !isOpen, screeningsAreShowing = true">
         {{ date }}
         </a>
       </div>
     </div>
 
     <div class="row" v-if="!isOpen">
-      <ul :class="{ hidden: !isOpen }" class="collection">
+      <ul :class="{ hidden: !screeningsAreShowing }" class="collection">
         <li class="collection-item col s12 light-blue darken-1"
         v-for="(screening, i) in screeningsOnSelectedDate"
         :key="i + screening">
-          <div class="col s4 valign-wrapper">
-            <h5>{{ screening.time }}</h5>
+          <div class="col s4  valign-wrapper">
+            <h4>{{ screening.time }}</h4>
           </div>
-          <div class="col s8 valign-wrapper">
-            <p class="left-align">{{ screening.auditorium }}</p>
-            <p class="">Platser kvar</p>
+          <div class="auditorium-info col s8">
+            <h5>
+              {{ screening.auditorium }}<br>
+              Platser kvar
+            </h5>
           </div>
         </li>
       </ul>
@@ -92,6 +94,7 @@ export default {
       movieTitle: "Parasit",
       date: String,
       isOpen: false,
+      screeningsAreShowing: false,
     }
   }
 }
@@ -112,5 +115,8 @@ export default {
   }
   .hidden{
     border: 0px;
+  }
+  .screening-time{
+    text-align: center;
   }
 </style>

@@ -66,8 +66,9 @@ computed: {
 
 <style scoped>
 .trailer{
+  margin-top: 3%;
   width: 100%;
-  height: 40vh;
+  height: 50vh;
 }
 .img{
   max-width: 15vw;

@@ -13,7 +13,7 @@
       </div>
       <p class="synopsis">{{movie.description}}</p>
     </div>
-    <screenings :movie="movie" />
+    <screenings :movieTitle="movie.title" />
   </div>
 </template>
 

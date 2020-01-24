@@ -47,7 +47,7 @@
 <script>
 export default {
   props: {
-    
+    movieTitle: String,
   },
   computed: {
     screenings(){
@@ -91,7 +91,6 @@ export default {
   },
   data() {
     return {
-      movieTitle: "Parasit",
       date: String,
       isOpen: false,
       screeningsAreShowing: false,

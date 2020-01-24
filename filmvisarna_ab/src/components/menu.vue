@@ -34,7 +34,7 @@
               <router-link class="mobile-link" to="/about">Om oss</router-link>
             </a>
           </li>
-          <a href="#" class="btn-close material-icons" @click.prevent="closeSlideMenu">close</a>
+          <a href="#" class="btn-close material-icons mobile-link" @click.prevent="closeSlideMenu">close</a>
         </ul>
       </div>
     </div>
@@ -46,11 +46,9 @@
 export default {
   methods: {
     openSlideMenu() {
-      document.getElementById("side-menu").style.width = "100%";
       document.getElementById("side-menu").style.height = "130%";
     },
     closeSlideMenu() {
-      document.getElementById("side-menu").style.width = "0%";
       document.getElementById("side-menu").style.height = "0";
     }
   }
@@ -62,38 +60,33 @@ export default {
   overflow: hidden;
   background-color: rgb(0, 0, 0);
   overflow: hidden;
-  justify-content: center;
 }
 .navbar a {
-  float: left;
   display: block;
   color: #f2f2f2;
-  text-align: center;
-  padding: 14px;
+  font-family: 'Monoton', cursive;
   text-decoration: none;
+  font-size: 2vh;
+  width: 7.5vw;
 }
 .navbar ul {
-  padding: 8px 0 0 0;
-  list-style: none;
+  justify-content: space-between;
+  width: 25%;
 }
 .navbar a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: rgba(46, 46, 46, 0.100);
+  font-size: 2.5vh;
 }
 .side-nav {
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.932);
   overflow: hidden;
   padding-top: 60px;
   transition: 1s;
-}
-.side-nav a {
-  color: white;
 }
 .side-menu-links {
   height: 70%;
@@ -109,6 +102,7 @@ export default {
   justify-content: center;
   width: 100%;
   margin-top: -9.3vh;
+  height: 0;
 }
 .mobile-link {
   color: white;
@@ -134,12 +128,9 @@ export default {
 .sticky .side-nav {
   padding-top: 1em;
 }
-.navbar-nav {
-  margin-left: 10%;
-  align-content: center;
-}
 .hamburger {
   margin-left: 5%;
   margin-top: 0.5%;
+  cursor: pointer;
 }
 </style>

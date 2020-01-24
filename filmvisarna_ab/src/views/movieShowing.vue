@@ -77,6 +77,10 @@ computed: {
 .actortext{
   font-size: 0.7em;
 }
+.card{
+   background: linear-gradient(to bottom, black, #01579b, black);
+   border-radius: 10%;
+}
 .genretext{
   font-size: 1.2em;
 }
@@ -92,6 +96,9 @@ computed: {
 }
 #moviePoster{
   width: 35vw;
+  border-radius: 10%;
+  -webkit-box-shadow: 0 24px 38px 3px #01579b;
+  box-shadow: 0 0.3em 1em 0.1em #01579b;
 }
 .smallmovieinfo{
   padding-top: 0%

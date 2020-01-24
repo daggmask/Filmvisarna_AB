@@ -5,7 +5,7 @@
     <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
     <mainHeader></mainHeader>
     <main>
-    <Menu></Menu>
+    <Menu id="navbar"></Menu>
     <router-view></router-view>
     </main>
     <Footer></Footer>
@@ -56,5 +56,8 @@ export default {
 }
 main{
   flex: 1;
+}
+#navbar{
+  z-index: 999;
 }
 </style>

@@ -10,7 +10,9 @@
 
     <div class="movieTitle">
     <p v-for="(movie, i) in movies"
-    v-bind:key="movie.title + i">
+    v-bind:key="movie.title + i"
+    :movie="movie"
+    @click="toMovieShowing(movie)">
     {{movie.title}}
     </p>
     </div>
@@ -81,7 +83,7 @@ export default {
   position: absolute;
   align-items: flex-end;
   width: 100%;
-  height: 60vh;
+  top: 50vh;
   padding:0%;
   font-family: 'Lato', sans-serif;
   font-size: 1.5em

@@ -29,7 +29,7 @@
         :key="i + screening">
           <div class="row screening-info valign-wrapper">
             <div class="col s4 m5 center-align">
-              <h4>{{ screening.time }}</h4>
+              <h4>{{ getScreeningTime(screening.time) }}</h4>
             </div>
             <div class="auditorium-info col s8 m7">
               <h6>
@@ -85,7 +85,12 @@ export default {
   methods: {
     setDate(date){
       this.date = date;
-    }
+    },
+    getScreeningTime(screeningTimestamp){
+      let screeningDate = screeningTimestamp.toDate();
+      let screeningTime = `${screeningDate.getHours()}:${screeningDate.getMinutes()}`;
+      return screeningTime;      
+    },
   },
   created(){
     this.$store.dispatch("getScreenings");

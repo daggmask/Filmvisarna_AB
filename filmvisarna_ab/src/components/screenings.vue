@@ -2,10 +2,9 @@
   <div class="container col screenings">
 
     <div class="row date-btn-row">
-      <a href="javascript:void()"
+      <a href="javascript:void(0)"
       class="btn-large light-blue darken-4 col s12 m6 offset-m3 xl4 offset-xl4"
-      @click="isOpen = !isOpen"
-      >
+      @click="isOpen = !isOpen">
         <h5>Välj datum</h5>
       </a>
     </div>
@@ -14,7 +13,7 @@
       <div class="row dates-row"
       v-for="(date, i) in dates"
       :key="i + date">
-        <a href="javascript:void()"
+        <a href="javascript:void(0)"
         class="btn-large light-blue darken-2 col s12 m6 offset-m3 xl4 offset-xl4"
         @click="setDate(date), isOpen = !isOpen, screeningsAreShowing = true">
         {{ date }}
@@ -66,7 +65,8 @@ export default {
       let dates = [];
       for(let screening of this.screenings) {
         if(this.movieTitle === screening.film){
-          dates.push(screening.date);
+          let date = this.getDateAsString(screening.time);
+          dates.push(date);
         }
       }
       dates = Array.from(new Set(dates))
@@ -75,7 +75,7 @@ export default {
     screeningsOnSelectedDate(){
       let screeningsOnSelectedDate = []
       for(let screening of this.screenings){
-        if(screening.date === this.date){
+        if(this.getDateAsString(screening.time) === this.date){
           screeningsOnSelectedDate.push(screening);
         }
       }
@@ -91,6 +91,38 @@ export default {
       let screeningTime = `${screeningDate.getHours()}:${screeningDate.getMinutes()}`;
       return screeningTime;      
     },
+    getDateAsString(timestamp){
+      let date = timestamp.toDate();
+      return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
+    },
+    getMonthName(monthNumber){
+      switch(monthNumber) {
+        case 0:
+          return "januari";
+        case 1:
+          return "februari";
+        case 2:
+          return "mars";
+        case 3:
+          return "april";
+        case 4:
+          return "maj";
+        case 5:
+          return "juni";
+        case 6:
+          return "juli";
+        case 7:
+          return "augusti";
+        case 8:
+          return "september";
+        case 9:
+          return "oktober";
+        case 10:
+          return "november";
+        case 11:
+          return "december";
+      }
+    }
   },
   created(){
     this.$store.dispatch("getScreenings");

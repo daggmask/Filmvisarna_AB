@@ -86,9 +86,9 @@ export default {
     setDate(date){
       this.date = date;
     },
-    getScreeningTime(screeningTimestamp){
-      let screeningDate = screeningTimestamp.toDate();
-      let screeningTime = `${screeningDate.getHours()}:${screeningDate.getMinutes()}`;
+    getScreeningTime(timestamp){
+      let screeningDate = timestamp.toDate();
+      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
       return screeningTime;      
     },
     getDateAsString(timestamp){
@@ -122,6 +122,31 @@ export default {
         case 11:
           return "december";
       }
+    },
+    getMinutesAsString(minuteNumber){
+      switch(minuteNumber){
+        case 0:
+          return '00';
+        case 1:
+          return '01';
+        case 2:
+          return '02';
+        case 3:
+          return '03';
+        case 4:
+          return '04';
+        case 5:
+          return '05';
+        case 6:
+          return '06';
+        case 7:
+          return '07';
+        case 8:
+          return '08';
+        case 9:
+          return '09';
+      }
+      return minuteNumber;
     }
   },
   created(){

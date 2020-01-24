@@ -3,7 +3,7 @@
 
     <div class="row date-btn-row">
       <a href="javascript:void()"
-      class="btn-large light-blue darken-4 col s12"
+      class="btn-large light-blue darken-4 col s12 m6 offset-m3 xl4 offset-xl4"
       @click="isOpen = !isOpen"
       >
         <h5>Välj datum</h5>
@@ -15,7 +15,7 @@
       v-for="(date, i) in dates"
       :key="i + date">
         <a href="javascript:void()"
-        class="btn-large light-blue darken-2 col s12 date"
+        class="btn-large light-blue darken-2 col s12 m6 offset-m3 xl4 offset-xl4"
         @click="setDate(date), isOpen = !isOpen, screeningsAreShowing = true">
         {{ date }}
         </a>
@@ -23,18 +23,20 @@
     </div>
 
     <div class="row" v-if="!isOpen">
-      <ul :class="{ hidden: !screeningsAreShowing }" class="collection">
+      <ul :class="{ hidden: !screeningsAreShowing }" class="collection col s12 m6 offset-m3 xl4 offset-xl4">
         <li class="collection-item col s12 light-blue darken-1"
         v-for="(screening, i) in screeningsOnSelectedDate"
         :key="i + screening">
-          <div class="col s4  valign-wrapper">
-            <h4>{{ screening.time }}</h4>
-          </div>
-          <div class="auditorium-info col s8">
-            <h5>
-              {{ screening.auditorium }}<br>
-              Platser kvar
-            </h5>
+          <div class="row screening-info valign-wrapper">
+            <div class="col s4 m5 center-align">
+              <h4>{{ screening.time }}</h4>
+            </div>
+            <div class="auditorium-info col s8 m7">
+              <h6>
+                {{ screening.auditorium }}<br>
+                Platser kvar
+              </h6>
+            </div>
           </div>
         </li>
       </ul>
@@ -115,7 +117,13 @@ export default {
   .hidden{
     border: 0px;
   }
+  .screening-info{
+    margin: 0;
+  }
   .screening-time{
     text-align: center;
+  }
+  .collection{
+    padding: 0;
   }
 </style>

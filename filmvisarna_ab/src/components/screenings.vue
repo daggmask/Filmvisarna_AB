@@ -151,7 +151,6 @@ export default {
   },
   created(){
     this.$store.dispatch("getScreenings");
-    this.date = new Date();
   },
   data() {
     return {

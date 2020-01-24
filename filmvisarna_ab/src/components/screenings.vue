@@ -2,7 +2,7 @@
   <div class="container col screenings">
 
     <div class="row date-btn-row">
-      <a href="#"
+      <a href="javascript:void()"
       class="btn-large light-blue darken-4 col s12"
       @click="isOpen = !isOpen"
       >
@@ -14,7 +14,7 @@
       <div class="row dates-row"
       v-for="(date, i) in dates"
       :key="i + date">
-        <a href="#"
+        <a href="javascript:void()"
         class="btn-large light-blue darken-2 col s12 date"
         @click="setDate(date), isOpen = !isOpen, screeningsAreShowing = true">
         {{ date }}

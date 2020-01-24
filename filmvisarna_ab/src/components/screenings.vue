@@ -16,7 +16,7 @@
         <a href="javascript:void(0)"
         class="btn-large light-blue darken-2 col s12 m6 offset-m3 xl4 offset-xl4"
         @click="setDate(date), isOpen = !isOpen, screeningsAreShowing = true">
-        {{ date }}
+          <h5>{{ date }}</h5>
         </a>
       </div>
     </div>

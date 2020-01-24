@@ -14,11 +14,11 @@
           <p class="ticketPrice">125kr/st</p>
         </div>
         <div class="container buttonRow">
-          <button class="btn buttonColor container" @click="deductAdultTest()">-</button>
-          {{this.numberOfAdult}}
+          <button class="btn buttonColor container" @click="deductRegularTicket()">-</button>
+          {{this.numberOfRegularTickets}}
           <button
             class="btn buttonColor container"
-            @click="addAdultTest()"
+            @click="addRegularTicket()"
           >+</button>
         </div>
       </div>
@@ -28,11 +28,11 @@
           <p class="ticketPrice">110kr/st</p>
         </div>
         <div class="container buttonRow">
-          <button class="btn buttonColor container" @click="deductChildTest()">-</button>
-          {{this.numberOfAdult}}
+          <button class="btn buttonColor container" @click="deductChildTicket()">-</button>
+          {{this.numberOfChildTickets}}
           <button
             class="btn buttonColor container"
-            @click="addChildTest()"
+            @click="addChildTicket()"
           >+</button>
         </div>
       </div>
@@ -42,17 +42,17 @@
           <p class="ticketPrice">100kr/st</p>
         </div>
         <div class="container buttonRow">
-          <div class="btn buttonColor container" @click="deductOldsTest()">-</div>
-          {{this.numberOfAdult}}
+          <div class="btn buttonColor container" @click="deductSeniorCitizenTicket()">-</div>
+          {{this.numberSeniorCitizenTickets}}
           <button
             class="btn buttonColor container filmvisarnaBlue"
-            @click="addOldsTest()"
+            @click="addSeniorCitizenTicket()"
           >+</button>
         </div>
       </div>
     </div>
-    <div class="payment">Summa: $$$</div>
-    <button class="btn-large filmvisarnaBlue">Välj platser</button>
+    <div class="payment">Summa: {{this.totalPrice}}</div>
+    <button class="btn-large filmvisarnaBlue" @click="proceedAndChooseSeats">Välj platser</button>
   </div>
 </template>
 
@@ -60,34 +60,51 @@
 export default {
   data() {
     return {
-      numberOfAdult: 2,
-      numberOfOlds: 0,
-      numberOfChilder: 0
+      numberOfRegularTickets: 0,
+      numberSeniorCitizenTickets: 0,
+      numberOfChildTickets: 0,
+      totalPrice: 0
     };
   },
   methods: {
-    addAdultTest() {
-      this.numberOfAdult++;
+    addRegularTicket() {
+      this.numberOfRegularTickets++;
+      this.totalPrice += 125;
     },
-    deductAdultTest() {
-      if (this.numberOfAdult != 0) {
-        this.numberOfAdult--;
+    deductRegularTicket() {
+      if (this.numberOfRegularTickets != 0) {
+        this.numberOfRegularTickets--;
+        this.totalPrice -= 125;
       }
     },
-    addOldsTest() {
-      this.numberOfOlds++;
+    addSeniorCitizenTicket() {
+      this.numberSeniorCitizenTickets++;
+      this.totalPrice += 110;
     },
-    deductOldsTest() {
-      if (this.numberOfOlds != 0) {
-        this.numberOfOlds - 1;
+    deductSeniorCitizenTicket() {
+      if (this.numberSeniorCitizenTickets != 0) {
+        this.totalPrice -= 110;
+        this.numberSeniorCitizenTickets--;
       }
     },
-    addChildTest() {
-      this.numberOfChilder++;
+    addChildTicket() {
+      this.numberOfChildTickets++;
+      this.totalPrice += 115;
     },
-    deductChildTest() {
-      if (this.numberOfChilder != 0) {
-        this.numberOfChilder - 1;
+    deductChildTicket() {
+      if (this.numberOfChildTickets != 0) {
+        this.totalPrice -= 115;
+        this.numberOfChildTickets--;
+      }
+    },
+    proceedAndChooseSeats() {
+      if (this.totalPrice != 0) {
+        console.log(
+          "Number of seats to place: " +
+            (this.numberOfRegularTickets +
+              this.numberOfChildTickets +
+              this.numberSeniorCitizenTickets)
+        );
       }
     }
   }

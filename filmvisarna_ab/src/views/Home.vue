@@ -8,12 +8,12 @@
     @click="toMovieShowing(movie)"  
     class="responsive-img pic">
 
-    <div class="movieTitle">
+    <!-- <div class="movieTitle">
     <p v-for="(movie, i) in movies"
     v-bind:key="movie.title + i">
     {{movie.title}}
     </p>
-    </div>
+    </div> -->
    
    
       </figure>

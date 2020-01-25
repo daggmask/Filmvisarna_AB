@@ -5,7 +5,7 @@
       <a href="javascript:void(0)"
       class="btn-large light-blue darken-4 col s12 m6 offset-m3 xl4 offset-xl4"
       @click="isOpen = !isOpen">
-        <h5>Välj datum</h5>
+        <h5>{{ date }}</h5>
       </a>
     </div>
 
@@ -154,7 +154,7 @@ export default {
   },
   data() {
     return {
-      date: String,
+      date: 'Välj datum',
       isOpen: false,
       screeningsAreShowing: false,
     }

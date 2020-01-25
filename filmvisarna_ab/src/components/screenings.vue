@@ -1,7 +1,7 @@
 <template>
   <div class="container col screenings">
 
-    <div class="row date-btn-row">
+    <div class="row small-margin">
       <a href="javascript:void(0)"
       class="btn-large light-blue darken-4 col s12 m6 offset-m3 xl4 offset-xl4"
       @click="isOpen = !isOpen">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="dates-div" v-if="isOpen">
-      <div class="row dates-row"
+      <div class="row small-margin"
       v-for="(date, i) in dates"
       :key="i + date">
         <a href="javascript:void(0)"
@@ -23,7 +23,7 @@
 
     <div class="row" v-if="!isOpen">
       <ul :class="{ hidden: !screeningsAreShowing }" class="collection col s12 m6 offset-m3 xl4 offset-xl4">
-        <li class="collection-item col s12 light-blue darken-1"
+        <li class="collection-item col s12 light-blue darken-2"
         v-for="(screening, i) in screeningsOnSelectedDate"
         :key="i + screening">
           <div class="row screening-info valign-wrapper">
@@ -163,17 +163,14 @@ export default {
 </script>
   
 <style scoped>
-  .date-btn-row{
-    margin-bottom: 1px;
-  }
-  .dates-row{
-    margin-bottom: 1px;
+  .small-margin{
+    margin-bottom: 5px;
   }
   .no-margin{
     margin-bottom: 0px;
   }
-  .btn:hover{
-    background-color: #1e88e5 !important;
+  .btn-large:hover{
+    background-color: #0091ea !important;
   }
   .hidden{
     border: 0px;

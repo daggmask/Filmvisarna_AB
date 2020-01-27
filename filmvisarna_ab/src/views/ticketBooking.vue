@@ -1,7 +1,7 @@
 <template>
   <div class="container col main">
     <div class="container" id="movieAndDateInfo">
-      <p class="movieTitle container">Movie the movie</p>
+      <p class="movieTitle container">{{movie.title}}</p>
       <div class="apointmentInfo container">
         <p class="apointment">Datum: 20/20 - 2020</p>
         <p class="apointment">Tid: 00:00</p>
@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="payment">Summa: {{this.totalPrice}}</div>
+    <div class="payment">Pris: {{this.totalPrice}}kr</div>
     <button class="btn-large filmvisarnaBlue" @click="proceedAndChooseSeats">Välj platser</button>
   </div>
 </template>
@@ -66,6 +66,22 @@ export default {
       totalPrice: 0
     };
   },
+  
+  computed: {
+  movie() {
+    let movies = this.$store.state.movies;
+    for(let movie of movies){
+      if(movie.movieId === this.$route.params.movie ){
+        return movie;
+      }
+    }
+    //return this.$store.state.movies[this.$route.params.movie];
+    return null;
+  }
+},
+    created(){
+      this.$store.dispatch("getMovies")
+    },
   methods: {
     addRegularTicket() {
       this.numberOfRegularTickets++;

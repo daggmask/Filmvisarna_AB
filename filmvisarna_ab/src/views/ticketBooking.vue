@@ -141,7 +141,7 @@ export default {
     },
     getScreeningTime(timestamp){
       let screeningDate = timestamp.toDate();
-      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+      let screeningTime = `${this.getHoursAsString(screeningDate.getHours())}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
       return screeningTime;      
     },
     getDateAsString(timestamp){
@@ -181,6 +181,12 @@ export default {
         return "0" + minuteNumber
       }
       return minuteNumber;
+    },
+    getHoursAsString(hourNumber){
+      if (hourNumber < 10) {
+        return "0" + hourNumber;
+      }
+      return hourNumber;
     }
   }
 };

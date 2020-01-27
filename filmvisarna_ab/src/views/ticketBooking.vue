@@ -95,21 +95,21 @@ export default {
     },
     addSeniorCitizenTicket() {
       this.numberSeniorCitizenTickets++;
-      this.totalPrice += 110;
+      this.totalPrice += 100;
     },
     deductSeniorCitizenTicket() {
       if (this.numberSeniorCitizenTickets != 0) {
-        this.totalPrice -= 110;
+        this.totalPrice -= 100;
         this.numberSeniorCitizenTickets--;
       }
     },
     addChildTicket() {
       this.numberOfChildTickets++;
-      this.totalPrice += 115;
+      this.totalPrice += 110;
     },
     deductChildTicket() {
       if (this.numberOfChildTickets != 0) {
-        this.totalPrice -= 115;
+        this.totalPrice -= 110;
         this.numberOfChildTickets--;
       }
     },

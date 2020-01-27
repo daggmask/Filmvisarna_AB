@@ -3,8 +3,10 @@
         <div class="container conttext"> 
             <div class="row containfoot">
                 <div class="col s12 ">
-                    <p><i class="material-icons iconfooter">email</i> filmvisarnaab@gmail.com</p>
-                    <p class="grey-text text-lighten-4"><i class="material-icons iconfooter">home</i> Kalkstensvägen 7, Lund</p>
+                    <a href="mailto:filmvisarnaab@gmail.com" target="_top">
+                    <p><i class="material-icons iconfooter">email</i> filmvisarnaab@gmail.com</p></a>
+                    <a href="https://www.google.se/maps/place/Kalkstensv%C3%A4gen+3B,+224+78+Lund/@55.6917221,13.2098434,17z/data=!3m1!4b1!4m5!3m4!1s0x465397960c2a01df:0xb1c484736240c8d8!8m2!3d55.6917221!4d13.2120321" target="_blank">
+                    <p class="grey-text text-lighten-4"><i class="material-icons iconfooter">home</i> Kalkstensvägen 3B, Lund</p> </a>
                     <p> <i class="material-icons iconfooter">call</i> 0760 - 45 34 65</p>
                 </div>
                 <div class="col s12 copy">

@@ -43,6 +43,16 @@ export default new Vuex.Store({
       })
       commit('setScreenings', screenings);
      },
+     async getAuditoriums({commit}){
+      let querySnapshot = await db.collection("auditoriums").get();
+      let auditoriums = [];
+      querySnapshot.forEach(auditorium => {
+        let data = auditorium.data();
+        data.id = auditorium.id;
+        auditoriums.push(data);
+      })
+      commit('setScreenings', auditoriums);
+     },
      async publishMovies({commit}){
       let documents = require('@/data/movies.json')
       for(let document of documents){

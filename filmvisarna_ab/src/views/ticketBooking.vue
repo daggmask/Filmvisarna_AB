@@ -1,5 +1,5 @@
 <template>
-  <div class="container col main main">
+  <div class="container col main">
     <div class="container" id="movieAndDateInfo">
       <p class="movieTitle container">{{ screening.film }}</p>
       <div class="apointmentInfo container">
@@ -195,16 +195,19 @@ export default {
 <style scoped>
 .main {
   width: 100vw;
+  align-items: center;
 }
 .container {
   display: flex;
 }
 #movieAndDateInfo {
   flex-direction: column;
-  width: 60%;
+  width: 75vw;
+  margin:0%;
 }
 .apointmentInfo {
   justify-content: space-between;
+  width: 100%vw;
 }
 .movieTitle {
   margin-top: 5%;

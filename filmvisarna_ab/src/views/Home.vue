@@ -1,19 +1,36 @@
 <template>
-  <div class="carousel container" >
+  <div id="slider">
+      <figure>
     <img :src= movie.images[1]
     v-for="(movie, i) in movies"
     v-bind:key="movie.title + i + movie.images[1]"
     :movie="movie"
     @click="toMovieShowing(movie)"  
     class="responsive-img pic">
+
+    <div class="movieTitle">
+    <p v-for="(movie, i) in movies"
+    v-bind:key="movie.title + i"
+    :movie="movie"
+    @click="toMovieShowing(movie)">
+    {{movie.title}}
+    </p>
+    </div>
+   
+   
+      </figure>
   </div>
+
 </template>
 
 <script>
 export default {
     computed: {
         movies() {
-            return this.$store.state.movies;
+            let movie = this.$store.state.movies
+            movie.push(movie[0])
+            return movie
+            // return this.$store.state.movies;
         }
     },
     methods:{
@@ -35,63 +52,46 @@ export default {
 </script>
 
 <style scoped>
-
-@keyframes display {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  10% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  20% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  30% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+#slider{
+    overflow: hidden;
 }
-.carousel{
+#slider figure {
+    position: relative;
+    width: 600%;
     margin: 0;
-    padding: 0;
-    
+    left: 0;
+    animation: 20s slider infinite;
+    height: 60vh;
 }
-.carousel .pic{
-height: 100%;
+#slider figure img{
+    height: 50vh;
+    width: 100vw;
+    float: left;
 }
-img {
+@keyframes slider{
+0%{
+    left: 0;
+}
+100%{
+    left: -500%;
+}
+}
+.movieTitle{
+  display: flex;
+  justify-content: space-around;
   position: absolute;
-  opacity: 0;
-  animation: display 15s infinite;
+  align-items: flex-end;
+  width: 100%;
+  top: 50vh;
+  padding:0%;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5em
 }
-.pic{
-    width: 70vw;
-    left: 15vw;
-    margin-top: 4%;
-}
-img:nth-child(2) {
-  animation-delay: 3s;
-}
-img:nth-child(3) {
-  animation-delay: 6s;
-}
-img:nth-child(4) {
-  animation-delay: 9s;
-}
-img:nth-child(5) {
-  animation-delay: 12s;
-}
-@media screen and (max-width: 768px){
-    .pic{
-        width: 100vw;
-        left: 0vw;
-    }
+p{
+  width: 40vw;
+  text-align: center;
+  height: 10vh;
 }
 </style>
+

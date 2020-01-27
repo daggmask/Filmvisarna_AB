@@ -35,9 +35,11 @@ export default new Vuex.Store({
      },
      async getScreenings({commit}){
       let querySnapshot = await db.collection("screenings").get();
-      let data = [];
-      querySnapshot.forEach((document) => {
-        data.push(document.data());
+      let screenings = [];
+      querySnapshot.forEach(screening => {
+        let data = screenings.data();
+        data.id = screening.id;
+        screenings.push(data);
       })
       commit('setScreenings', data);
      },

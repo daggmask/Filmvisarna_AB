@@ -3,8 +3,8 @@
     <div class="container" id="movieAndDateInfo">
       <p class="movieTitle container">{{ screening.film }}</p>
       <div class="apointmentInfo container">
-        <p class="apointment">Datum: 20/20 - 2020</p>
-        <p class="apointment">Tid: 00:00</p>
+        <p class="apointment">Datum: {{ getDateAsString(screening.time)}}</p>
+        <p class="apointment">Tid: {{ getScreeningTime(screening.time) }}</p>
       </div>
     </div>
     <div class="ticketOptions">
@@ -138,6 +138,49 @@ export default {
               this.numberSeniorCitizenTickets)
         );
       }
+    },
+    getScreeningTime(timestamp){
+      let screeningDate = timestamp.toDate();
+      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+      return screeningTime;      
+    },
+    getDateAsString(timestamp){
+      let date = timestamp.toDate();
+      return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
+    },
+    getMonthName(monthNumber){
+      switch(monthNumber) {
+        case 0:
+          return "januari";
+        case 1:
+          return "februari";
+        case 2:
+          return "mars";
+        case 3:
+          return "april";
+        case 4:
+          return "maj";
+        case 5:
+          return "juni";
+        case 6:
+          return "juli";
+        case 7:
+          return "augusti";
+        case 8:
+          return "september";
+        case 9:
+          return "oktober";
+        case 10:
+          return "november";
+        case 11:
+          return "december";
+      }
+    },
+    getMinutesAsString(minuteNumber){
+      if(minuteNumber < 10) {
+        return "0" + minuteNumber
+      }
+      return minuteNumber;
     }
   }
 };

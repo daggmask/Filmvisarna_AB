@@ -88,7 +88,7 @@ export default {
     },
     getScreeningTime(timestamp){
       let screeningDate = timestamp.toDate();
-      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+      let screeningTime = `${this.getHoursAsString(screeningDate.getHours())}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
       return screeningTime;      
     },
     getDateAsString(timestamp){
@@ -124,29 +124,16 @@ export default {
       }
     },
     getMinutesAsString(minuteNumber){
-      switch(minuteNumber){
-        case 0:
-          return '00';
-        case 1:
-          return '01';
-        case 2:
-          return '02';
-        case 3:
-          return '03';
-        case 4:
-          return '04';
-        case 5:
-          return '05';
-        case 6:
-          return '06';
-        case 7:
-          return '07';
-        case 8:
-          return '08';
-        case 9:
-          return '09';
+      if(minuteNumber < 10) {
+        return "0" + minuteNumber;
       }
       return minuteNumber;
+    },
+    getHoursAsString(hourNumber){
+      if (hourNumber < 10) {
+        return "0" + hourNumber;
+      }
+      return hourNumber;
     }
   },
   created(){

@@ -1,51 +1,59 @@
 <template>
-  <div class="container col">
-    <iframe class="trailer responsive-video" :src="'https://www.youtube.com/embed/' + movie.trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div>
+    <div class="container col">
+      <iframe class="trailer responsive-video" :src="'https://www.youtube.com/embed/' + movie.trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-    <div class="col s12">
-      <h3 class="header">{{movie.title}}</h3>
-        <div class="card horizontal black">
-          <div class="card-image">
-            <img :src="movie.images[0]" alt="MoviePoster" class="responsive-img" id="moviePoster">
-          </div>
-          <div class="card-stacked">
-          <div class="card-content">
-            <p class="genretext">{{movie.genre}}</p>
-            <p class="lengthtext">{{movie.length}} min</p>
-            <p class="languagetext">{{movie.language}}</p>
-            <span></span><span v-for="actor of movie.actors" :key="actor" class="actortext">{{actor}}, </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-     <div class="row">
       <div class="col s12">
-        <div class="card-panel black moviedisc">
-          <span class="white-text">{{movie.description}}</span>
+        <h3 class="header">{{movie.title}}</h3>
+          <div class="card horizontal black">
+            <div class="card-image">
+              <img :src="movie.images[0]" alt="MoviePoster" class="responsive-img" id="moviePoster">
+            </div>
+            <div class="card-stacked">
+            <div class="card-content">
+              <p class="genretext">{{movie.genre}}</p>
+              <p class="lengthtext">{{movie.length}} min</p>
+              <p class="languagetext">{{movie.language}}</p>
+              <span></span><span v-for="actor of movie.actors" :key="actor" class="actortext">{{actor}}, </span>
+            </div>
+          </div>
         </div>
-        <div class="card-panel black smallmovieinfo">
-          <div class="subheader">Regissör:</div>
-          <div class="">{{movie.director}}</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col s12">
+          <div class="card-panel black moviedisc">
+            <span class="white-text">{{movie.description}}</span>
+          </div>
+          <div class="card-panel black smallmovieinfo">
+            <div class="subheader">Regissör:</div>
+            <div class="">{{movie.director}}</div>
+            
+            <div class="subheader">Produktions länder:</div>
+            <div><span v-for="country of movie.productionCountries" :key="country" >{{country}}, </span></div>
+            
+            <div class="subheader">Undertext:</div>
+            <div>{{movie.subtitles}}</div>
+            
+            <div class="subheader">Produktions år:</div>
+            <div>{{movie.productionYear}}</div>
+          </div>
           
-          <div class="subheader">Produktions länder:</div>
-          <div><span v-for="country of movie.productionCountries" :key="country" >{{country}}, </span></div>
           
-          <div class="subheader">Undertext:</div>
-          <div>{{movie.subtitles}}</div>
-           
-          <div class="subheader">Produktions år:</div>
-          <div>{{movie.productionYear}}</div>
         </div>
-        
-         
       </div>
     </div>
+    <screenings :movieTitle="movie.title" />
   </div>
 </template>
 
 <script>
+import screenings from "@/components/screenings.vue"
+
 export default {
+  components: {
+    screenings,
+  },
 computed: {
   movie() {
     let movies = this.$store.state.movies;

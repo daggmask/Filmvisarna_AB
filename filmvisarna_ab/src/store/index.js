@@ -28,12 +28,15 @@ export default new Vuex.Store({
   },
   actions: {
     async getMovies({commit}){
-      let querySnapshot = await db.collection("movies").get()
-      let data = []
-      querySnapshot.forEach((document) => {
-        data.push(document.data())
-      })
-      commit('setMovies', data)
+      let querySnapshot = await db.collection("movies").get();
+      let movies = [];
+      querySnapshot.forEach(movie => {
+        let data = movie.data();
+        data.id = movie.id;
+        movies.push(data);
+
+      });
+      commit('setMovies', movies)
      },
 
      async publishMovies({commit}){

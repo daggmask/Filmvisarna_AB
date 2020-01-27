@@ -50,7 +50,7 @@ computed: {
   movie() {
     let movies = this.$store.state.movies;
     for(let movie of movies){
-      if(movie.movieId === this.$route.params.movie ){
+      if(movie.id === this.$route.params.movie ){
         return movie;
       }
     }

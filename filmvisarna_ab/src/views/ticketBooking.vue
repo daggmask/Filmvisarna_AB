@@ -1,7 +1,7 @@
 <template>
   <div class="container col main">
     <div class="container" id="movieAndDateInfo">
-      <p class="movieTitle container">{{movie.title}}</p>
+      <p class="movieTitle container">{{ screening.film }}</p>
       <div class="apointmentInfo container">
         <p class="apointment">Datum: 20/20 - 2020</p>
         <p class="apointment">Tid: 00:00</p>
@@ -68,14 +68,13 @@ export default {
   },
   
   computed: {
-  movie() {
-    let movies = this.$store.state.movies;
-    for(let movie of movies){
-      if(movie.movieId === this.$route.params.movie ){
-        return movie;
+  screening() {
+    let screenings = this.$store.state.screenings;
+    for(let screening of screenings){
+      if(screening.id === this.$route.params.screening ){
+        return screening;
       }
     }
-    //return this.$store.state.movies[this.$route.params.movie];
     return null;
   }
 },

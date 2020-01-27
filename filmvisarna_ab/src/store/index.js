@@ -37,7 +37,7 @@ export default new Vuex.Store({
       let querySnapshot = await db.collection("screenings").get();
       let screenings = [];
       querySnapshot.forEach(screening => {
-        let data = screenings.data();
+        let data = screening.data();
         data.id = screening.id;
         screenings.push(data);
       })

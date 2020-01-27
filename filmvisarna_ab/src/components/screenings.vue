@@ -26,7 +26,7 @@
         <li class="collection-item col s12 light-blue darken-2"
         v-for="(screening, i) in screeningsOnSelectedDate"
         :key="i + screening">
-        <router-link :to="$route.params.movie + '/tickets'">
+        <router-link :to="'/tickets/' + screening.id">
           <div class="row screening-info valign-wrapper">
             <div class="col s4 m5 center-align">
               <h4>{{ getScreeningTime(screening.time) }}</h4>

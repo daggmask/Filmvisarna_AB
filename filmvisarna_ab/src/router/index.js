@@ -26,7 +26,7 @@ const routes = [
     component: MovieList
   },
   {
-    path: "/movies/:movie/tickets",
+    path: "/tickets/:screening",
     name: "ticketBooking",
     component: ticketBooking
   },

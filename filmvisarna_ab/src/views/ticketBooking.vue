@@ -1,5 +1,5 @@
 <template>
-  <div class="container col main">
+  <div class="container col main main">
     <div class="container" id="movieAndDateInfo">
       <p class="movieTitle container">{{ screening.film }}</p>
       <div class="apointmentInfo container">
@@ -14,12 +14,16 @@
           <p class="ticketPrice">125kr/st</p>
         </div>
         <div class="container buttonRow">
-          <button class="btn buttonColor container" @click="deductRegularTicket()">-</button>
-          {{this.numberOfRegularTickets}}
           <button
             class="btn buttonColor container"
-            @click="addRegularTicket()"
-          >+</button>
+            @click="deductRegularTicket()"
+          >
+            -
+          </button>
+          {{ this.numberOfRegularTickets }}
+          <button class="btn buttonColor container" @click="addRegularTicket()">
+            +
+          </button>
         </div>
       </div>
       <div class="container ticketOptionRow">
@@ -28,12 +32,16 @@
           <p class="ticketPrice">110kr/st</p>
         </div>
         <div class="container buttonRow">
-          <button class="btn buttonColor container" @click="deductChildTicket()">-</button>
-          {{this.numberOfChildTickets}}
           <button
             class="btn buttonColor container"
-            @click="addChildTicket()"
-          >+</button>
+            @click="deductChildTicket()"
+          >
+            -
+          </button>
+          {{ this.numberOfChildTickets }}
+          <button class="btn buttonColor container" @click="addChildTicket()">
+            +
+          </button>
         </div>
       </div>
       <div class="container ticketOptionRow">
@@ -42,17 +50,26 @@
           <p class="ticketPrice">100kr/st</p>
         </div>
         <div class="container buttonRow">
-          <div class="btn buttonColor container" @click="deductSeniorCitizenTicket()">-</div>
-          {{this.numberSeniorCitizenTickets}}
+          <button
+            class="btn buttonColor container filmvisarnaBlue"
+            @click="deductSeniorCitizenTicket()"
+          >
+            -
+            </button>
+          {{ this.numberSeniorCitizenTickets }}
           <button
             class="btn buttonColor container filmvisarnaBlue"
             @click="addSeniorCitizenTicket()"
-          >+</button>
+          >
+            +
+          </button>
         </div>
       </div>
     </div>
-    <div class="payment">Pris: {{this.totalPrice}}kr</div>
-    <button class="btn-large filmvisarnaBlue" @click="proceedAndChooseSeats">Välj platser</button>
+    <div class="payment">Pris: {{ this.totalPrice }}kr</div>
+    <button class="btn-large filmvisarnaBlue" @click="proceedAndChooseSeats">
+      Välj platser
+    </button>
   </div>
 </template>
 
@@ -66,21 +83,21 @@ export default {
       totalPrice: 0
     };
   },
-  
+
   computed: {
-  screening() {
-    let screenings = this.$store.state.screenings;
-    for(let screening of screenings){
-      if(screening.id === this.$route.params.screening ){
-        return screening;
+    screening() {
+      let screenings = this.$store.state.screenings;
+      for (let screening of screenings) {
+        if (screening.id === this.$route.params.screening) {
+          return screening;
+        }
       }
+      return null;
     }
-    return null;
-  }
-},
-    created(){
-      this.$store.dispatch("getMovies")
-    },
+  },
+  created() {
+    this.$store.dispatch("getMovies");
+  },
   methods: {
     addRegularTicket() {
       this.numberOfRegularTickets++;
@@ -127,23 +144,26 @@ export default {
 </script>
 
 <style scoped>
+.main {
+  width: 100vw;
+}
 .container {
   display: flex;
 }
 #movieAndDateInfo {
   flex-direction: column;
-  width: 20em;
+  width: 60%;
 }
 .apointmentInfo {
   justify-content: space-between;
 }
 .movieTitle {
-  margin-top: 0.1em;
-  margin-bottom: 0.5em;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 .ticketOptions {
-  height: 14em;
-  margin: 2em;
+  height: 27vh;
+  margin: 5%;
 }
 .payment {
   align-self: center;
@@ -151,30 +171,34 @@ export default {
 .ticketOptionRow {
   flex-direction: row;
   justify-content: space-between;
-  height: 5em;
-  width: 25em;
+  height: 10vh;
+  width: 75vw;
 }
 .btn {
-  height: 2em;
-  width: 2em;
+  height: 5.5vh;
+  width: 5.5vw;
   justify-content: center;
   align-content: center;
   background-color: rgb(7, 8, 95);
-  border-radius: 200;
 }
 .ticketChoice {
   width: 10em;
 }
 .typeOfTicket {
-  width: 10em;
+  width: 100%;
 }
 .buttonRow {
-  width: 12.5em;
+  width: 100%;
+  height: 5.5vh;
+  align-items: center;
 }
 .btn-large {
-  width: 12.5em;
+  width: 50vw;
   align-self: center;
-  margin: 4em;
+  margin: 10%;
   background-color: rgb(7, 8, 95);
+}
+.payment{
+  margin-top: 10.5vh;
 }
 </style>

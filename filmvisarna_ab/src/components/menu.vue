@@ -101,7 +101,7 @@ export default {
 }
 .tablet-menu-links {
   height: 70vh;
-  width: 70vw;
+  width: 80vw;
   justify-content: space-between;
   flex-direction: column;
 }

@@ -1,29 +1,22 @@
 <template>
-          <footer class="page-footer light-blue darken-4 footback">
-          <div class="container conttext"> 
+    <footer class="page-footer light-blue darken-4 footback">
+        
+        <div class="container conttext"> 
             <div class="row containfoot">
-            
-            <div class="col s6 ">
-                <h6 class="white-text">Kontakt</h6>
-                <p>filmvisarnaAB@gmail.com</p>
-                <p class="grey-text text-lighten-4">Kalkstensvägen 7, Lund</p>
-                <p>0760 - 45 34 65</p>
-                
+                <div class="col s12 ">
+                    <a href="mailto:filmvisarnaab@gmail.com" target="_top">
+                    <p><i class="material-icons iconfooter">email</i> filmvisarnaab@gmail.com</p></a>
+                    <a href="https://www.google.se/maps/place/Kalkstensv%C3%A4gen+3B,+224+78+Lund/@55.6917221,13.2098434,17z/data=!3m1!4b1!4m5!3m4!1s0x465397960c2a01df:0xb1c484736240c8d8!8m2!3d55.6917221!4d13.2120321" target="_blank">
+                    <p class="grey-text text-lighten-4"><i class="material-icons iconfooter">home</i> Kalkstensvägen 3B, Lund</p> </a>
+                    <a href="tel:+46700052668">
+                    <p> <i class="material-icons iconfooter">call</i> +46700052668</p></a>
                 </div>
-            <div class="col s6">  
-                <h6>Öppettider</h6>
-                <p>mån - tors 12:00 - 22:00</p>
-                <p>fre - lör 12:00 - 00:00</p>
-                <p>sön 12:00 - 21:00</p>
+                <div class="col s12 copy">
+                © 2020 Copyright Filmvisarna AB
+                </div>
             </div>
-             <div class="col s12 copy">
-            © 2020 Copyright Filmvisarna AB
-            </div>
-            </div>
-            
-            </div>
-         
-        </footer>
+        </div>
+    </footer>
 </template>
 
 <script>
@@ -32,20 +25,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .footback{
     background: linear-gradient(to bottom, black, #01579b);
-    position: fixed;
-    bottom: 0%;
-    left:0%;
     width: 100%;
 }
 .conttext{
     font-size: 0.8em;
-}
-.headline{
-    text-align: center;
-    font-size: 3em;
 }
 .containfoot{
     text-align: center;
@@ -55,7 +41,10 @@ export default {
 }
 .copy{
     font-size: 0.9em;
-    margin-top: 5%;
+    margin-top: 1.5%;
+}
+.iconfooter{
+    font-size: 1em;
 }
 
 

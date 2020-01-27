@@ -41,7 +41,7 @@ export default new Vuex.Store({
         data.id = screening.id;
         screenings.push(data);
       })
-      commit('setScreenings', data);
+      commit('setScreenings', screenings);
      },
      async publishMovies({commit}){
       let documents = require('@/data/movies.json')

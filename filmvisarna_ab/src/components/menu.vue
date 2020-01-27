@@ -2,7 +2,11 @@
   <div class="sticky">
     <nav class="nav-wrapper navbar">
       <span class="open-slide">
-        <i class="material-icons hide-on-large-only hamburger" @click.prevent="openSlideMenu">menu</i>
+        <i
+          class="material-icons hide-on-large-only hamburger"
+          @click.prevent="openSlideMenu"
+          >menu</i
+        >
       </span>
       <ul class="hide-on-med-and-down container">
         <li class="navbar-link">
@@ -36,9 +40,10 @@
           </li>
           <a
             href="#"
-            class="btn-close material-icons tablet-link"
+            class="btn-close material-icons"
             @click.prevent="closeSlideMenu"
-          >close</a>
+            >close</a
+          >
         </ul>
       </div>
     </div>
@@ -107,6 +112,7 @@ export default {
   margin-top: 25vh;
 }
 .tablet-link {
+  font-family: "Monoton", cursive;
   color: white;
   font-size: 3.5vh;
   margin: 1em;
@@ -120,5 +126,8 @@ export default {
 .btn-close {
   margin-top: 10vh;
   font-size: 3.5em;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100%;
 }
 </style>

@@ -8,7 +8,7 @@
           >menu</i
         >
       </span>
-      <ul class="hide-on-med-and-down container">
+      <ul class="hide-on-med-and-down">
         <li class="navbar-link">
           <router-link to="/">Hem</router-link>
         </li>
@@ -21,7 +21,7 @@
       </ul>
     </nav>
     <div id="tablet-menu">
-      <div class="tablet-menu-links container">
+      <div class="container">
         <ul class="tablet-links-list container">
           <li class="tablet-link">
             <a href="#" @click.prevent="closeSlideMenu">
@@ -65,16 +65,13 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-}
 .sticky {
   position: sticky;
   top: 0vh;
 }
 .navbar {
-  overflow: hidden;
   background-color: rgb(0, 0, 0);
+  width: 100vw;
 }
 .navbar-link a {
   display: block;
@@ -83,7 +80,8 @@ export default {
   text-decoration: none;
   font-size: 2vh;
   width: 100%;
-  margin-left: 1vw;
+  margin-left: 25%;
+  justify-content: center;
 }
 .navbar-link :hover {
   font-size: 2.5vh;
@@ -98,12 +96,6 @@ export default {
   background-color: rgba(0, 0, 0, 0.932);
   overflow: hidden;
   transition: 0.65s;
-}
-.tablet-menu-links {
-  height: 70vh;
-  width: 70vw;
-  justify-content: space-between;
-  flex-direction: column;
 }
 .tablet-links-list {
   justify-items: center;

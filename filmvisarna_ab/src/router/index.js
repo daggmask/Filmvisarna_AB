@@ -4,7 +4,6 @@ import MovieList from "../views/movieList.vue";
 import Movie from "../views/movieShowing.vue";
 import aboutPage from "@/views/aboutPage.vue";
 import homePage from "@/views/Home.vue";
-import ticketBooking from "@/views/ticketBooking.vue";
 
 
 Vue.use(VueRouter);
@@ -24,11 +23,6 @@ const routes = [
     path: "/movies",
     name: "movielist",
     component: MovieList
-  },
-  {
-    path: "/tickets/:screening",
-    name: "ticketBooking",
-    component: ticketBooking
   },
   {
     path: "/movies/:movie",

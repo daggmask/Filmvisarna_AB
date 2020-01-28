@@ -8,7 +8,7 @@
       Är du sugen på något tilltugg till filmen så hittar du det mesta snacks, godis och drycker i vår kiosk. 
     </p>
 
-    <h4>Öppentider:</h4>
+    <h4>Öppettider:</h4>
     <p>mån - tors 12:00 - 22:00</p>
     <p>fre - lör 12:00 - 00:00</p>
     <p>sön 12:00 - 21:00</p>

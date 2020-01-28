@@ -40,6 +40,15 @@ export default {
   flex-direction: column;
   display: flex;
 }
+.container{
+  display: flex;
+}
+.col{
+  flex-direction: column;
+}
+main{
+  flex: 1;
+}
 #navbar{
   z-index: 999;
 }

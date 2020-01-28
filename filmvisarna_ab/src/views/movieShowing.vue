@@ -63,7 +63,6 @@ computed: {
         return movie;
       }
     }
-    //return this.$store.state.movies[this.$route.params.movie];
     return null;
   }
 },

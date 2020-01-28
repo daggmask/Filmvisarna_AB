@@ -19,7 +19,9 @@
           </div>
         </div>
       </div>
+
       <div class="divider"></div>
+
       <div class="row">
         <div class="col s12">
           <div class="card-panel black moviedisc">
@@ -38,10 +40,9 @@
             <div class="subheader">Produktions år:</div>
             <div>{{movie.productionYear}}</div>
           </div>
-          
-          
         </div>
       </div>
+
     </div>
     <screenings :movieTitle="movie.title" />
   </div>

@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import MovieList from "../views/movieList.vue";
 import Movie from "../views/movieShowing.vue";
 import aboutPage from "@/views/aboutPage.vue";
-import homePage from "@/views/Home.vue";
 
 
 Vue.use(VueRouter);
@@ -11,8 +10,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "homePage",
-    component: homePage
+    name: "aboutPage",
+    component: aboutPage
   },
   {
     path: "/about",

@@ -32,8 +32,7 @@
             </div>
             <div class="auditorium-info col s8 m7">
               <h6>
-                {{ screening.auditorium }}<br>
-                Platser kvar
+                {{ screening.auditorium }}
               </h6>
             </div>
           </div>

@@ -1,14 +1,12 @@
 <template>
-<div>
-  <div class="container" id="movieAndDateInfo">
-      <p class="movieTitle container">{{ screening.film }}</p>
-      <div class="apointmentInfo container">
-        <p class="apointment">Datum: {{ getDateAsString(screening.time)}}</p>
-        <p class="apointment">Tid: {{ getScreeningTime(screening.time) }}</p>
-      </div>
+  <div class="main container">
+    <p class="container row title">{{ screening.film }}</p>
+    <div class="container row dateAndTime">
+      <p class="apointment">Datum: {{ getDateAsString(screening.time) }}</p>
+      <p class="apointment">Tid: {{ getScreeningTime(screening.time) }}</p>
     </div>
     <div class="ticketOptions">
-      <div class="container ticketOptionRow">
+      <div class="container row">
         <div class="typeOfTicket">
           <p class="typeOfTicket">Ordinarie</p>
           <p class="ticketPrice">125kr/st</p>
@@ -26,7 +24,7 @@
           </button>
         </div>
       </div>
-      <div class="container ticketOptionRow">
+      <div class="container row">
         <div class="typeOfTicket">
           <p class="typeOfTicket">Barn(Under 12 år)</p>
           <p class="ticketPrice">110kr/st</p>
@@ -44,7 +42,7 @@
           </button>
         </div>
       </div>
-      <div class="container ticketOptionRow">
+      <div class="container row">
         <div class="typeOfTicket">
           <p class="typeOfTicket">Pensionär</p>
           <p class="ticketPrice">100kr/st</p>
@@ -55,7 +53,7 @@
             @click="deductSeniorCitizenTicket()"
           >
             -
-            </button>
+          </button>
           {{ this.numberSeniorCitizenTickets }}
           <button
             class="btn buttonColor container filmvisarnaBlue"
@@ -70,12 +68,12 @@
     <button class="btn-large filmvisarnaBlue" @click="proceedAndChooseSeats">
       Välj platser
     </button>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-data() {
+  data() {
     return {
       numberOfRegularTickets: 0,
       numberSeniorCitizenTickets: 0,
@@ -139,17 +137,21 @@ data() {
         );
       }
     },
-    getScreeningTime(timestamp){
+    getScreeningTime(timestamp) {
       let screeningDate = timestamp.toDate();
-      let screeningTime = `${this.getHoursAsString(screeningDate.getHours())}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
-      return screeningTime;      
+      let screeningTime = `${this.getHoursAsString(
+        screeningDate.getHours()
+      )}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+      return screeningTime;
     },
-    getDateAsString(timestamp){
+    getDateAsString(timestamp) {
       let date = timestamp.toDate();
-      return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
+      return `${date.getDate()} ${this.getMonthName(
+        date.getMonth()
+      )} ${date.getFullYear()}`;
     },
-    getMonthName(monthNumber){
-      switch(monthNumber) {
+    getMonthName(monthNumber) {
+      switch (monthNumber) {
         case 0:
           return "januari";
         case 1:
@@ -176,55 +178,51 @@ data() {
           return "december";
       }
     },
-    getMinutesAsString(minuteNumber){
-      if(minuteNumber < 10) {
-        return "0" + minuteNumber
+    getMinutesAsString(minuteNumber) {
+      if (minuteNumber < 10) {
+        return "0" + minuteNumber;
       }
       return minuteNumber;
     },
-    getHoursAsString(hourNumber){
+    getHoursAsString(hourNumber) {
       if (hourNumber < 10) {
         return "0" + hourNumber;
       }
       return hourNumber;
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .main {
-  width: 100vw;
+  width: 100%;
+  height: 100vh;
   align-items: center;
-}
-.container {
-  display: flex;
-}
-#movieAndDateInfo {
   flex-direction: column;
-  width: 75vw;
-  margin:0%;
 }
-.apointmentInfo {
-  justify-content: space-between;
-  width: 100%vw;
+.title {
+  margin-bottom: 0;
+  height: 5vh;
 }
-.movieTitle {
-  margin-top: 5%;
-  margin-bottom: 5%;
+.dateAndTime {
+  justify-content: space-around;
+  width: 100%;
+  height: 1vh;
+  flex-direction: column;
 }
 .ticketOptions {
-  height: 27vh;
-  margin: 5%;
+  height: 25vh;
 }
 .payment {
   align-self: center;
 }
-.ticketOptionRow {
+.row {
   flex-direction: row;
   justify-content: space-between;
   height: 10vh;
   width: 75vw;
+  font-size: 1.25em;
 }
 .btn {
   height: 5.5vh;
@@ -234,7 +232,7 @@ data() {
   background-color: rgb(7, 8, 95);
 }
 .ticketChoice {
-  width: 10em;
+  width: 10vw;
 }
 .typeOfTicket {
   width: 100%;
@@ -250,7 +248,7 @@ data() {
   margin: 10%;
   background-color: rgb(7, 8, 95);
 }
-.payment{
+.payment {
   margin-top: 10.5vh;
 }
 </style>

@@ -1,18 +1,13 @@
 <template>
-
-<header> 
-  <h1 @click="goToHomePage">FILMVISARNA</h1>
-</header>
-
+  <header>
+    <router-link to='/'>
+      <h1>FILMVISARNA</h1>
+    </router-link>
+  </header>
 </template>
 
 <script>
 export default{
-  methods:{
-    goToHomePage(){
-      this.$router.push({path:'/'})
-    }
-  }
 }
 </script>
 
@@ -23,7 +18,6 @@ export default{
 *{
   box-sizing: border-box;
 }
-
 header{
   display: flex;
   flex-direction: row;
@@ -35,18 +29,16 @@ header{
   padding: 3vh;
   width: 100%;
 }
-
 h1{
-font-family: 'Monoton', cursive;
-margin-top:0%;
-margin-bottom: 0%;
-cursor:pointer;
-font-size: 2em;
+  font-family: 'Monoton', cursive;
+  margin-top:0%;
+  margin-bottom: 0%;
+  cursor:pointer;
+  font-size: 2em;
 }
-
 .material-icons{
   font-size: 60PX;
   align-items: center;
-  justify-content: center;   
+  justify-content: center;
 }
 </style>

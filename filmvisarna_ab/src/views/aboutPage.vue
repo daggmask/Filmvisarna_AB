@@ -1,7 +1,7 @@
 <template>
   <div class="aboutPage">
     <img src="https://www.ausflugstippsmitkids.de/wp-content/uploads/2017/09/FTBL2831_Smaragd_8-lpr-1.jpg" alt="">
-    <h3>En bio upplevelse som man sent glömmer</h3>
+    <h3>En bioupplevelse som man sent glömmer</h3>
     <p>
       Filmvisarnas biografer erbjuder en hög kvalite på både film och salonger. 
       Hos oss visas alla filmer i IMAX format och leveraras med ett mäktigt surround-ljud som gör det omöjligt somna i våra bekväma fåtöljer.

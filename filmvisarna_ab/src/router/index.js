@@ -9,8 +9,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "aboutPage",
-    component: aboutPage
+    name: "movies",
+    component: MovieList
   },
   {
     path: "/about",

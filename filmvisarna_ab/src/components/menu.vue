@@ -10,9 +10,6 @@
       </span>
       <ul class="hide-on-med-and-down">
         <li class="navbar-link">
-          <router-link to="/">Hem</router-link>
-        </li>
-        <li class="navbar-link">
           <router-link to="/movies">Filmer</router-link>
         </li>
         <li class="navbar-link">
@@ -23,11 +20,6 @@
     <div id="tablet-menu">
       <div class="container">
         <ul class="tablet-links-list container">
-          <li class="tablet-link">
-            <a href="#" @click.prevent="closeSlideMenu">
-              <router-link class="tablet-link" to="/">Hem</router-link>
-            </a>
-          </li>
           <li class="tablet-link">
             <a href="#" @click.prevent="closeSlideMenu">
               <router-link class="tablet-link" to="/movies">Filmer</router-link>

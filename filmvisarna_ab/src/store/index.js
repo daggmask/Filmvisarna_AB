@@ -7,24 +7,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     publishMovies: false,
-    movies:[],
-                
-              
-            movieDisplay: Object,
-            
+    movies: [],
+    screenings: [] ,           
   },
   mutations: {
     movieShowing(state, value) {
       state.movieDisplay = value;
-      
     },
     setMovies(state, data){
       state.movies = data
-      },
-
-      publishMovies(state){
+    },
+    setScreenings(state, data){
+      state.screenings = data;
+    },
+    publishMovies(state){
       state.publishMovies=true;
-      }
+    }
   },
   actions: {
     async getMovies({commit}){
@@ -35,7 +33,16 @@ export default new Vuex.Store({
       })
       commit('setMovies', data)
      },
-
+     async getScreenings({commit}){
+      let querySnapshot = await db.collection("screenings").get();
+      let screenings = [];
+      querySnapshot.forEach(screening => {
+        let data = screening.data();
+        data.id = screening.id;
+        screenings.push(data);
+      })
+      commit('setScreenings', screenings);
+     },
      async publishMovies({commit}){
       let documents = require('@/data/movies.json')
       for(let document of documents){

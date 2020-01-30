@@ -18,13 +18,20 @@
     </div>
    
    
-      </figure>
+    </figure>
+    <MovieList></MovieList>
   </div>
 
 </template>
 
 <script>
+import MovieList from '@/components/movieList.vue'
+
 export default {
+    components:{
+        MovieList,
+    },
+
     computed: {
         movies() {
             let movie = this.$store.state.movies

@@ -45,10 +45,11 @@ export default {
 
 <style scoped>
 .carousel {
+box-sizing: border-box !important;
 width: 100vw !important;
 perspective: none !important;
 -webkit-perspective: none !important;
-
+height: 60vh !important;
 }
 
 </style>

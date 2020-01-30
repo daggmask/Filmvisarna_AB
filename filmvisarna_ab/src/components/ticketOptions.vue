@@ -1,73 +1,96 @@
 <template>
   <div class="main container">
-    <p class="container row title">{{ screening.film }}</p>
-    <div class="container row dateAndTime">
-      <p class="apointment">Datum: {{ getDateAsString(screening.time) }}</p>
-      <p class="apointment">Tid: {{ getScreeningTime(screening.time) }}</p>
+    <div class="row options">
+      <p class="screeningInfo col s6 m6 l6 xl6">{{ screening.film }}</p>
+      <p class="screeningInfo col s6 m6 l6 xl6 right-align">
+        Platser kvar: {{ screening.seatsAvailable }}
+      </p>
+      <p class="timeOfScreening col s6 m6 l6 xl6">
+        {{ getScreeningTime(screening.time) }}
+      </p>
+      <p class="dayOfScreening col s6 m6 l6 xl6 right-align">
+        {{ getDateAsString(screening.time) }}
+      </p>
     </div>
-    <div class="ticketOptions">
-      <div class="container row">
-        <div class="typeOfTicket">
-          <p class="typeOfTicket">Ordinarie</p>
-          <p class="ticketPrice">125kr/st</p>
-        </div>
-        <div class="container buttonRow">
-          <button
-            class="btn buttonColor container"
-            @click="deductRegularTicket()"
-          >
-            -
-          </button>
-          {{ this.numberOfRegularTickets }}
-          <button class="btn buttonColor container" @click="addRegularTicket()">
-            +
-          </button>
-        </div>
+    <div class="row">
+      <div class="ticketInfo col s6">
+        <p>Ordinarie</p>
+        <p>125kr / st</p>
       </div>
-      <div class="container row">
-        <div class="typeOfTicket">
-          <p class="typeOfTicket">Barn(Under 12 år)</p>
-          <p class="ticketPrice">110kr/st</p>
-        </div>
-        <div class="container buttonRow">
-          <button
-            class="btn buttonColor container"
-            @click="deductChildTicket()"
-          >
-            -
-          </button>
-          {{ this.numberOfChildTickets }}
-          <button class="btn buttonColor container" @click="addChildTicket()">
-            +
-          </button>
-        </div>
-      </div>
-      <div class="container row">
-        <div class="typeOfTicket">
-          <p class="typeOfTicket">Pensionär</p>
-          <p class="ticketPrice">100kr/st</p>
-        </div>
-        <div class="container buttonRow">
-          <button
-            class="btn buttonColor container filmvisarnaBlue"
-            @click="deductSeniorCitizenTicket()"
-          >
-            -
-          </button>
-          {{ this.numberSeniorCitizenTickets }}
-          <button
-            class="btn buttonColor container filmvisarnaBlue"
-            @click="addSeniorCitizenTicket()"
-          >
-            +
-          </button>
-        </div>
+      <div class="col s6 ticketOption container">
+        <button
+          class="btn-small indigo darken-4"
+          @click="deductRegularTicket()"
+        >
+          -
+        </button>
+        <p class="ticketAmount">{{ this.numberOfRegularTickets }}</p>
+        <button class="btn-small indigo darken-4" @click="addRegularTicket()">
+          +
+        </button>
       </div>
     </div>
-    <div class="payment">Pris: {{ this.totalPrice }}kr</div>
-    <button class="btn-large filmvisarnaBlue" @click="proceedAndChooseSeats">
-      Välj platser
-    </button>
+    <div class="row">
+      <div class="ticketInfo col s6">
+        <p>Barn under 12år</p>
+        <p>115kr / st</p>
+      </div>
+      <div class="col s6 ticketOption container">
+        <button class="btn-small indigo darken-4" @click="deductChildTicket()">
+          -
+        </button>
+        <p class="ticketAmount">{{ this.numberOfChildTickets }}</p>
+        <button class="btn-small indigo darken-4" @click="addChildTicket">
+          +
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ticketInfo col s6">
+        <p>Ordinarie</p>
+        <p>125kr / st</p>
+      </div>
+      <div class="col s6 ticketOption container">
+        <button
+          class="btn-small indigo darken-4"
+          @click="deductSeniorCitizenTicket()"
+        >
+          -
+        </button>
+        <p class="ticketAmount">{{ this.numberSeniorCitizenTickets }}</p>
+        <button
+          class="btn-small indigo darken-4"
+          @click="addSeniorCitizenTicket()"
+        >
+          +
+        </button>
+      </div>
+    </div>
+    <div class="row checkOut">
+      <div class="col container s12">
+        <p
+          class="red-text center"
+          v-if="
+            this.numberOfRegularTickets <= 0 &&
+              this.numberOfChildTickets <= 0 &&
+              this.numberSeniorCitizenTickets <= 0
+          "
+        >
+          Du måste välja minst 1 biljett
+        </p>
+        <button
+          @click="bookTickets()"
+          class="btn-large indigo darken-4"
+          v-if="
+            this.numberOfRegularTickets >= 1 ||
+              this.numberOfChildTickets >= 1 ||
+              this.numberSeniorCitizenTickets >= 1
+          "
+        >
+          Boka platser
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -75,10 +98,10 @@
 export default {
   data() {
     return {
-      numberOfRegularTickets: 0,
+      numberOfRegularTickets: 2,
       numberSeniorCitizenTickets: 0,
       numberOfChildTickets: 0,
-      totalPrice: 0
+      totalPrice: 125
     };
   },
 
@@ -99,27 +122,22 @@ export default {
   methods: {
     addRegularTicket() {
       this.numberOfRegularTickets++;
-      this.totalPrice += 125;
     },
     deductRegularTicket() {
       if (this.numberOfRegularTickets != 0) {
         this.numberOfRegularTickets--;
-        this.totalPrice -= 125;
       }
     },
     addSeniorCitizenTicket() {
       this.numberSeniorCitizenTickets++;
-      this.totalPrice += 100;
     },
     deductSeniorCitizenTicket() {
       if (this.numberSeniorCitizenTickets != 0) {
-        this.totalPrice -= 100;
         this.numberSeniorCitizenTickets--;
       }
     },
     addChildTicket() {
       this.numberOfChildTickets++;
-      this.totalPrice += 110;
     },
     deductChildTicket() {
       if (this.numberOfChildTickets != 0) {
@@ -127,16 +145,7 @@ export default {
         this.numberOfChildTickets--;
       }
     },
-    proceedAndChooseSeats() {
-      if (this.totalPrice != 0) {
-        console.log(
-          "Number of seats to place: " +
-            (this.numberOfRegularTickets +
-              this.numberOfChildTickets +
-              this.numberSeniorCitizenTickets)
-        );
-      }
-    },
+    bookTickets() {},
     getScreeningTime(timestamp) {
       let screeningDate = timestamp.toDate();
       let screeningTime = `${this.getHoursAsString(
@@ -196,59 +205,33 @@ export default {
 
 <style scoped>
 .main {
-  width: 100%;
-  height: 100vh;
-  align-items: center;
+  display: flex;
+  justify-content: center;
   flex-direction: column;
 }
-.title {
-  margin-bottom: 0;
-  height: 5vh;
-}
-.dateAndTime {
-  justify-content: space-around;
-  width: 100%;
-  height: 1vh;
-  flex-direction: column;
-}
-.ticketOptions {
-  height: 25vh;
-}
-.payment {
-  align-self: center;
-}
-.row {
+.ticketOption {
   flex-direction: row;
   justify-content: space-between;
-  height: 10vh;
-  width: 75vw;
-  font-size: 1.25em;
-}
-.btn {
-  height: 5.5vh;
-  width: 5.5vw;
-  justify-content: center;
-  align-content: center;
-  background-color: rgb(7, 8, 95);
-}
-.ticketChoice {
-  width: 10vw;
-}
-.typeOfTicket {
-  width: 100%;
-}
-.buttonRow {
-  width: 100%;
-  height: 5.5vh;
   align-items: center;
 }
-.btn-large {
-  width: 50vw;
-  align-self: center;
-  margin: 10%;
-  background-color: rgb(7, 8, 95);
+.warning {
+  font-size: 1.25em;
+  color: red;
 }
-.payment {
-  margin-top: 10.5vh;
+.options {
+  margin-top: 10%;
+}
+.checkOut {
+  margin-top: 30%;
+}
+@media screen and (min-width: 768px) {
+  .main{
+    width: 60%;
+    font-size: 1.5em;
+  }
+  .btn-small{
+    height: 5vh;
+    width: 2.5vw;
+  }
 }
 </style>

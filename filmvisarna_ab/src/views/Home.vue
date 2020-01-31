@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
       <div class="carousel movieImageLoop">
           <router-link
           :to="'/movies/' + movie.movieId"
@@ -49,7 +49,8 @@ box-sizing: border-box !important;
 width: 100vw !important;
 perspective: none !important;
 -webkit-perspective: none !important;
-height: 60vh !important;
 }
-
+a{
+    height: 80% !important;
+}
 </style>

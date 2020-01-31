@@ -102,6 +102,7 @@ nav{
   height: 0;
   position: fixed;
   top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.932);
   overflow: hidden;
   transition: 0.65s;

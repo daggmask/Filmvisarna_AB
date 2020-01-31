@@ -73,8 +73,11 @@ export default {
   top: 0vh;
 }
 .navbar {
-  overflow: hidden;
-  background-color: rgb(0, 0, 0);
+overflow: hidden;
+background: transparent;
+}
+nav{
+    -webkit-box-shadow: 0 0 0 0 !important;
 }
 .navbar-link a {
   display: block;
@@ -86,7 +89,8 @@ export default {
   margin-left: 1vw;
 }
 .navbar-link :hover {
-  font-size: 2.5vh;
+  color: white;
+  text-shadow: #f2f2f2 3rem;
 }
 #tablet-menu {
   display: flex;

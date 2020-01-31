@@ -1,13 +1,20 @@
 <template>
-  <header>
+<div class="headerDiv">
+  <header class="container head">
+    <Menu id="navbar"></Menu>
     <router-link to='/'>
       <h1>FILMVISARNA</h1>
     </router-link>
   </header>
+  </div>
 </template>
 
 <script>
+import Menu from '@/components/menu.vue';
 export default{
+  components:{
+    Menu
+  }
 }
 </script>
 
@@ -18,16 +25,21 @@ export default{
 *{
   box-sizing: border-box;
 }
+.headerDiv{
+  width: 100vw;
+  background-color: #01579b;
+}
+.head{
+ width: 100vw;
+ justify-content: space-evenly;
+}
+#navbar{
+  z-index: 999;
+  
+}
 header{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top:0%;
-  background-color: rgb(7, 8, 95);
-  background: linear-gradient(to top, black, #01579b);
-  align-items: center;
   padding: 3vh;
-  width: 100%;
+  align-items: center;
 }
 h1{
   font-family: 'Monoton', cursive;
@@ -38,7 +50,5 @@ h1{
 }
 .material-icons{
   font-size: 60PX;
-  align-items: center;
-  justify-content: center;
 }
 </style>

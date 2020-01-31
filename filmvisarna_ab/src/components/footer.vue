@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .footback{
-    background: linear-gradient(to bottom, black, #01579b);
+    background-color: #01579b;
     width: 100%;
 }
 .conttext{

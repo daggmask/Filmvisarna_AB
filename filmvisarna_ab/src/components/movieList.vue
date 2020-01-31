@@ -11,8 +11,8 @@
         </div>
         <div class="card-stacked" :style="{backgroundImage: 'url(' +  movie.images[1] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}">
           <div class="card-content">
-            <h5>{{movie.title}}</h5>
-            <h6>{{movie.genre}}</h6>
+            <h5 class="movie-info">{{movie.title}}</h5>
+            <h6 class="movie-info">{{movie.genre}}</h6>
           </div>
         </div>
       </div>
@@ -51,9 +51,6 @@ li{
   height: 15vh;
   margin: 0 1%;
 }
-.card-image{
-  width: auto;
-}
 img{
   height: 100%;
   width: auto;
@@ -62,7 +59,9 @@ img{
   height: 100%;
   padding: 4% !important;
 }
-
+.movie-info{
+  margin: 1%;
+}
 @media screen and (min-width: 993px) {
   .card{
     height: 20vh;

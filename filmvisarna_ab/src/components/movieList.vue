@@ -11,45 +11,45 @@
         </div>
         <div class="card-stacked" :style="{backgroundImage: 'url(' +  movie.images[1] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}">
           <div class="card-content">
-            <h6>{{movie.title}}</h6>
-            <p>{{movie.genre}}</p>
+            <h5>{{movie.title}}</h5>
+            <h6>{{movie.genre}}</h6>
           </div>
         </div>
       </div>
     </li>
   </ul>
-
 </div>
  
   
 </template>
 <script>
 export default {
-    computed: {
-        movies() {
-            return this.$store.state.movies;
-        }
-    },
-    methods:{
-        toMovieShowing(movie){
-            this.$store.commit('movieShowing', movie);
-            this.$router.push({path:'/movies/'+ movie.movieId})
-        }
-    },
-        created(){
-      this.$store.dispatch("getMovies")
-    },
+  computed: {
+    movies() {
+        return this.$store.state.movies;
+    }
+  },
+  methods:{
+    toMovieShowing(movie){
+      this.$store.commit('movieShowing', movie);
+      this.$router.push({path:'/movies/'+ movie.movieId})
+    }
+  },
+  created(){
+    this.$store.dispatch("getMovies")
+  },
 }
 </script>
 
 
 <style scoped>
 li{
-  height: 15vh;
-  margin-bottom: 1%;
+  padding: 0 !important;
+  margin: 1% 0;
 }
 .card{
   height: 15vh;
+  margin: 0 1%;
 }
 .card-image{
   width: auto;
@@ -59,15 +59,13 @@ img{
   width: auto;
 }
 .card-content{
+  height: 100%;
   padding: 4% !important;
 }
 
 @media screen and (min-width: 993px) {
-  li{
-    height: 30vh;
-  }
   .card{
-    height: 30vh;
+    height: 20vh;
   }
 }
 

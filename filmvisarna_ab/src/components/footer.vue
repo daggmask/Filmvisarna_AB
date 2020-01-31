@@ -1,5 +1,6 @@
 <template>
     <footer class="page-footer light-blue darken-4 footback">
+        
         <div class="container conttext"> 
             <div class="row containfoot">
                 <div class="col s12 ">
@@ -24,7 +25,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .footback{
     background: linear-gradient(to bottom, black, #01579b);
     width: 100%;

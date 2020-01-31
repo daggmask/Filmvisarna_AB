@@ -72,6 +72,9 @@ export default {
   position: sticky;
   top: 0vh;
 }
+ul{
+    margin: 0;
+}
 .navbar {
 overflow: hidden;
 background: transparent;

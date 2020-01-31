@@ -1,11 +1,15 @@
 <template>
-<div class="headerDiv">
-  <header class="container head">
+<div class="backgroundColour">
+<div class="headerDiv container row valign-wrapper">
+  <div class="col s2 l8">
     <Menu id="navbar"></Menu>
+    </div>
+    <div class="col s10 l12">
     <router-link to='/'>
       <h1>FILMVISARNA</h1>
     </router-link>
-  </header>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -29,17 +33,14 @@ export default{
   width: 100vw;
   background-color: #01579b;
 }
-.head{
- width: 100vw;
- justify-content: space-evenly;
-}
 #navbar{
   z-index: 999;
   
 }
-header{
-  padding: 3vh;
-  align-items: center;
+.backgroundColour{
+  height: 8vh;
+  background-color: #01579b;
+  background-size: cover;
 }
 h1{
   font-family: 'Monoton', cursive;

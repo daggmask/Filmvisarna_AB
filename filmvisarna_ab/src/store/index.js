@@ -62,10 +62,20 @@ export default new Vuex.Store({
       commit('publishMovies') 
     },
     async publishBooking(emptystring, booking) {
-      console.log(emptystring)
+      //Screening update
       db.collection('screenings').doc(booking.screeningID).update({
         seatsAvailable: booking.seatsLeft
-      })
+      });
+      //Booking added to Bookings
+      let confirmedBooking = {
+        ScreeningID : booking.screeningID,
+        RegularTickets : booking.regularTickets,
+        ChildTickets : booking.childTickets,
+        SeniorcitizenTickets : booking.seniorcitizenTickets,
+        TotalPriceForPurchase : booking.totalPriceForPurchase,
+      }
+      await db.collection('bookings').add(confirmedBooking);
+      console.log(emptystring)
      },
   },
   modules: {

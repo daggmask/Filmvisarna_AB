@@ -48,8 +48,7 @@
           v-if="
             this.numberOfRegularTickets <= 0 &&
               this.numberOfChildTickets <= 0 &&
-              this.numberSeniorCitizenTickets <= 0
-          "
+              this.numberSeniorCitizenTickets <= 0"
         >Du måste välja minst 1 biljett</p>
         <button
           @click="bookTickets(screening.id, screening.seatsAvailable)"
@@ -91,8 +90,20 @@ export default {
     this.$store.dispatch("getMovies");
   },
   methods: {
+    seatsAvilable() {
+      if (
+        this.screening.seatsAvailable >
+        this.numberOfRegularTickets +
+          this.numberOfChildTickets +
+          this.numberSeniorCitizenTickets
+      ) {
+        return true;
+      }
+    },
     addRegularTicket() {
-      this.numberOfRegularTickets++;
+      if (this.seatsAvilable()) {
+        this.numberOfRegularTickets++;
+      }
     },
     deductRegularTicket() {
       if (this.numberOfRegularTickets != 0) {
@@ -100,7 +111,9 @@ export default {
       }
     },
     addSeniorCitizenTicket() {
-      this.numberSeniorCitizenTickets++;
+      if (this.seatsAvilable()) {
+        this.numberSeniorCitizenTickets++;
+      }
     },
     deductSeniorCitizenTicket() {
       if (this.numberSeniorCitizenTickets != 0) {
@@ -108,7 +121,9 @@ export default {
       }
     },
     addChildTicket() {
-      this.numberOfChildTickets++;
+      if (this.seatsAvilable()) {
+        this.numberOfChildTickets++;
+      }
     },
     deductChildTicket() {
       if (this.numberOfChildTickets != 0) {

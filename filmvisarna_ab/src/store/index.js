@@ -1,83 +1,84 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import {db} from '@/firebase.js'
+import Vue from "vue";
+import Vuex from "vuex";
+import { db } from "@/firebase.js";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     publishMovies: false,
     movies: [],
-    screenings: [] ,           
+    screenings: []
   },
   mutations: {
     movieShowing(state, value) {
       state.movieDisplay = value;
     },
-    setMovies(state, data){
-      state.movies = data
+    setMovies(state, data) {
+      state.movies = data;
     },
-    setScreenings(state, data){
+    setScreenings(state, data) {
       state.screenings = data;
     },
-    publishMovies(state){
-      state.publishMovies=true;
+    publishMovies(state) {
+      state.publishMovies = true;
     }
   },
   actions: {
-    async getMovies({commit}){
-      let querySnapshot = await db.collection("movies").get()
-      let data = []
-      querySnapshot.forEach((document) => {
-        data.push(document.data())
-      })
-      commit('setMovies', data)
-     },
-     async getScreenings({commit}){
+    async getMovies({ commit }) {
+      let querySnapshot = await db.collection("movies").get();
+      let data = [];
+      querySnapshot.forEach(document => {
+        data.push(document.data());
+      });
+      commit("setMovies", data);
+    },
+    async getScreenings({ commit }) {
       let querySnapshot = await db.collection("screenings").get();
       let screenings = [];
       querySnapshot.forEach(screening => {
         let data = screening.data();
         data.id = screening.id;
         screenings.push(data);
-      })
-      commit('setScreenings', screenings);
-     },
-     async getAuditoriums({commit}){
+      });
+      commit("setScreenings", screenings);
+    },
+    async getAuditoriums({ commit }) {
       let querySnapshot = await db.collection("auditoriums").get();
       let auditoriums = [];
       querySnapshot.forEach(auditorium => {
         let data = auditorium.data();
         data.id = auditorium.id;
         auditoriums.push(data);
-      })
-      commit('setScreenings', auditoriums);
-     },
-     async publishMovies({commit}){
-      let documents = require('@/data/movies.json')
-      for(let document of documents){
-       let res = await db.collection('movies').add(document)
-       console.log('publishmovies res' + res)
-      } 
-      commit('publishMovies') 
+      });
+      commit("setScreenings", auditoriums);
+    },
+    async publishMovies({ commit }) {
+      let documents = require("@/data/movies.json");
+      for (let document of documents) {
+        let res = await db.collection("movies").add(document);
+        console.log("publishmovies res" + res);
+      }
+      commit("publishMovies");
     },
     async publishBooking(emptystring, booking) {
       //Screening update
-      db.collection('screenings').doc(booking.screeningID).update({
-        seatsAvailable: booking.seatsLeft
-      });
+      db.collection("screenings")
+        .doc(booking.screeningID)
+        .update({
+          seatsAvailable: booking.seatsLeft
+        });
       //Booking added to Bookings
       let confirmedBooking = {
-        ScreeningID : booking.screeningID,
-        RegularTickets : booking.regularTickets,
-        ChildTickets : booking.childTickets,
-        SeniorcitizenTickets : booking.seniorcitizenTickets,
-        TotalPriceForPurchase : booking.totalPriceForPurchase,
-      }
-      await db.collection('bookings').add(confirmedBooking);
-      console.log(emptystring)
-     },
+        ScreeningID: booking.screeningID,
+        RegularTickets: booking.regularTickets,
+        ChildTickets: booking.childTickets,
+        SeniorcitizenTickets: booking.seniorcitizenTickets,
+        TotalPriceForPurchase: booking.totalPriceForPurchase
+      };
+      await db.collection("bookings").add(confirmedBooking);
+      console.log(emptystring);
+    }
   },
-  modules: {
-  }
-})
+  modules: {}
+});

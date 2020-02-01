@@ -79,7 +79,7 @@
           Du måste välja minst 1 biljett
         </p>
         <button
-          @click="bookTickets()"
+          @click="bookTickets(screening.id, (screening.seatsAvailable - (numberOfRegularTickets + numberOfChildTickets + numberSeniorCitizenTickets)))"
           class="btn-large indigo darken-4"
           v-if="
             this.numberOfRegularTickets >= 1 ||
@@ -145,7 +145,9 @@ export default {
         this.numberOfChildTickets--;
       }
     },
-    bookTickets() {},
+    bookTickets(screeningID, seatsLeft) {
+      this.$store.dispatch('publishBooking', {screeningID: screeningID, seatsLeft: seatsLeft}, '')
+    },
     getScreeningTime(timestamp) {
       let screeningDate = timestamp.toDate();
       let screeningTime = `${this.getHoursAsString(

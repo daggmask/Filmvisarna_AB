@@ -60,7 +60,13 @@ export default new Vuex.Store({
        console.log('publishmovies res' + res)
       } 
       commit('publishMovies') 
-    }
+    },
+    async publishBooking(emptystring, booking) {
+      console.log(emptystring)
+      db.collection('screenings').doc(booking.screeningID).update({
+        seatsAvailable: booking.seatsLeft
+      })
+     },
   },
   modules: {
   }

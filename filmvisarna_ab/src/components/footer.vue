@@ -2,7 +2,7 @@
     <footer class="page-footer light-blue darken-4 footback">
         
         <div class="container conttext"> 
-            <div class="row containfoot">
+            <div class="row center">
                 <div class="col s12 ">
                     <a href="mailto:filmvisarnaab@gmail.com" target="_top">
                     <p><i class="material-icons iconfooter">email</i> filmvisarnaab@gmail.com</p></a>
@@ -27,24 +27,18 @@ export default {
 
 <style scoped>
 .footback{
-    background: linear-gradient(to bottom, black, #01579b);
+    background-color: #01579b;
     width: 100%;
 }
 .conttext{
-    font-size: 0.8em;
-}
-.containfoot{
-    text-align: center;
-}
-.footer-copyright{
-    justify-content: center;
+    font-size: 1em;
 }
 .copy{
     font-size: 0.9em;
     margin-top: 1.5%;
 }
 .iconfooter{
-    font-size: 1em;
+    font-size: 1.3em;
 }
 
 

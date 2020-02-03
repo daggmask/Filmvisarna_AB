@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+
   <ul class="row">
     <li v-for="(movie, i) in movies"
     v-bind:key="movie.title + i"
@@ -20,12 +20,16 @@
       </div>
     </li>
   </ul>
-</div>
+
  
   
 </template>
 <script>
 export default {
+  props:{
+    filter
+  },
+    
   computed: {
     movies() {
         return this.$store.state.movies;

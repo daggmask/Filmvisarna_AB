@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="row">
     <a href="#" class="dropdown-trigger btn light-blue darken-4" data-target="drop-down-menu">Välj datum</a>
     <ul id="drop-down-menu" class="dropdown-content">
-      <li v-for="(date, i) of datesAsString" :key="date+i">{{date}}</li>
+      <li @click="filterMovies(date)" v-for="(date, i) of datesAsString" :key="date+i">{{date}}</li>
 
     </ul>
   </div>
@@ -47,6 +47,10 @@ export default {
       this.$store.dispatch("getScreenings")
   },
   methods:{
+
+    filterMethods(date){
+        this.$emit('updateFilter', date)
+    },
 
     
 

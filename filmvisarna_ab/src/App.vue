@@ -53,6 +53,7 @@ export default {
 }
 main{
   flex: 1;
+  margin: 2% 0;
 }
 
 </style>

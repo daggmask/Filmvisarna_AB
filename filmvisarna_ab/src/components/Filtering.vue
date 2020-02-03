@@ -16,12 +16,16 @@ export default {
     },
     computed:{
       dates(){
-        
+
         let screenings = this.$store.state.screenings;
         let dates = [];
+        let timeNow = new Date();
         for(let screening of screenings){
-          dates.push(screening.time.toDate());
+          if(screening.time.toDate() > timeNow){
+            dates.push(screening.time.toDate());
+          }
         }
+        console.log(dates);
         dates.sort( function(a,b){
           return a-b;
         });

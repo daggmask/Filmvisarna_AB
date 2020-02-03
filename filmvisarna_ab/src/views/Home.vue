@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container col">
       <div class="carousel movieImageLoop">
           <router-link
           :to="'/movies/' + movie.movieId"
@@ -11,11 +11,18 @@
             <img :src="movie.images[0]" :alt="movie.title + ' poster'">
           </router-link>
       </div>
+    <MovieList></MovieList>
   </div>
 </template>
 
 <script>
+import MovieList from '@/components/movieList.vue'
+
 export default {
+    components:{
+        MovieList,
+    },
+
   computed: {
     movies() {
       let movies = this.$store.state.movies;

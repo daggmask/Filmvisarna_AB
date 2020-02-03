@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container col">
       <div class="carousel movieImageLoop">
           <router-link
           :to="'/movies/' + movie.movieId"

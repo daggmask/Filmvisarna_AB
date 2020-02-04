@@ -38,7 +38,7 @@ export default{
   
 }
 .backgroundColour{
-  height: 8vh;
+  height: 8.5vh;
   background-color: #01579b;
   background-size: cover;
 }

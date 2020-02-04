@@ -27,12 +27,21 @@
 <script>
 export default {
   props:{
-    filter
+    filter: String,
   },
     
   computed: {
     movies() {
-        return this.$store.state.movies;
+      let filter = this.filter;
+      let movies = this.$store.state.movies
+      if(filter === '') {
+        return movies;
+      } else {
+        let results = movies.filter(function (movie) {
+          return movie.genre.includes(filter)
+        });
+        return results;
+      }
     }
   },
   methods:{

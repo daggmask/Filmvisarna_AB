@@ -19,8 +19,8 @@ export default {
         filtering
     },
     methods:{
-        setFilter(date){
-            this.filter = date;
+        setFilter(genre){
+            this.filter = genre;
         }
     },
     data(){

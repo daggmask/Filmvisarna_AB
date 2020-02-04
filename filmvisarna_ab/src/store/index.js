@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     publishMovies: false,
     movies: [],
-    screenings: []
+    screenings: [],
+    publishBooking: false,
+    booking: Object
   },
   mutations: {
     movieShowing(state, value) {
@@ -22,6 +24,10 @@ export default new Vuex.Store({
     },
     publishMovies(state) {
       state.publishMovies = true;
+    },
+    publishBooking(state, data) {
+      state.booking = data;
+      state.publishBooking = true;
     }
   },
   actions: {
@@ -61,23 +67,23 @@ export default new Vuex.Store({
       }
       commit("publishMovies");
     },
-    async publishBooking(emptystring, booking) {
-      //Screening update
-      db.collection("screenings")
-        .doc(booking.screeningID)
-        .update({
-          seatsAvailable: booking.seatsLeft
-        });
-      //Booking added to Bookings
-      let confirmedBooking = {
-        ScreeningID: booking.screeningID,
-        RegularTickets: booking.regularTickets,
-        ChildTickets: booking.childTickets,
-        SeniorcitizenTickets: booking.seniorcitizenTickets,
-        TotalPriceForPurchase: booking.totalPriceForPurchase
-      };
-      await db.collection("bookings").add(confirmedBooking);
-      console.log(emptystring);
+    async publishBooking({ commit }, payload) {
+     //Screening update
+     db.collection("screenings")
+       .doc(payload.screeningID)
+       .update({
+         seatsAvailable: payload.seatsLeft
+       });
+     //Booking added to Bookings
+    //  let confirmedBooking = {
+    //    ScreeningID: payload.screeningID,
+    //    RegularTickets: payload.regularTickets,
+    //    ChildTickets: payload.childTickets,
+    //    SeniorcitizenTickets: payload.seniorcitizenTickets,
+    //    TotalPriceForPurchase: payload.totalPriceForPurchase
+    //  };
+      await db.collection("bookings").add(payload);
+      commit("publishBooking", payload);
     }
   },
   modules: {}

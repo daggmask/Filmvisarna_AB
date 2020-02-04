@@ -147,8 +147,8 @@ export default {
           seniorcitizenTickets: this.numberSeniorCitizenTickets,
           totalPriceForPurchase: this.totalPrice
         },
-        ""
       );
+      this.$emit('displayConfirmation')
     },
     getScreeningTime(timestamp) {
       let screeningDate = timestamp.toDate();

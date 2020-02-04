@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {db} from '@/firebase.js'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     publishMovies: false,
     movies: [],
-    screenings: [] ,           
+    screenings: [] , 
+         
   },
   mutations: {
     movieShowing(state, value) {
@@ -22,7 +22,8 @@ export default new Vuex.Store({
     },
     publishMovies(state){
       state.publishMovies=true;
-    }
+    },
+
   },
   actions: {
     async getMovies({commit}){
@@ -50,8 +51,12 @@ export default new Vuex.Store({
        console.log('publishmovies res' + res)
       } 
       commit('publishMovies') 
-    }
+    },
+    async createUser(user){
+      console.log(user)
+     await db.collection('accounts').add(user);
   },
+},
   modules: {
   }
 })

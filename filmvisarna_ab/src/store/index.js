@@ -75,13 +75,6 @@ export default new Vuex.Store({
          seatsAvailable: payload.seatsLeft
        });
      //Booking added to Bookings
-    //  let confirmedBooking = {
-    //    ScreeningID: payload.screeningID,
-    //    RegularTickets: payload.regularTickets,
-    //    ChildTickets: payload.childTickets,
-    //    SeniorcitizenTickets: payload.seniorcitizenTickets,
-    //    TotalPriceForPurchase: payload.totalPriceForPurchase
-    //  };
       await db.collection("bookings").add(payload);
       commit("publishBooking", payload);
     }

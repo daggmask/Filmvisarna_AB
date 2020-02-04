@@ -230,7 +230,8 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .main {
-    width: 60%;
+    margin-top: 5%;
+    width: 50%;
     font-size: 1.5em;
   }
   .btn-small {

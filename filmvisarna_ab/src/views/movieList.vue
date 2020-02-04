@@ -1,7 +1,10 @@
 <template>
 <div>
     <div class="container col">
-        <filtering @updateFilter="setFilter"></filtering> 
+        <div class="row">
+            <filtering :type="'genre'" @updateFilter="setFilter"></filtering> 
+            <filtering :type="'date'" @updateFilter="setFilter"></filtering> 
+        </div>
         <MovieList :filter="filter"></MovieList>
     </div>
 </div>
@@ -11,7 +14,7 @@
 
 <script>
 import MovieList from '@/components/movieList.vue'
-import filtering from '@/components/Filtering.vue'
+import filtering from '@/components/FilteringButton.vue'
 
 export default {
     components:{

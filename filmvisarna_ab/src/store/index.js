@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     publishMovies: false,
     movies: [],
-    screenings: [] ,           
+    screenings: [],          
   },
   mutations: {
     movieShowing(state, value) {
@@ -27,11 +27,13 @@ export default new Vuex.Store({
   actions: {
     async getMovies({commit}){
       let querySnapshot = await db.collection("movies").get()
-      let data = []
-      querySnapshot.forEach((document) => {
-        data.push(document.data())
+      let movies = [];
+      querySnapshot.forEach((movie) => {
+        let data = movie.data();
+        data.id = movie.id;
+        movies.push(data);
       })
-      commit('setMovies', data)
+      commit('setMovies', movies)
      },
      async getScreenings({commit}){
       let querySnapshot = await db.collection("screenings").get();
@@ -39,6 +41,14 @@ export default new Vuex.Store({
       querySnapshot.forEach(screening => {
         let data = screening.data();
         data.id = screening.id;
+        data.time = data.time.toDate();
+        this.state.movies.forEach( movie =>{
+          if(movie.id == data.movieId){
+            screening.film = movie;
+       
+          }
+        })
+        
         screenings.push(data);
       })
       commit('setScreenings', screenings);

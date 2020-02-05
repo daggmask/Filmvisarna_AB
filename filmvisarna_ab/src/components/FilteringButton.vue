@@ -2,8 +2,8 @@
   <div class="col s6 m4 l3 center-align">
     <a href="#" class="dropdown-trigger btn light-blue darken-4" data-target="drop-down-menu"> {{ buttonText }}</a>
     <ul id="drop-down-menu" class="dropdown-content">
-      <li @click="filterMovies('')">Alla</li>
-      <li @click="filterMovies(content)" v-for="(content, i) of dropdownContents" :key="content+i">{{ content }}</li>
+      <li class="light-blue darken-2" @click="filterMovies('')"><span class="center-align">Alla</span></li>
+      <li class="light-blue darken-2" @click="filterMovies(content)" v-for="(content, i) of dropdownContents" :key="content+i"><span class="center-align">{{ content }}</span></li>
     </ul>
   </div>
 </template>
@@ -57,6 +57,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.dropdown-content li>span{
+  color: white;
+}
 </style>

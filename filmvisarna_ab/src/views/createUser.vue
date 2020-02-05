@@ -1,63 +1,52 @@
 <template>
-<div class="loginPage row container ">
-<div class="card medium center-block center-align ">
-<form class="login-form">
+<div>
+    <h1>Register</h1>
+    <form action="#" @submit.prevent="submit">
+      <div class="input-field">
+        <input id="name" type="text" name="name" value required autofocus v-model="form.name" />
+        <label for="name">Name</label>
+      </div>
 
-  <div class="login-input">
-  <label for="username">Användarnamn</label>
-  <input v-model="user.name" type="email" required>
+      <div class="input-field">
+        <input id="email" type="email" name="email" value required autofocus v-model="form.email" />
+        <label for="email">Email</label>
+      </div>
+
+      <div class="input-field">
+        <input id="password" type="password" name="password" required v-model="form.password" />
+        <label for="password">Password</label>
+      </div>
+
+      <div class="input-field">
+        <button type="submit">Register</button>
+      </div>
+    </form>
   </div>
-
-  <br>
-
-   <div class="login-input">
-  <label for="passWord">Lösenord</label>
-  <input placeholder="lösenord" v-model="user.pass" type="password" required>
-
-  
-
-  </div>
-
-  <br>
-
-  <button type="button" @click="createUser" class="btn waves-effect waves-light" >Skapa Konto</button>
-
-
-
-</form>
-</div>
-</div>
 </template>
 
 <script>
 export default{
+    
     data(){
         return{
-            user:{
-            name: '',
-            pass: ''
-            }
-        }
+        form: {
+        name: "",
+        email: "",
+        password: ""
+      }
+     }
     },
 methods:{
-    createUser(){
-        let name = this.user.name;
-        let pass = this.user.pass;
-        this.user.name=name
-        this.user.pass=pass
-        console.log(name, pass)
-
-
-        console.log(this.user.pass, this.user.name)
-        this.$store.dispatch('createUser', this.user)
+       submit() {
+      this.$store.dispatch('registerUser', this.form)
+      this.$router.replace({ name: "homePage" });
     }
+ 
 }
 }
 
 </script>
 <style scoped>
-input{
-    color: black
-}
+
 
 </style>

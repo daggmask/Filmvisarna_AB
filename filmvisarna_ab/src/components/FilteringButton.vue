@@ -33,20 +33,24 @@ export default {
           case "datum": {
             let screenings = this.$store.state.screenings;
             let dates = [];
-            screenings.forEach(screening => {
-              dates.push(screening.time);
+            
+            screenings.sort(function(a,b){
+              return(b-a);
             })
-            dates = Array.from(new Set(dates));
-            return dates;
-      
-           
+            screenings.forEach(screening => {
+              var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
+              let timeToString = screening.time.getDate() + ' ' + months[screening.time.getMonth()] + ' ' + screening.time.getFullYear();
+              
+              if(screening.time > new Date()){
+                dates.push(timeToString);
+              }
+            })
+              dates = Array.from(new Set(dates))            
+              return dates;
           }
         }
         return null;
       }
-    },
-    created(){
-      this.$store.dispatch("getScreenings")
     },
   methods:{
     filterMovies(filter){
@@ -63,6 +67,7 @@ export default {
           }
         }
         this.$emit('updateFilter', filter)
+        console.log(filter)
     },
   },
   data() {

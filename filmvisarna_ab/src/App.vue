@@ -26,6 +26,10 @@ export default {
         this.$store.dispatch("publishMovies")
       }
     },
+    created(){
+      this.$store.dispatch("getMovies");
+      this.$store.dispatch("getScreenings");
+    }
 }
 </script>
 

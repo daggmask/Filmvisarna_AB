@@ -23,7 +23,8 @@ export default {
     },
     methods:{
         setFilter(filter){
-            this.filter = filter    ;
+            this.filter = filter ;
+            console.log(filter,'inne i setfilter')
         }
     },
     data(){

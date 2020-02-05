@@ -45,10 +45,8 @@ export default new Vuex.Store({
         this.state.movies.forEach( movie =>{
           if(movie.id == data.movieId){
             screening.film = movie;
-       
           }
         })
-        
         screenings.push(data);
       })
       commit('setScreenings', screenings);

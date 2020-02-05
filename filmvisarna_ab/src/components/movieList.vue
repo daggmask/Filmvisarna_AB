@@ -31,8 +31,30 @@ export default {
   },
     
   computed: {
+
     movies() {
-      let filter = this.filter;
+     let filter = this.filter;
+     let isDate = filter.includes("2");
+     let movies;
+     if(!isDate){
+      movies = this.setMoviesByGenre(filter);
+      return movies;
+     }
+     else{
+        movies = this.setMoviesByDate(filter)
+        return movies;
+    }
+  },
+},
+
+  methods:{
+    toMovieShowing(movie){
+      this.$store.commit('movieShowing', movie);
+      this.$router.push({path:'/movies/'+ movie.movieId})
+    },
+
+    setMoviesByGenre(filter){
+
       let movies = this.$store.state.movies
       if(filter === '') {
         return movies;
@@ -40,18 +62,39 @@ export default {
         let results = movies.filter(function (movie) {
           return movie.genre.includes(filter)
         });
-        return results;
+        return results;  
       }
+
+    },
+    setMoviesByDate(filter){
+      let moviesFromStore = this.$store.state.movies
+      let screenings = this.$store.state.screenings;
+      let movies = [];
+
+      screenings.forEach(screening => {
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let screeningDate = screening.time.getDate() + ' ' + months[screening.time.getMonth()] + ' ' + screening.time.getFullYear();
+          
+        if(filter === screeningDate){
+          
+          for(let movie of moviesFromStore){
+            if (movie.id === screening.movieId){
+              movies.push(movie);
+            }
+          }
+
+        }
+      })
+
+      movies = Array.from(new Set(movies))
+      console.log(movies)
+      return movies;
+
     }
-  },
-  methods:{
-    toMovieShowing(movie){
-      this.$store.commit('movieShowing', movie);
-      this.$router.push({path:'/movies/'+ movie.movieId})
-    }
+
   },
   created(){
-    this.$store.dispatch("getMovies")
+    //this.$store.dispatch("getMovies")
   },
 }
 </script>

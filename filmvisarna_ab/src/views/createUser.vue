@@ -1,10 +1,11 @@
 <template>
-<div>
-    <h1>Register</h1>
+<div class="container col createUser">
+    <div class="center-block center-align">
+    <h1 class="black">SKAPA <br> KONTO</h1>
     <form action="#" @submit.prevent="submit">
       <div class="input-field">
         <input id="name" type="text" name="name" value required autofocus v-model="form.name" />
-        <label for="name">Name</label>
+        <label for="name">Namn</label>
       </div>
 
       <div class="input-field">
@@ -14,13 +15,14 @@
 
       <div class="input-field">
         <input id="password" type="password" name="password" required v-model="form.password" />
-        <label for="password">Password</label>
+        <label for="password">Lösenord</label>
       </div>
 
       <div class="input-field">
-        <button type="submit">Register</button>
+        <button type="submit" class="btn waves-effect waves-light" >Register</button>
       </div>
     </form>
+    </div>
   </div>
 </template>
 
@@ -47,6 +49,15 @@ methods:{
 
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
-
+.createUser{
+    background-color: black;
+}
+h1{
+    font-family: 'Monoton', cursive;
+}
+button{
+    background-color: #01579b;
+}
 </style>

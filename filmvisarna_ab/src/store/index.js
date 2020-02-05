@@ -31,7 +31,6 @@ export default new Vuex.Store({
     },
     setLoggedIn(state, value) {
       state.user.loggedIn = value;
-      state.user.isLoggedIn = true;
     },
     setUser(state, data) {
       state.user.data = data;
@@ -97,7 +96,7 @@ export default new Vuex.Store({
     if (user) {
       commit("setUser", {
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
       });
     } else {   
       commit("setUser", null);

@@ -17,6 +17,7 @@
       <div class="input-field">
         <button type="submit" class="btn waves-effect waves-light" >Logga in</button>
       </div>
+      
       <router-link to="/create_user">
       <h5>Skapa konto</h5>
       </router-link>
@@ -39,10 +40,11 @@ export default{
      methods: {
     submit() {
       this.$store.dispatch('loginUser', this.form)
-      if(this.$store.state.user.ifLoggedIn){
+      console.log(this.$store.state.user.loggedIn)
+      if(this.$store.state.user.loggedIn){
       this.$router.replace({ name: "homePage" });
       }
-    }
+    },
   }
 };
   

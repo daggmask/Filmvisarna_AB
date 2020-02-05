@@ -16,15 +16,32 @@
             >account_circle</a
           >
     </div>
+     <template v-if="user.loggedIn">
+          <li>
+            <span>{{user.data.displayName}}</span> |
+            <span class="sign-out" @click.prevent="signOut">Logga ut</span>
+          </li>
+        </template>
   </div>
   </div>
 </template>
 
 <script>
 import Menu from '@/components/menu.vue';
+import auth from '@/firebase.js'
 export default{
   components:{
     Menu
+  },
+   computed: {
+    user(){
+      return this.$store.state.user
+    }
+  },
+methods: {
+    async signOut() {
+      let result = await auth.signOut()
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a href="#" class="dropdown-trigger btn light-blue darken-4" data-target="drop-down-menu"> {{ buttonText }}</a>
-    <ul id="drop-down-menu" class="dropdown-content">
+    <a href="#" class="dropdown-trigger btn light-blue darken-4" :data-target="'drop-down-menu-' + type"> Välj {{ buttonText }}</a>
+    <ul :id="'drop-down-menu-' + type" class="dropdown-content">
       <li class="light-blue darken-2" @click="filterMovies('')"><span class="center-align all">Alla</span></li>
       <li class="light-blue darken-2" @click="filterMovies(content)" v-for="(content, i) of dropdownContents" :key="content+i"><span class="center-align contents">{{ content }}</span></li>
     </ul>
@@ -15,10 +15,12 @@ export default {
     },
     mounted(){
       this.$M.AutoInit();
+
     },
     computed: {
       dropdownContents(){
         switch(this.type) {
+          
           case "genre": {
             let movies = this.$store.state.movies;
             let genres = [];
@@ -28,9 +30,16 @@ export default {
             genres = Array.from(new Set(genres));
             return genres;
           }
-          case "date": {
+          case "datum": {
+            let screenings = this.$store.state.screenings;
             let dates = [];
+            screenings.forEach(screening => {
+              dates.push(screening.time);
+            })
+            dates = Array.from(new Set(dates));
             return dates;
+      
+           
           }
         }
         return null;
@@ -40,18 +49,18 @@ export default {
       this.$store.dispatch("getScreenings")
     },
   methods:{
-    filterMovies(genre){
-        if(genre !== ''){
-          this.buttonText = genre;
+    filterMovies(filter){
+        if(filter !== ''){
+          this.buttonText = filter;
         } else {
           this.buttonText = 'Välj genre';
         }
-        this.$emit('updateFilter', genre)
+        this.$emit('updateFilter', filter)
     },
   },
   data() {
     return {
-      buttonText: 'Välj genre'
+      buttonText: this.type
     }
   }
 }

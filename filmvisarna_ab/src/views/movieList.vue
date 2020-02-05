@@ -3,7 +3,7 @@
     <div class="container col">
         <div class="row">
             <filtering class="col s6 m4 l2" :type="'genre'" @updateFilter="setFilter"></filtering> 
-            <filtering class="col s6 m4 l2" :type="'date'" @updateFilter="setFilter"></filtering>
+            <filtering class="col s6 m4 l2" :type="'datum'" @updateFilter="setFilter"></filtering>
         </div>
         <MovieList :filter="filter"></MovieList>
     </div>
@@ -22,8 +22,8 @@ export default {
         filtering
     },
     methods:{
-        setFilter(genre){
-            this.filter = genre;
+        setFilter(filter){
+            this.filter = filter    ;
         }
     },
     data(){

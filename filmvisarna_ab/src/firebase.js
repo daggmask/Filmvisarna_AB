@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import 'firebase/firestore'
+import store from '@/store/index.js'
 
 // Initialize Firebase
 let config = {
@@ -16,8 +17,10 @@ let config = {
 let myFirebase = firebase.initializeApp(config);
 
 // Firebase db
-const db = myFirebase.firestore();
+export const db = myFirebase.firestore();
+export const auth = myFirebase.auth()
 
-export {
-  db
-}
+auth.onAuthStateChanged(user => {
+  store.dispatch("fetchUser", user);
+});
+

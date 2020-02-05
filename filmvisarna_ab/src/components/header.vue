@@ -6,8 +6,15 @@
     </div>
     <div class="col s10 l12">
     <router-link to='/'>
-      <h1>FILMVISARNA</h1>
+      <h1 class="center-align">FILMVISARNA</h1>
     </router-link>
+    </div>
+    <div class="col s2 l8 right-align">
+                <a
+            href="create_user"
+            class="btn-close material-icons user"
+            >account_circle</a
+          >
     </div>
   </div>
   </div>
@@ -51,5 +58,8 @@ h1{
 }
 .material-icons{
   font-size: 60PX;
+}
+.user{
+  margin-top: 1.5vh;
 }
 </style>

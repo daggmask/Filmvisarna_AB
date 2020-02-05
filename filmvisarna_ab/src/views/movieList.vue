@@ -2,8 +2,8 @@
 <div>
     <div class="container col">
         <div class="row">
-            <filtering :type="'genre'" @updateFilter="setFilter"></filtering> 
-            <filtering :type="'date'" @updateFilter="setFilter"></filtering> 
+            <filtering class="col s6 m4 l2" :type="'genre'" @updateFilter="setFilter"></filtering> 
+            <filtering class="col s6 m4 l2" :type="'date'" @updateFilter="setFilter"></filtering>
         </div>
         <MovieList :filter="filter"></MovieList>
     </div>

@@ -1,6 +1,6 @@
 <template>
-  <div class="container col">
-      <div class="carousel movieImageLoop">
+  <div class="col">
+      <div class="carousel center-block center-align">
           <router-link
           :to="'/movies/' + movie.movieId"
           class="carousel-item"
@@ -11,7 +11,7 @@
             <img :src="movie.images[0]" :alt="movie.title + ' poster'">
           </router-link>
       </div>
-    <MovieList></MovieList>
+    <MovieList class="center-align"></MovieList>
   </div>
 </template>
 
@@ -46,6 +46,7 @@ export default {
     let elems = document.querySelectorAll('.carousel');
     this.$M.Carousel.init(elems)
     
+    
   }
 };
 </script>
@@ -56,6 +57,7 @@ box-sizing: border-box !important;
 width: 100vw !important;
 perspective: none !important;
 -webkit-perspective: none !important;
+height: 55vh !important;
 }
 a{
     height: 80% !important;

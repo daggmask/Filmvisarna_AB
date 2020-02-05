@@ -1,14 +1,17 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import { db } from "@/firebase.js";
-
-Vue.use(Vuex);
+import Vue from 'vue'
+import Vuex from 'vuex'
+import {db, auth} from '@/firebase.js'
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     publishMovies: false,
     movies: [],
-    screenings: [],
+    screenings: [] , 
+    user: {
+      loggedIn: false,
+      data: null
+    },
     publishBooking: false,
     booking: Object
   },
@@ -22,9 +25,18 @@ export default new Vuex.Store({
     setScreenings(state, data) {
       state.screenings = data;
     },
-    publishMovies(state) {
-      state.publishMovies = true;
+    publishMovies(state){
+      state.publishMovies=true;
     },
+
+
+    setLoggedIn(state, value) {
+      state.user.loggedIn = value;
+    },
+    setUser(state, data) {
+      state.user.data = data;
+    },
+
     publishBooking(state, data) {
       state.booking = data;
       state.publishBooking = true;
@@ -77,7 +89,35 @@ export default new Vuex.Store({
      //Booking added to Bookings
       await db.collection("bookings").add(payload);
       commit("publishBooking", payload);
+    async createUser(user){
+      console.log(user)
+     await db.collection('accounts').add(user);
+  },
+  async registerUser({ commit },form){
+    let data = await auth.createUserWithEmailAndPassword(form.email, form.password)
+    let result = await data.user.updateProfile({displayName: form.name})
+    if(result){
+      this.dispatch('fetchUser', data.user)
     }
   },
-  modules: {}
-});
+  async loginUser({ commit }, form){
+    let result = await auth.signInWithEmailAndPassword(form.email, form.password)
+    if(result){
+      this.dispatch('fetchUser', result.user)
+    }
+  },
+  fetchUser({ commit }, user) {
+    commit("setLoggedIn", user !== null);
+    if (user) {
+      commit("setUser", {
+        displayName: user.displayName,
+        email: user.email
+      });
+    } else {
+      commit("setUser", null);
+    }
+  },
+},
+  modules: {
+  }
+})

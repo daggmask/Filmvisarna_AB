@@ -6,7 +6,6 @@ import aboutPage from "@/views/aboutPage.vue";
 import homePage from "@/views/Home.vue";
 import ticketBooking from "@/views/ticketBooking.vue";
 import createUser from "@/views/createUser.vue"
-import Dashboard from '@/components/Dashboard'
 
 
 Vue.use(VueRouter);
@@ -42,11 +41,6 @@ const routes = [
     name: "createUser",
     component: createUser
   },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard
-},
 ];
 
 const router = new VueRouter({

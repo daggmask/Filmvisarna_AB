@@ -71,7 +71,7 @@ export default {
       numberOfRegularTickets: 2,
       numberSeniorCitizenTickets: 0,
       numberOfChildTickets: 0,
-      totalPrice: 125
+      totalPrice: 170
     };
   },
 
@@ -103,32 +103,37 @@ export default {
     addRegularTicket() {
       if (this.seatsAvilable()) {
         this.numberOfRegularTickets++;
+        this.totalPrice += 85;
       }
     },
     deductRegularTicket() {
       if (this.numberOfRegularTickets != 0) {
         this.numberOfRegularTickets--;
+        this.totalPrice -= 85;
       }
     },
     addSeniorCitizenTicket() {
       if (this.seatsAvilable()) {
         this.numberSeniorCitizenTickets++;
+        this.totalPrice += 75;
       }
     },
     deductSeniorCitizenTicket() {
       if (this.numberSeniorCitizenTickets != 0) {
         this.numberSeniorCitizenTickets--;
+        this.totalPrice -= 75;
       }
     },
     addChildTicket() {
       if (this.seatsAvilable()) {
         this.numberOfChildTickets++;
+        this.totalPrice += 65;
       }
     },
     deductChildTicket() {
       if (this.numberOfChildTickets != 0) {
-        this.totalPrice -= 110;
         this.numberOfChildTickets--;
+        this.totalPrice -= 65;
       }
     },
     bookTickets(screeningID, seatsAvailable) {
@@ -137,18 +142,15 @@ export default {
         (this.numberOfRegularTickets +
           this.numberOfChildTickets +
           this.numberSeniorCitizenTickets);
-      this.$store.dispatch(
-        "publishBooking",
-        {
-          screeningID: screeningID,
-          seatsLeft: seatsLeft,
-          regularTickets: this.numberOfRegularTickets,
-          childTickets: this.numberOfChildTickets,
-          seniorcitizenTickets: this.numberSeniorCitizenTickets,
-          totalPriceForPurchase: this.totalPrice
-        },
-      );
-      this.$emit('displayConfirmation')
+      this.$store.dispatch("publishBooking", {
+        screeningID: screeningID,
+        seatsLeft: seatsLeft,
+        regularTickets: this.numberOfRegularTickets,
+        childTickets: this.numberOfChildTickets,
+        seniorcitizenTickets: this.numberSeniorCitizenTickets,
+        totalPriceForPurchase: this.totalPrice
+      });
+      this.$emit("displayConfirmation");
     },
     getScreeningTime(timestamp) {
       let screeningDate = timestamp.toDate();

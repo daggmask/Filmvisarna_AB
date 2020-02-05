@@ -61,6 +61,9 @@ export default {
           currentMovieScreenings.push(screening);
         }
       }
+      currentMovieScreenings.sort((a, b) => {
+        return a.time.toDate().getTime() - b.time.toDate().getTime();
+      })
       return currentMovieScreenings;
     },
     dates(){

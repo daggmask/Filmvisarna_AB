@@ -11,7 +11,7 @@
             <img :src="movie.images[0]" :alt="movie.title + ' poster'">
           </router-link>
       </div>
-    <MovieList></MovieList>
+    <MovieList class="center-align"></MovieList>
   </div>
 </template>
 

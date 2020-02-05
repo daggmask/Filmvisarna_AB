@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="#" class="dropdown-trigger btn light-blue darken-4" :data-target="'drop-down-menu-' + type"> Välj {{ buttonText }}</a>
+    <a href="#" class="dropdown-trigger btn light-blue darken-4" :data-target="'drop-down-menu-' + type"> {{ buttonText }}</a>
     <ul :id="'drop-down-menu-' + type" class="dropdown-content">
       <li class="light-blue darken-2" @click="filterMovies('')"><span class="center-align all">Alla</span></li>
       <li class="light-blue darken-2" @click="filterMovies(content)" v-for="(content, i) of dropdownContents" :key="content+i"><span class="center-align contents">{{ content }}</span></li>
@@ -53,14 +53,21 @@ export default {
         if(filter !== ''){
           this.buttonText = filter;
         } else {
-          this.buttonText = 'Välj genre';
+          switch (this.type){
+            case "genre":
+              this.buttonText = 'Välj genre';
+              break;
+            case "datum":
+              this.buttonText = 'Välj datum';
+              break;
+          }
         }
         this.$emit('updateFilter', filter)
     },
   },
   data() {
     return {
-      buttonText: this.type
+      buttonText: `Välj ${this.type}`
     }
   }
 }

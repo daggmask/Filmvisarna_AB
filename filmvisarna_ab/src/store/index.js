@@ -9,10 +9,10 @@ export default new Vuex.Store({
     movies: [],
     screenings: [] , 
 
-
     user: {
       loggedIn: false,
-      data: null
+      data: null,
+      isLoggedIn: false
     },
          
   },
@@ -29,10 +29,9 @@ export default new Vuex.Store({
     publishMovies(state){
       state.publishMovies=true;
     },
-
-
     setLoggedIn(state, value) {
       state.user.loggedIn = value;
+      state.user.isLoggedIn = true;
     },
     setUser(state, data) {
       state.user.data = data;
@@ -72,22 +71,27 @@ export default new Vuex.Store({
       console.log(user)
      await db.collection('accounts').add(user);
   },
-  async registerUser({ commit },form){
-    let data = await auth.createUserWithEmailAndPassword(form.email, form.password)
-    let result = await data.user.updateProfile({displayName: form.name})
-    if(result){
-      this.dispatch('fetchUser', data.user)
+    async registerUser({ commit },form){
+     let data = await auth.createUserWithEmailAndPassword(form.email, form.password)
+     let result = await data.user.updateProfile({displayName: form.name})
+     if(result){
+     this.dispatch('fetchUser', data.user)
     }
   },
-  async loginUser({ commit }, form){
-    let result = await auth.signInWithEmailAndPassword(form.email, form.password)
-    if(result){
+    async loginUser({ commit }, form){
+     try{
+     let result = await auth.signInWithEmailAndPassword(form.email, form.password)
+     if(result){
       console.log(result.user.displayName)
       console.log(result.user.email,result.user.password)
       this.dispatch('fetchUser', result.user)
     }
+  }
+    catch{
+      console.log("fel användarnamn")
+    }
   },
-  fetchUser({ commit }, user) {
+   fetchUser({ commit }, user) {
     commit("setLoggedIn", user !== null);
 
     if (user) {
@@ -98,6 +102,7 @@ export default new Vuex.Store({
     } else {   
       commit("setUser", null);
     }
+    
   },
 
 },

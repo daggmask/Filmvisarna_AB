@@ -1,30 +1,62 @@
 <template>
-<div class="loginPage row container ">
-<div class="card medium ">
-<form class="login-form">
+<div class="container col login">
+    <div class="center-block center-align">
+    <h1 class="black"> LOGGA <br> IN</h1>
+    <form action="#" @submit.prevent="submit">
+    
+      <div class="input-field">
+        <input id="email" type="email" name="email" value required autofocus v-model="form.email" />
+        <label for="email">Email</label>
+      </div>
 
-  <div class="login-input">
-  <label for="username">Användarnamn</label>
-  <input type="text">
+      <div class="input-field">
+        <input id="password" type="password" name="password" required v-model="form.password" />
+        <label for="password">Lösenord</label>
+      </div>
+
+      <div class="input-field">
+        <button type="submit" class="btn waves-effect waves-light" >Logga in</button>
+      </div>
+      <router-link to="/create_user">
+      <h3>skapa konto</h3>
+      </router-link>
+    </form>
+    </div>
   </div>
-
-  <br>
-
-   <div class="login-input">
-  <label for="Password">Lösenord</label>
-  <input type="text">
-
-  </div>
-  <br>
-  <button class="btn waves-effect waves-light">login</button>
-</form>
-</div>
-</div>
 </template>
 
 <script>
+export default{
+    
+    data(){
+        return{
+        form: {
+        email: "",
+        password: ""
+      }
+     }
+    },
+     methods: {
+    submit() {
+      this.$store.dispatch('loginUser', this.form)
+      this.$router.replace({ name: "homePage" });
+    }
+  }
+};
+  
 
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
+
+.login{
+    background-color: black;
+}
+h1{
+    font-family: 'Monoton', cursive;
+}
+button{
+    background-color: #01579b;
+}
 </style>

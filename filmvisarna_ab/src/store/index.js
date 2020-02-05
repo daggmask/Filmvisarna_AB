@@ -82,6 +82,8 @@ export default new Vuex.Store({
   async loginUser({ commit }, form){
     let result = await auth.signInWithEmailAndPassword(form.email, form.password)
     if(result){
+      console.log(result.user.displayName)
+      console.log(result.user.email,result.user.password)
       this.dispatch('fetchUser', result.user)
     }
   },
@@ -93,7 +95,7 @@ export default new Vuex.Store({
         displayName: user.displayName,
         email: user.email
       });
-    } else {
+    } else {   
       commit("setUser", null);
     }
   },

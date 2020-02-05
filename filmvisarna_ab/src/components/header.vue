@@ -1,15 +1,15 @@
 <template>
 <div class="backgroundColour">
 <div class="headerDiv container row valign-wrapper">
-  <div class="col s2 l8">
+  <div class="col s2 l3">
     <Menu id="navbar"></Menu>
     </div>
-    <div class="col s10 l12">
+    <div class="col s8 l6">
     <router-link to='/'>
       <h1 class="center-align">FILMVISARNA</h1>
     </router-link>
     </div>
-    <div class="col s2 l8 right-align">
+    <div class="col s2 l3 right-align">
                 <a
             href="create_user"
             class="btn-close material-icons user"
@@ -45,7 +45,7 @@ export default{
   
 }
 .backgroundColour{
-  height: 8.5vh;
+  height: 10.5vh;
   background-color: #01579b;
   background-size: cover;
 }
@@ -61,5 +61,7 @@ h1{
 }
 .user{
   margin-top: 1.5vh;
+  margin-right: 2vw;
+  font-size: 40px;
 }
 </style>

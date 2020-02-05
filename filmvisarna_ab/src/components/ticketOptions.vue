@@ -11,7 +11,7 @@
     <div class="row">
       <div class="ticketInfo col s6">
         <p>Ordinarie</p>
-        <p>125kr / st</p>
+        <p>85kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
         <button class="btn-small indigo darken-4" @click="deductRegularTicket()">-</button>
@@ -22,7 +22,7 @@
     <div class="row">
       <div class="ticketInfo col s6">
         <p>Barn under 12år</p>
-        <p>115kr / st</p>
+        <p>65kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
         <button class="btn-small indigo darken-4" @click="deductChildTicket()">-</button>
@@ -33,7 +33,7 @@
     <div class="row">
       <div class="ticketInfo col s6">
         <p>Pensionär</p>
-        <p>110kr / st</p>
+        <p>75kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
         <button class="btn-small indigo darken-4" @click="deductSeniorCitizenTicket()">-</button>
@@ -51,7 +51,7 @@
               this.numberSeniorCitizenTickets <= 0"
         >Du måste välja minst 1 biljett</p>
         <button
-          @click="bookTickets(screening.id, screening.seatsAvailable)"
+          @click="bookTickets(screening)"
           class="btn-large indigo darken-4"
           v-if="
             this.numberOfRegularTickets >= 1 ||
@@ -136,19 +136,22 @@ export default {
         this.totalPrice -= 65;
       }
     },
-    bookTickets(screeningID, seatsAvailable) {
+    bookTickets(screening) {
       let seatsLeft =
-        seatsAvailable -
+        screening.seatsAvailable -
         (this.numberOfRegularTickets +
           this.numberOfChildTickets +
           this.numberSeniorCitizenTickets);
       this.$store.dispatch("publishBooking", {
-        screeningID: screeningID,
+        screeningID: screening.id,
+        screeningTitle: screening.film,
+        screeningDate: this.getDateAsString(screening.time),
+        screeningTime: this.getScreeningTime(screening.time),
         seatsLeft: seatsLeft,
         regularTickets: this.numberOfRegularTickets,
         childTickets: this.numberOfChildTickets,
         seniorcitizenTickets: this.numberSeniorCitizenTickets,
-        totalPriceForPurchase: this.totalPrice
+        totalPriceForPurchase: this.totalPrice,
       });
       this.$emit("displayConfirmation");
     },

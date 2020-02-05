@@ -1,97 +1,63 @@
 <template>
-  <div id="slider">
-      <figure>
-    <img :src= movie.images[1]
-    v-for="(movie, i) in movies"
-    v-bind:key="movie.title + i + movie.images[1]"
-    :movie="movie"
-    @click="toMovieShowing(movie)"  
-    class="responsive-img pic">
-
-    <div class="movieTitle">
-    <p v-for="(movie, i) in movies"
-    v-bind:key="movie.title + i"
-    :movie="movie"
-    @click="toMovieShowing(movie)">
-    {{movie.title}}
-    </p>
-    </div>
-   
-   
-      </figure>
+  <div class="container col">
+      <div class="carousel movieImageLoop">
+          <router-link
+          :to="'/movies/' + movie.movieId"
+          class="carousel-item"
+          href="javascript:void(0)"
+          v-for="(movie, i) in movies"
+          :key="i + movie.title"
+          >
+            <img :src="movie.images[0]" :alt="movie.title + ' poster'">
+          </router-link>
+      </div>
+    <MovieList></MovieList>
   </div>
-
 </template>
 
 <script>
-export default {
-    computed: {
-        movies() {
-            let movie = this.$store.state.movies
-            movie.push(movie[0])
-            return movie
-            // return this.$store.state.movies;
-        }
-    },
-    methods:{
-            toMovieShowing(movie){
-                try{
-            console.log(movie)
-            this.$router.push({path:'/movies/'+ movie.movieId})
-                }
-                catch{
-                    console.log()
-                }
-        }
-    },
-        created(){
-      this.$store.dispatch("getMovies")
-    },
-}
+import MovieList from '@/components/movieList.vue'
 
+export default {
+    components:{
+        MovieList,
+    },
+
+  computed: {
+    movies() {
+      let movies = this.$store.state.movies;
+      return movies;
+    }
+  },
+  methods: {
+    toMovieShowing(movie) {
+      try {
+        console.log(movie);
+        this.$router.push({ path: "/movies/" + movie.movieId });
+      } catch {
+        console.log();
+      }
+    }
+  },
+  created() {
+    this.$store.dispatch("getMovies");
+  },
+  updated(){
+    let elems = document.querySelectorAll('.carousel');
+    this.$M.Carousel.init(elems)
+    
+  }
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-#slider{
-    overflow: hidden;
+.carousel {
+box-sizing: border-box !important;
+width: 100vw !important;
+perspective: none !important;
+-webkit-perspective: none !important;
 }
-#slider figure {
-    position: relative;
-    width: 600%;
-    margin: 0;
-    left: 0;
-    animation: 20s slider infinite;
-    height: 60vh;
-}
-#slider figure img{
-    height: 50vh;
-    width: 100vw;
-    float: left;
-}
-@keyframes slider{
-0%{
-    left: 0;
-}
-100%{
-    left: -500%;
-}
-}
-.movieTitle{
-  display: flex;
-  justify-content: space-around;
-  position: absolute;
-  align-items: flex-end;
-  width: 100%;
-  top: 50vh;
-  padding:0%;
-  font-family: 'Lato', sans-serif;
-  font-size: 1.5em
-}
-p{
-  width: 40vw;
-  text-align: center;
-  height: 10vh;
+a{
+    height: 80% !important;
 }
 </style>
-

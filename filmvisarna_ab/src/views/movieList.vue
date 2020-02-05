@@ -22,8 +22,8 @@ export default {
         filtering
     },
     methods:{
-        setFilter(genre){
-            this.filter = genre;
+        setFilter(filter){
+            this.filter = filter    ;
         }
     },
     data(){

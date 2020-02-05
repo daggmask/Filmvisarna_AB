@@ -1,5 +1,29 @@
 <template>
-<div class="backgroundColour">
+<header class="light-blue darken-4">
+  <div class="container">
+    <div class="row">
+      <div class="col s2">
+        <i class="material-icons">menu</i>
+      </div>
+      <div class="col s8 center-align">
+        <router-link to='/'>
+          <h1>FILMVISARNA</h1>
+        </router-link>
+      </div>
+      <div class="col s2 right-align">
+        <router-link to='/create_account'>
+          <i class="material-icons">account_circle</i>
+        </router-link>
+      </div>
+    </div>
+    <nav class="row light-blue darken-4 hide-on-med-and-down">
+      <router-link class="col l2 offset-l3 center-align" to="/">Hem</router-link>
+      <router-link class="col l2 center-align" to="/movies">Filmer</router-link>
+      <router-link class="col l2 center-align" to="/about">Om oss</router-link>
+    </nav>
+  </div>
+</header>
+<!-- <div class="backgroundColour">
 <div class="headerDiv container row valign-wrapper">
   <div class="col s2 l3">
     <Menu id="navbar"></Menu>
@@ -17,15 +41,12 @@
           >
     </div>
   </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import Menu from '@/components/menu.vue';
 export default{
-  components:{
-    Menu
-  }
+  
 }
 </script>
 
@@ -33,35 +54,33 @@ export default{
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
-*{
-  box-sizing: border-box;
-}
-.headerDiv{
-  width: 100vw;
-  background-color: #01579b;
-}
 #navbar{
   z-index: 999;
-  
 }
-.backgroundColour{
-  height: 10.5vh;
-  background-color: #01579b;
-  background-size: cover;
+.container{
+  flex-direction: column;
+}
+.row{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 100%;
+}
+nav{
+  box-shadow: none;
+  height: auto !important;
+  line-height: 1rem !important;
 }
 h1{
   font-family: 'Monoton', cursive;
   margin-top:0%;
   margin-bottom: 0%;
   cursor:pointer;
-  font-size: 2em;
+  font-size: 1.85rem;
 }
-.material-icons{
-  font-size: 60PX;
-}
-.user{
-  margin-top: 1.5vh;
-  margin-right: 2vw;
-  font-size: 40px;
+a{
+  font-family: 'Righteous';
+  font-size: 1.2rem;
 }
 </style>

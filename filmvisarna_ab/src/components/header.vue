@@ -1,81 +1,72 @@
 <template>
-    <header
-      class=" backgroundColour row  header light-blue darken-4 valign-wrapper"
-      :class="{ 'hidden-header': !showheader }"
-    >
-          <div class="col s2 m4 l5 xl5 valign-wrapper">
-            <ul class="valign-wrapper">
-              <li>
-                <i
-                  class="material-icons hide-on-large-only "
-                  @click="openSlideMenu"
-                  >menu</i
-                >
-              </li>
-              <li>
-                <router-link
-                  class="col hide-on-med-and-down desktop-link"
-                  to="/"
-                  >Hem</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  class="col hide-on-med-and-down desktop-link"
-                  to="/movies"
-                  >Filmer</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  class="col hide-on-med-and-down desktop-link"
-                  to="/about"
-                  >Om oss</router-link
-                >
-              </li>
-            </ul>
-          </div>
+  <header
+    class=" backgroundColour row  header light-blue darken-4 valign-wrapper"
+    :class="{ 'hidden-header': !showheader }"
+  >
+    <div class="col s2 m4 l5 xl5 valign-wrapper">
+      <ul class="valign-wrapper">
+        <li>
+          <i class="material-icons hide-on-large-only " @click="openSlideMenu"
+            >menu</i
+          >
+        </li>
+        <li>
+          <router-link class="col hide-on-med-and-down desktop-link" to="/"
+            >Hem</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            class="col hide-on-med-and-down desktop-link"
+            to="/movies"
+            >Filmer</router-link
+          >
+        </li>
+        <li>
+          <router-link class="col hide-on-med-and-down desktop-link" to="/about"
+            >Om oss</router-link
+          >
+        </li>
+      </ul>
+    </div>
 
-          <div class="col s8 m4 l2 xl2 valign-wrapper">
-            <h1 class="col container center-align">Filmvisarna</h1>
-          </div>
+    <div class="col s8 m4 l2 xl2 valign-wrapper">
+      <router-link to="/"
+        ><h1 class="col container center-align">Filmvisarna</h1></router-link
+      >
+    </div>
 
-          <div class="col s2 m4 l5 xl5 valign-wrapper">
-            <i class="material-icons account-icon">account_circle</i>
-          </div>
-        <div id="tablet-menu">
-          <div class="tablet-menu-links container">
-            <ul class="tablet-links-list container">
-              <li class="tablet-link">
-                <a href="#" @click.prevent="closeSlideMenu">
-                  <router-link class="tablet-link" to="/">Hem</router-link>
-                </a>
-              </li>
-              <li class="tablet-link">
-                <a href="#" @click.prevent="closeSlideMenu">
-                  <router-link class="tablet-link" to="/movies"
-                    >Filmer</router-link
-                  >
-                </a>
-              </li>
-              <li class="tablet-link">
-                <a href="#" @click.prevent="closeSlideMenu">
-                  <router-link class="tablet-link" to="/about"
-                    >Om oss</router-link
-                  >
-                </a>
-              </li>
-              <a
-                href="#"
-                class="material-icons"
-                @click.prevent="closeSlideMenu"
-              >
-                <i class="material-icons btn-close">close</i></a
-              >
-            </ul>
-          </div>
-        </div>
-    </header>
+    <div class="col s2 m4 l5 xl5 valign-wrapper ">
+      <router-link to="/login"
+        ><i class="material-icons account-icon ">account_circle</i></router-link
+      >
+    </div>
+
+    <div id="tablet-menu">
+      <div class="tablet-menu-links container">
+        <ul class="tablet-links-list container">
+          <li class="tablet-link">
+            <a href="#" @click.prevent="closeSlideMenu">
+              <router-link class="tablet-link" to="/">Hem</router-link>
+            </a>
+          </li>
+          <li class="tablet-link">
+            <a href="#" @click.prevent="closeSlideMenu">
+              <router-link class="tablet-link" to="/movies">Filmer</router-link>
+            </a>
+          </li>
+          <li class="tablet-link">
+            <a href="#" @click.prevent="closeSlideMenu">
+              <router-link class="tablet-link" to="/about">Om oss</router-link>
+            </a>
+          </li>
+          <a href="#" class="material-icons" @click.prevent="closeSlideMenu">
+            <i class="material-icons btn-close">close</i></a
+          >
+        </ul>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -100,16 +91,16 @@ export default {
   },
   methods: {
     openSlideMenu() {
-      document.getElementById("tablet-menu").style.height = "100vh";
+      document.getElementById("tablet-menu").style.height = "107.5vh";
     },
     closeSlideMenu() {
       document.getElementById("tablet-menu").style.height = "0";
     },
     onScroll() {
-      if (window.pageYOffset < 25) {
+      if (window.pageYOffset < 5) {
         return;
       }
-      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < 75) {
+      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < 5) {
         return;
       }
       this.showheader = window.pageYOffset < this.lastScrollPosition;
@@ -122,7 +113,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Monoton&display=swap");
-.main{
+.main {
   height: 1vh;
 }
 .container {
@@ -168,7 +159,7 @@ a {
 }
 .tablet-menu-links {
   height: 70vh;
-  width: 70vw;
+  width: 90vw;
   justify-content: space-between;
   flex-direction: column;
 }

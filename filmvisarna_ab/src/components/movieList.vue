@@ -26,15 +26,15 @@
 </template>
 <script>
 export default {
-  props:{
-    filter: String,
-  },
+  props:[
+    'filter',
+  ],
     
   computed: {
 
     movies() {
      let filter = this.filter;
-     let isDate = filter.includes("2");
+     let isDate = filter instanceof Date;
      let movies;
      if(!isDate){
       movies = this.setMoviesByGenre(filter);
@@ -72,10 +72,10 @@ export default {
       let movies = [];
 
       screenings.forEach(screening => {
-        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        let screeningDate = screening.time.getDate() + ' ' + months[screening.time.getMonth()] + ' ' + screening.time.getFullYear();
+        //let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        //let screeningDate = screening.time.getDate() + ' ' + months[screening.time.getMonth()] + ' ' + screening.time.getFullYear();
           
-        if(filter === screeningDate){
+        if(filter === screening.time){
           
           for(let movie of moviesFromStore){
             if (movie.id === screening.movieId){

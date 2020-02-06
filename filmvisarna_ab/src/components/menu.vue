@@ -72,9 +72,15 @@ export default {
   position: sticky;
   top: 0vh;
 }
+ul{
+    margin: 0;
+}
 .navbar {
-  overflow: hidden;
-  background-color: rgb(0, 0, 0);
+overflow: hidden;
+background: transparent;
+}
+nav{
+    -webkit-box-shadow: 0 0 0 0 !important;
 }
 .navbar-link a {
   display: block;
@@ -86,7 +92,8 @@ export default {
   margin-left: 1vw;
 }
 .navbar-link :hover {
-  font-size: 2.5vh;
+  color: white;
+  text-shadow: #f2f2f2 3rem;
 }
 #tablet-menu {
   display: flex;
@@ -95,13 +102,14 @@ export default {
   height: 0;
   position: fixed;
   top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.932);
   overflow: hidden;
   transition: 0.65s;
 }
 .tablet-menu-links {
   height: 70vh;
-  width: 70vw;
+  width: 80vw;
   justify-content: space-between;
   flex-direction: column;
 }

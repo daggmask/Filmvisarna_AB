@@ -34,8 +34,8 @@ export default {
             let screenings = this.$store.state.screenings;
             let dates = [];
             
-            screenings.sort(function(a,b){
-              return(b-a);
+            screenings.sort((a,b) => {
+              return a.time.getTime() - b.time.getTime();
             })
             screenings.forEach(screening => {
               var months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];

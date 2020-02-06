@@ -1,85 +1,207 @@
 <template>
-<header class="light-blue darken-4">
-  <div class="container">
-    <div class="row">
-      <div class="col s2 hide-on-large-only">
-        <i class="material-icons">menu</i>
-      </div>
-      <div class="col s8 offset-l2 center-align">
-        <router-link to='/'>
-          <h1>FILMVISARNA</h1>
-        </router-link>
-      </div>
-      <div class="col s2 right-align">
-        <router-link to='/create_account'>
-          <i class="material-icons">account_circle</i>
-        </router-link>
-      </div>
-    </div>
-    <nav class="row light-blue darken-4 hide-on-med-and-down">
-      <router-link class="col l2 offset-l3 center-align" to="/">Hem</router-link>
-      <router-link class="col l2 center-align" to="/movies">Filmer</router-link>
-      <router-link class="col l2 center-align" to="/about">Om oss</router-link>
-    </nav>
-  </div>
-</header>
-<!-- <div class="backgroundColour">
-<div class="headerDiv container row valign-wrapper">
-  <div class="col s2 l3">
-    <Menu id="navbar"></Menu>
-    </div>
-    <div class="col s8 l6">
-    <router-link to='/'>
-      <h1 class="center-align">FILMVISARNA</h1>
-    </router-link>
-    </div>
-    <div class="col s2 l3 right-align">
-                <a
-            href="create_user"
-            class="btn-close material-icons user"
-            >account_circle</a
-          >
-    </div>
-  </div>
-  </div> -->
+    <header
+      class=" backgroundColour row  header light-blue darken-4 valign-wrapper"
+      :class="{ 'hidden-header': !showheader }"
+    >
+          <div class="col s2 m4 l5 xl5 valign-wrapper">
+            <ul class="valign-wrapper">
+              <li>
+                <i
+                  class="material-icons hide-on-large-only "
+                  @click="openSlideMenu"
+                  >menu</i
+                >
+              </li>
+              <li>
+                <router-link
+                  class="col hide-on-med-and-down desktop-link"
+                  to="/"
+                  >Hem</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  class="col hide-on-med-and-down desktop-link"
+                  to="/movies"
+                  >Filmer</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  class="col hide-on-med-and-down desktop-link"
+                  to="/about"
+                  >Om oss</router-link
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col s8 m4 l2 xl2 valign-wrapper">
+            <h1 class="col container center-align">Filmvisarna</h1>
+          </div>
+
+          <div class="col s2 m4 l5 xl5 valign-wrapper">
+            <i class="material-icons account-icon">account_circle</i>
+          </div>
+        <div id="tablet-menu">
+          <div class="tablet-menu-links container">
+            <ul class="tablet-links-list container">
+              <li class="tablet-link">
+                <a href="#" @click.prevent="closeSlideMenu">
+                  <router-link class="tablet-link" to="/">Hem</router-link>
+                </a>
+              </li>
+              <li class="tablet-link">
+                <a href="#" @click.prevent="closeSlideMenu">
+                  <router-link class="tablet-link" to="/movies"
+                    >Filmer</router-link
+                  >
+                </a>
+              </li>
+              <li class="tablet-link">
+                <a href="#" @click.prevent="closeSlideMenu">
+                  <router-link class="tablet-link" to="/about"
+                    >Om oss</router-link
+                  >
+                </a>
+              </li>
+              <a
+                href="#"
+                class="material-icons"
+                @click.prevent="closeSlideMenu"
+              >
+                <i class="material-icons btn-close">close</i></a
+              >
+            </ul>
+          </div>
+        </div>
+    </header>
 </template>
 
 <script>
-export default{
-  
-}
+export default {
+  data() {
+    return {
+      showheader: true,
+      lastScrollPosition: 0,
+      scrollValue: 0
+    };
+  },
+  mounted() {
+    this.lastScrollPosition = window.pageYOffset;
+    window.addEventListener("scroll", this.onScroll);
+    const viewportMeta = document.createElement("meta");
+    viewportMeta.name = "viewport";
+    viewportMeta.content = "width=device-width, initial-scale=1";
+    document.head.appendChild(viewportMeta);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    openSlideMenu() {
+      document.getElementById("tablet-menu").style.height = "100vh";
+    },
+    closeSlideMenu() {
+      document.getElementById("tablet-menu").style.height = "0";
+    },
+    onScroll() {
+      if (window.pageYOffset < 25) {
+        return;
+      }
+      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < 75) {
+        return;
+      }
+      this.showheader = window.pageYOffset < this.lastScrollPosition;
+      this.lastScrollPosition = window.pageYOffset;
+    }
+  }
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
-
-#navbar{
-  z-index: 999;
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Monoton&display=swap");
+.main{
+  height: 1vh;
 }
-.container{
+.container {
   flex-direction: column;
 }
-.row{
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  width: 100%;
-}
-nav{
+nav {
   box-shadow: none;
   height: auto !important;
   line-height: 1rem !important;
+  display: flex;
+  align-items: center;
 }
-h1{
-  font-family: 'Monoton', cursive;
+h1 {
+  font-family: "Monoton", cursive;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 1.85rem;
+  font-size: 1.55rem;
 }
-a{
-  font-family: 'Righteous';
+a {
+  font-family: "Righteous";
   font-size: 1.2rem;
+}
+.header {
+  width: 100vw;
+  background: hsl(200, 50%, 50%);
+  position: fixed;
+  box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5);
+  transform: translate3d(0, 0, 0);
+  transition: 0.35s all ease-out;
+  z-index: 999;
+}
+#tablet-menu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.932);
+  overflow: hidden;
+  transition: 0.65s;
+}
+.tablet-menu-links {
+  height: 70vh;
+  width: 70vw;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.tablet-links-list {
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 25vh;
+}
+.tablet-link {
+  font-family: "Monoton", cursive;
+  color: white;
+  font-size: 3.5vh;
+  margin: 1em;
+}
+.desktop-link {
+  font-family: "Monoton", cursive;
+  color: white;
+  font-size: 1.1em;
+  margin: 1em;
+}
+.btn-close {
+  margin-top: 10vh;
+  font-size: 3.5em;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100%;
+}
+.account-icon {
+  font-size: 2.5rem;
+}
+.header.hidden-header {
+  box-shadow: none;
+  transform: translate3d(0, -100%, 0);
 }
 </style>

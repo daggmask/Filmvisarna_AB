@@ -19,7 +19,7 @@
       </div>
       
       <router-link to="/create_user">
-      <h5>Skapa konto</h5>
+      <h7>Skapa konto</h7>
       </router-link>
     </form>
     </div>
@@ -56,13 +56,17 @@ export default{
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 .login{
-    background-color: black;
+    background-color: transparent;
     margin-top: 5%
 }
 h1{
     font-family: 'Monoton', cursive;
+    font-size: 3rem;
 }
 button{
     background-color: #01579b;
+}
+label{
+  color: white;
 }
 </style>

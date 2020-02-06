@@ -19,7 +19,7 @@
       </div>
       
       <router-link to="/create_user">
-      <h5>Skapa konto</h5>
+      <h7>Skapa konto</h7>
       </router-link>
     </form>
     </div>
@@ -64,5 +64,8 @@ h1{
 }
 button{
     background-color: #01579b;
+}
+label{
+  color: white;
 }
 </style>

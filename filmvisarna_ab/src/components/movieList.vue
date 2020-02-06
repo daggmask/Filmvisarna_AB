@@ -6,9 +6,7 @@
     class="col s12 m6 l4" 
     @click="toMovieShowing(movie)">
       <div class="card horizontal black">
-        <div class="card-image">
           <img :src="movie.images[0]" :alt="movie.title + ' poster'">
-        </div>
         <div class="card-stacked" :style="{backgroundImage: 'url(' +  movie.images[1] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}">
           <div class="card-content valign-wrapper">
             <div>

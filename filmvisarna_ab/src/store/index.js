@@ -85,8 +85,18 @@ export default new Vuex.Store({
           seatsAvailable: payload.seatsLeft
         });
       //Booking added to Bookings
-      await db.collection("bookings").add(payload);
-      commit("publishBooking", payload);
+      let booking = {
+        childtickets: payload.numberOfChildTickets,
+        regularTickets: payload.numberOfRegularTickets,
+        screeningDate: payload.screeningDate,
+        screeningTime: payload.screeningTime,
+        screeningTitle: payload.screeningTitle,
+        seniorCitizenTickets: payload.numberOfseniorcitizenTickets,
+        totalPriceForPurchase: payload.totalPrice,
+        customerBookingReferenceNumber: payload.customerBookingReferenceNumber
+      };
+      await db.collection("bookings").add(booking);
+      commit("publishBooking", booking);
     },
     async createUser(user) {
       console.log(user);

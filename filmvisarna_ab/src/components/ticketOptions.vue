@@ -2,11 +2,15 @@
   <div class="main container">
     <div class="row options">
       <p class="screeningInfo col s6 m6 l6 xl6">{{ screening.film }}</p>
-      <p
-        class="screeningInfo col s6 m6 l6 xl6 right-align"
-      >Platser kvar: {{ screening.seatsAvailable }}</p>
-      <p class="timeOfScreening col s6 m6 l6 xl6">{{ getScreeningTime(screening.time) }}</p>
-      <p class="dayOfScreening col s6 m6 l6 xl6 right-align">{{ getDateAsString(screening.time) }}</p>
+      <p class="screeningInfo col s6 m6 l6 xl6 right-align">
+        Platser kvar: {{ screening.seatsAvailable }}
+      </p>
+      <p class="timeOfScreening col s6 m6 l6 xl6">
+        {{ getScreeningTime(screening.time) }}
+      </p>
+      <p class="dayOfScreening col s6 m6 l6 xl6 right-align">
+        {{ getDateAsString(screening.time) }}
+      </p>
     </div>
     <div class="row">
       <div class="ticketInfo col s6">
@@ -14,9 +18,16 @@
         <p>85kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
-        <button class="btn-small indigo darken-4" @click="deductRegularTicket()">-</button>
+        <button
+          class="btn-small indigo darken-4"
+          @click="deductRegularTicket()"
+        >
+          -
+        </button>
         <p class="ticketAmount">{{ this.numberOfRegularTickets }}</p>
-        <button class="btn-small indigo darken-4" @click="addRegularTicket()">+</button>
+        <button class="btn-small indigo darken-4" @click="addRegularTicket()">
+          +
+        </button>
       </div>
     </div>
     <div class="row">
@@ -25,9 +36,13 @@
         <p>65kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
-        <button class="btn-small indigo darken-4" @click="deductChildTicket()">-</button>
+        <button class="btn-small indigo darken-4" @click="deductChildTicket()">
+          -
+        </button>
         <p class="ticketAmount">{{ this.numberOfChildTickets }}</p>
-        <button class="btn-small indigo darken-4" @click="addChildTicket">+</button>
+        <button class="btn-small indigo darken-4" @click="addChildTicket">
+          +
+        </button>
       </div>
     </div>
     <div class="row">
@@ -36,9 +51,19 @@
         <p>75kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
-        <button class="btn-small indigo darken-4" @click="deductSeniorCitizenTicket()">-</button>
+        <button
+          class="btn-small indigo darken-4"
+          @click="deductSeniorCitizenTicket()"
+        >
+          -
+        </button>
         <p class="ticketAmount">{{ this.numberSeniorCitizenTickets }}</p>
-        <button class="btn-small indigo darken-4" @click="addSeniorCitizenTicket()">+</button>
+        <button
+          class="btn-small indigo darken-4"
+          @click="addSeniorCitizenTicket()"
+        >
+          +
+        </button>
       </div>
     </div>
     <div class="row checkOut">
@@ -48,8 +73,11 @@
           v-if="
             this.numberOfRegularTickets <= 0 &&
               this.numberOfChildTickets <= 0 &&
-              this.numberSeniorCitizenTickets <= 0"
-        >Du måste välja minst 1 biljett</p>
+              this.numberSeniorCitizenTickets <= 0
+          "
+        >
+          Du måste välja minst 1 biljett
+        </p>
         <button
           @click="bookTickets(screening)"
           class="btn-large indigo darken-4"
@@ -58,7 +86,9 @@
               this.numberOfChildTickets >= 1 ||
               this.numberSeniorCitizenTickets >= 1
           "
-        >Boka platser</button>
+        >
+          Boka platser
+        </button>
       </div>
     </div>
   </div>
@@ -136,6 +166,13 @@ export default {
         this.totalPrice -= 65;
       }
     },
+    generateCustomerBookingReferenceNumber() {
+      return (
+        Math.random()
+          .toString(36)
+          .substr(2, 5)
+      );
+    },
     bookTickets(screening) {
       let seatsLeft =
         screening.seatsAvailable -
@@ -152,6 +189,7 @@ export default {
         childTickets: this.numberOfChildTickets,
         seniorcitizenTickets: this.numberSeniorCitizenTickets,
         totalPriceForPurchase: this.totalPrice,
+        customerBookingReferenceNumber: this.generateCustomerBookingReferenceNumber()
       });
       this.$emit("displayConfirmation");
     },

@@ -6,7 +6,7 @@
       <p class="col s12"> {{booking.screeningDate}} </p>
     </div>
     <div class="row">
-      <h6 class="col s12">Bokningsnummer : {{booking.screeningID.substring(0,5)}}</h6>
+      <h6 class="col s12">Bokningsnummer : {{booking.customerBookingReferenceNumber}}</h6>
       <p class="col s12" v-if="booking.regularTickets != 0">Standardbiljetter : {{booking.regularTickets}}</p>
       <p class="col s12" v-if="booking.childTickets != 0">Barnbiljetter : {{booking.childTickets}}</p>
       <p class="col s12" v-if="booking.seniorcitizenTickets != 0">Pensionärbiljetter : {{booking.seniorcitizenTickets}}</p>

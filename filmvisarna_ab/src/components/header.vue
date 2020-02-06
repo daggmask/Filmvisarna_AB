@@ -1,73 +1,83 @@
 <template>
-  <header
-    class=" backgroundColour row  header light-blue darken-4 valign-wrapper"
-    :class="{ 'hidden-header': !showheader }"
-  >
-    <div class="col s2 m4 l5 xl5 valign-wrapper ">
-      <ul class="valign-wrapper ">
-        <li>
-          <i class="material-icons hide-on-large-only " @click="openSlideMenu"
-            >menu</i
-          >
-        </li>
-        <li>
-          <router-link class="col hide-on-med-and-down desktop-link" to="/"
-            >Hem</router-link
-          >
-        </li>
-        <li>
-          <router-link
-            class="col hide-on-med-and-down desktop-link"
-            to="/movies"
-            >Filmer</router-link
-          >
-        </li>
-        <li>
-          <router-link class="col hide-on-med-and-down desktop-link" to="/about"
-            >Om oss</router-link
-          >
-        </li>
-      </ul>
-    </div>
-
-    <div class="col s8 m4 l2 xl2 valign-wrapper">
-      <router-link to="/"
-        ><h1 class="col container center-align">Filmvisarna</h1></router-link
-      >
-    </div>
-
-    <div class="col s2 m4 l5 xl5 valign-wrapper ">
-      <router-link to="/login"
-        ><i class="material-icons account-icon ">account_circle</i></router-link
-      >
-    </div>
-
-    <div id="tablet-menu">
-      <div class="tablet-menu-links container">
-        <ul class="tablet-links-list container">
-          <li class="tablet-link">
-            <a href="#" @click.prevent="closeSlideMenu">
-              <router-link class="tablet-link" to="/">Hem</router-link>
-            </a>
+  <div class="main">
+    <header
+      class="backgroundColour row  header light-blue darken-4 valign-wrapper"
+      :class="{ 'hidden-header': !showheader }"
+    >
+      <div class="col s2 m4 l5 xl5 valign-wrapper ">
+        <ul class="valign-wrapper ">
+          <li>
+            <i class="material-icons hide-on-large-only " @click="openSlideMenu"
+              >menu</i
+            >
           </li>
-          <li class="tablet-link">
-            <a href="#" @click.prevent="closeSlideMenu">
-              <router-link class="tablet-link" to="/movies">Filmer</router-link>
-            </a>
+          <li>
+            <router-link class="col hide-on-med-and-down desktop-link" to="/"
+              >Hem</router-link
+            >
           </li>
-          <li class="tablet-link">
-            <a href="#" @click.prevent="closeSlideMenu">
-              <router-link class="tablet-link" to="/about">Om oss</router-link>
-            </a>
+          <li>
+            <router-link
+              class="col hide-on-med-and-down desktop-link"
+              to="/movies"
+              >Filmer</router-link
+            >
           </li>
-          <a href="#" class="material-icons" @click.prevent="closeSlideMenu">
-            <i class="material-icons btn-close">close</i></a
-          >
+          <li>
+            <router-link
+              class="col hide-on-med-and-down desktop-link"
+              to="/about"
+              >Om oss</router-link
+            >
+          </li>
         </ul>
       </div>
-      <div class="space hide-on-large-only"></div>
-    </div>
-  </header>
+
+      <div class="col s8 m4 l2 xl2 valign-wrapper">
+        <router-link to="/"
+          ><h1 class="col container center-align">Filmvisarna</h1></router-link
+        >
+      </div>
+
+      <div class="col s2 m4 l5 xl5 valign-wrapper ">
+        <router-link to="/login"
+          ><i class="col material-icons account-icon"
+            >account_circle</i
+          ></router-link
+        >
+      </div>
+
+      <div id="tablet-menu">
+        <div class="tablet-menu-links container">
+          <ul class="tablet-links-list container">
+            <li class="tablet-link">
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link" to="/">Hem</router-link>
+              </a>
+            </li>
+            <li class="tablet-link">
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link" to="/movies"
+                  >Filmer</router-link
+                >
+              </a>
+            </li>
+            <li class="tablet-link">
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link" to="/about"
+                  >Om oss</router-link
+                >
+              </a>
+            </li>
+            <a href="#" class="material-icons" @click.prevent="closeSlideMenu">
+              <i class="material-icons btn-close">close</i></a
+            >
+          </ul>
+        </div>
+        <div class="space hide-on-large-only"></div>
+      </div>
+    </header>
+  </div>
 </template>
 
 <script>
@@ -117,6 +127,9 @@ export default {
 
 .container {
   flex-direction: column;
+}
+.main{
+  height: 7.5vh;
 }
 h1 {
   font-family: "Monoton", cursive;

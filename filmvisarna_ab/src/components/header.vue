@@ -3,8 +3,8 @@
     class=" backgroundColour row  header light-blue darken-4 valign-wrapper"
     :class="{ 'hidden-header': !showheader }"
   >
-    <div class="col s2 m4 l5 xl5 valign-wrapper">
-      <ul class="valign-wrapper">
+    <div class="col s2 m4 l5 xl5 valign-wrapper ">
+      <ul class="valign-wrapper ">
         <li>
           <i class="material-icons hide-on-large-only " @click="openSlideMenu"
             >menu</i
@@ -65,6 +65,7 @@
           >
         </ul>
       </div>
+      <div class="space hide-on-large-only"></div>
     </div>
   </header>
 </template>
@@ -113,28 +114,15 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Monoton&display=swap");
-.main {
-  height: 1vh;
-}
+
 .container {
   flex-direction: column;
-}
-nav {
-  box-shadow: none;
-  height: auto !important;
-  line-height: 1rem !important;
-  display: flex;
-  align-items: center;
 }
 h1 {
   font-family: "Monoton", cursive;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 1.55rem;
-}
-a {
-  font-family: "Righteous";
-  font-size: 1.2rem;
 }
 .header {
   width: 100vw;
@@ -172,7 +160,7 @@ a {
 .tablet-link {
   font-family: "Monoton", cursive;
   color: white;
-  font-size: 3.5vh;
+  font-size: 1.35em;
   margin: 1em;
 }
 .desktop-link {
@@ -183,7 +171,7 @@ a {
 }
 .btn-close {
   margin-top: 10vh;
-  font-size: 3.5em;
+  font-size: 2.5em;
   color: white;
   border: 1px solid white;
   border-radius: 100%;
@@ -192,7 +180,6 @@ a {
   font-size: 2.5rem;
 }
 .header.hidden-header {
-  box-shadow: none;
   transform: translate3d(0, -100%, 0);
 }
 </style>

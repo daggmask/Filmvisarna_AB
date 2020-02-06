@@ -52,10 +52,11 @@ methods:{
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 .createUser{
-    background-color: black;
+    background-color: transparent;
 }
 h1{
     font-family: 'Monoton', cursive;
+    font-size: 3rem
 }
 button{
     background-color: #01579b;

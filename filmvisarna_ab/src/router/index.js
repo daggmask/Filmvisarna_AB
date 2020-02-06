@@ -1,40 +1,52 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import MovieList from '../views/movieList.vue'
-import Movie from '../views/movieShowing.vue'
-import aboutPage from '@/views/aboutPage.vue'
-import homePage from '@/views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import MovieList from "../views/movieList.vue";
+import Movie from "../views/movieShowing.vue";
+import aboutPage from "@/views/aboutPage.vue";
+import homePage from "@/views/Home.vue";
+import ticketBooking from "@/views/ticketBooking.vue";
+import createUser from "@/views/createUser.vue"
 
-Vue.use(VueRouter)
+
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'homePage',
+    path: "/",
+    name: "homePage",
     component: homePage
   },
   {
-    path: '/about',
-    name: 'aboutPage',
+    path: "/about",
+    name: "aboutPage",
     component: aboutPage
   },
   {
-  path: '/movies',
-  name: 'movielist',
-  component: MovieList
- },
-  
+    path: "/movies",
+    name: "movielist",
+    component: MovieList
+  },
   {
-    path:'/movies/:movie',
-    name:'movie',
+    path: "/tickets/:screening",
+    name: "ticketBooking",
+    component: ticketBooking
+  },
+  {
+    path: "/movies/:movie",
+    name: "movie",
     component: Movie
-  }
-]
+  },
+  {
+    path: "/create_user",
+    name: "createUser",
+    component: createUser
+  },
+];
 
 const router = new VueRouter({
-  routes, 
-  mode:'history',
+  routes,
+  mode: "history",
   base: process.env.BASE_URL
-})
+});
 
-export default router
+export default router;

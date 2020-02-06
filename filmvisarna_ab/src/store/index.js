@@ -30,7 +30,6 @@ export default new Vuex.Store({
     },
     setLoggedIn(state, value) {
       state.user.loggedIn = value;
-      console.log(state.user.loggedIn)
     },
     setUser(state, data) {
       state.user.data = data;
@@ -81,8 +80,6 @@ export default new Vuex.Store({
      try{
      let result = await auth.signInWithEmailAndPassword(form.email, form.password)
      if(result){
-      console.log(result.user.displayName)
-      console.log(result.user.email,result.user.password)
       this.dispatch('fetchUser', result.user)
     }
   }

@@ -9,17 +9,20 @@
       <h1 class="center-align">FILMVISARNA</h1>
     </router-link>
     </div>
-    <div class="col s2 l8 right-align">
-                <a
-            href="login"
-            class="btn-close material-icons user"
-            >account_circle</a
-          >
+    <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
+      <span>{{user.data.displayName}}</span>
+      </div>
+    <div class="loginIcon col s2 l8 right-align">
+     <a
+      href="login"
+      class="btn-close material-icons user"
+      >account_circle</a>
+      
+
     </div>
      <template v-if="user.loggedIn">
           <li>
-            <span>{{user.data.displayName}}</span> |
-            <span class="sign-out" @click.prevent="signOut">Logga ut</span>
+            <p class="sign-out" @click.prevent="signOut">Logga ut</p>
           </li>
         </template>
   </div>
@@ -46,7 +49,6 @@ methods: {
       let result = await firebase.auth().signOut()
       console.log(result,"TEST")
       let isLoggedIn=this.$store.state.user.loggedIn
-      console.log(isLoggedIn)
     }
   },
 }
@@ -85,4 +87,14 @@ h1{
 .user{
   margin-top: 1.5vh;
 }
+li{
+  list-style: none;
+}
+.userName, .loginIcon{
+   display: inline-block;
+}
+.sign-out:hover{
+cursor: pointer;
+}
+
 </style>

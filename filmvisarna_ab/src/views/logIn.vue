@@ -19,7 +19,7 @@
       </div>
       
       <router-link to="/create_user">
-      <h7>Skapa konto</h7>
+      <h6>Skapa konto</h6>
       </router-link>
     </form>
     </div>
@@ -40,11 +40,9 @@ export default{
      methods: {
     submit() {
       this.$store.dispatch('loginUser', this.form)
-      let isLoggedIn=this.$store.state.user.loggedIn
-      if(isLoggedIn){
-        console.log(isLoggedIn)
-        this.$router.replace({ name: "homePage" });
-      }
+      let isLoggedIn = this.$store.state.user.loggedIn
+      console.log(isLoggedIn)
+      
     },
   }
 };

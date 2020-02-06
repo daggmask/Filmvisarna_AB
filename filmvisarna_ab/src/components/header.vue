@@ -2,10 +2,10 @@
 <header class="light-blue darken-4">
   <div class="container">
     <div class="row">
-      <div class="col s2">
+      <div class="col s2 hide-on-large-only">
         <i class="material-icons">menu</i>
       </div>
-      <div class="col s8 center-align">
+      <div class="col s8 offset-l2 center-align">
         <router-link to='/'>
           <h1>FILMVISARNA</h1>
         </router-link>
@@ -74,9 +74,8 @@ nav{
 }
 h1{
   font-family: 'Monoton', cursive;
-  margin-top:0%;
-  margin-bottom: 0%;
-  cursor:pointer;
+  margin-top: 0;
+  margin-bottom: 0;
   font-size: 1.85rem;
 }
 a{

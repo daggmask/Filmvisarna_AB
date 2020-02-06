@@ -29,20 +29,26 @@
 <script>
 import Menu from '@/components/menu.vue';
 import auth from '@/firebase.js'
+import firebase from "firebase";
 export default{
   components:{
     Menu
   },
+
    computed: {
     user(){
       return this.$store.state.user
     }
   },
+
 methods: {
-    async signOut() {
-      let result = await auth.signOut()
+     async signOut() {
+      let result = await firebase.auth().signOut()
+      console.log(result,"TEST")
+      let isLoggedIn=this.$store.state.user.loggedIn
+      console.log(isLoggedIn)
     }
-  }
+  },
 }
 </script>
 

@@ -40,9 +40,10 @@ export default{
      methods: {
     submit() {
       this.$store.dispatch('loginUser', this.form)
-      console.log(this.$store.state.user.loggedIn)
-      if(this.$store.state.user.loggedIn){
-      this.$router.replace({ name: "homePage" });
+      let isLoggedIn=this.$store.state.user.loggedIn
+      if(isLoggedIn){
+        console.log(isLoggedIn)
+        this.$router.replace({ name: "homePage" });
       }
     },
   }

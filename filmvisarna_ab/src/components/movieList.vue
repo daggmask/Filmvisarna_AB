@@ -57,8 +57,11 @@ img{
 }
 .card-content{
   height: 100%;
-  padding: 4% !important;
+  padding: 0;
+  padding-left: 2%;
+  padding-bottom: 2%;
   background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2));
+  align-items: flex-end;
 }
 .movie-info{
   width: 100%;

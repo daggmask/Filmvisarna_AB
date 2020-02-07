@@ -73,7 +73,6 @@ export default{
 
 .login{
     background-color: transparent;
-    margin-top: 5%
 }
 h1{
     font-family: 'Monoton', cursive;

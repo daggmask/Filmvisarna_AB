@@ -4,7 +4,7 @@
       class="backgroundColour row  header light-blue darken-4 valign-wrapper"
       :class="{ 'hidden-header': !showheader }"
     >
-      <div class="col s2 m4 l3 xl3 valign-wrapper ">
+      <div class="col s2 m4 l4 xl4 valign-wrapper left ">
         <ul class="valign-wrapper ">
           <li>
             <i class="material-icons hide-on-large-only " @click="openSlideMenu"
@@ -33,7 +33,7 @@
         </ul>
       </div>
 
-      <div class="col s8 m4 l3 xl2 valign-wrapper center-align center-block">
+      <div class="col s8 m4 l4 xl4 valign-wrapper center">
         <router-link to="/"
           ><h1 class="center-align center-block">Filmvisarna</h1></router-link
         >
@@ -68,7 +68,7 @@
         </div>
         <div class="space hide-on-large-only"></div>
       </div>
-      <div class="row s2 m4 l4 xl2 valign-wrapper">
+      <div class="col s2 m4 l4 valign-wrapper right">
     <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
       <span class="hide-on-med-and-down">{{user.data.displayName}}</span>
       </div>
@@ -152,7 +152,7 @@ export default{
   flex-direction: column;
 }
 .main {
-  height: 15vh;
+  height: 7.5vh;
 }
 h1 {
   font-family: "Monoton", cursive;

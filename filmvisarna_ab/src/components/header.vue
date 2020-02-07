@@ -35,7 +35,7 @@
 
       <div class="col s8 m4 l3 xl2 valign-wrapper center-align center-block">
         <router-link to="/"
-          ><h1 class="center-align">Filmvisarna</h1></router-link
+          ><h1 class="center-align center-block">Filmvisarna</h1></router-link
         >
       </div>
 
@@ -68,14 +68,14 @@
         </div>
         <div class="space hide-on-large-only"></div>
       </div>
-      <div class="col s2 m4 l4 xl2 valign-wrapper">
+      <div class="row s2 m4 l4 xl2 valign-wrapper">
     <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
-      <span>{{user.data.displayName}}</span>
+      <span class="hide-on-med-and-down">{{user.data.displayName}}</span>
       </div>
     <div class="loginIcon">
       <router-link to="/login">
      <a
-      class="btn-close material-icons user"
+      class="material-icons user"
       >account_circle</a>
       </router-link>
     </div>
@@ -215,6 +215,11 @@ h1 {
 .loginIcon {
   font-size: 1rem;
   padding-top: 0 !important;
+}
+a{
+  font-size: 2rem;
+  margin-left: 0.3vw;
+  margin-right: 0.3vw;
 }
 .header.hidden-header {
   transform: translate3d(0, -100%, 0);

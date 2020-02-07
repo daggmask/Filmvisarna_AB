@@ -11,7 +11,7 @@ export default new Vuex.Store({
     movieFilter: '',         
     user: {
       loggedIn: false,
-      data: null
+      data: null,
     },
     publishBooking: false,
     booking: Object
@@ -110,40 +110,40 @@ export default new Vuex.Store({
       await db.collection("bookings").add(booking);
       commit("publishBooking", booking);
     },
-    async createUser(user) {
-      console.log(user);
-      await db.collection("accounts").add(user);
-    },
-    async registerUser({ commit }, form) {
-      let data = await auth.createUserWithEmailAndPassword(
-        form.email,
-        form.password
-      );
-      let result = await data.user.updateProfile({ displayName: form.name });
-      if (result) {
-        this.dispatch("fetchUser", data.user);
-      }
-    },
-    async loginUser({ commit }, form) {
-      let result = await auth.signInWithEmailAndPassword(
-        form.email,
-        form.password
-      );
-      if (result) {
-        this.dispatch("fetchUser", result.user);
-      }
-    },
-    fetchUser({ commit }, user) {
-      commit("setLoggedIn", user !== null);
-      if (user) {
-        commit("setUser", {
-          displayName: user.displayName,
-          email: user.email
-        });
-      } else {
-        commit("setUser", null);
-      }
+    async createUser(user){
+      console.log(user)
+     await db.collection('accounts').add(user);
+  },
+    async registerUser({ commit },form){
+     let data = await auth.createUserWithEmailAndPassword(form.email, form.password)
+     let result = await data.user.updateProfile({displayName: form.name})
+     if(result){
+     this.dispatch('fetchUser', data.user)
     }
+  },
+    async loginUser({ commit }, form){
+     try{
+     let result = await auth.signInWithEmailAndPassword(form.email, form.password)
+     if(result){
+      this.dispatch('fetchUser', result.user)
+    }
+  }
+    catch{
+      console.log("fel användarnamn")
+    }
+  },
+   fetchUser({ commit }, user) {
+    commit("setLoggedIn", user !== null);
+
+    if (user) {
+      commit("setUser", {
+        displayName: user.displayName,
+        email: user.email,
+      });
+    } else {   
+      commit("setUser", null);
+    }
+  }
   },
   modules: {}
 });

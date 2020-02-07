@@ -2,8 +2,8 @@
   <div>
     <a href="#" class="dropdown-trigger btn light-blue darken-4" :data-target="'drop-down-menu-' + type"> {{ buttonText }}</a>
     <ul :id="'drop-down-menu-' + type" class="dropdown-content">
-      <li class="light-blue darken-2" @click="filterMovies({filter: ''})"><span class="center-align all">Alla</span></li>
-      <li class="light-blue darken-2" @click="filterMovies(content)" v-for="(content, i) of dropdownContents" :key="content+i"><span class="center-align contents">{{ content.menuOutput }}</span></li>
+      <li class="light-blue darken-2" @click.stop="filterMovies({filter: ''})"><span class="center-align all">Alla</span></li>
+      <li class="light-blue darken-2" @click.stop="filterMovies(content)" v-for="(content, i) of dropdownContents" :key="content+i"><span class="center-align contents">{{ content.menuOutput }}</span></li>
     </ul>
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
       type: String,
     },
     mounted(){
-      this.$M.AutoInit();
+      let elements = document.querySelectorAll('.dropdown-trigger');
+      this.$M.Dropdown.init(elements);
 
     },
     computed: {

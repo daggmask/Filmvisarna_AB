@@ -3,7 +3,6 @@
     <div class="container col">
         <div class="row">
             <filtering class="col s6 m4 l2 only-padding-right" :type="'genre'" @updateFilter="setFilter"></filtering> 
-            <filtering class="col s6 m4 l2 only-padding-right" :type="'datum'" @updateFilter="setFilter"></filtering>
         </div>
         <MovieList></MovieList>
     </div>

@@ -12,8 +12,7 @@
           </router-link>
       </div>
       <div class="row">
-
-      <FilteringButton class="col s6 m4 l2 only-padding-right" :type="'datum'"></FilteringButton>
+        <FilteringButton class="col s12 m4 l2 no-padding" :type="'datum'"></FilteringButton>
       </div>
 
       
@@ -67,5 +66,8 @@ perspective: none !important;
 }
 a{
     height: 80% !important;
+}
+.no-padding{
+  padding: 0;
 }
 </style>

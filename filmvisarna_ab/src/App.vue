@@ -3,7 +3,7 @@
 <template>
   <div id="app">
     <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
-    <mainHeader></mainHeader>
+    <mainHeader/>
     <main>
     <router-view></router-view>
     </main>

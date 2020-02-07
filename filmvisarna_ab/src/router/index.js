@@ -5,6 +5,8 @@ import Movie from "../views/movieShowing.vue";
 import aboutPage from "@/views/aboutPage.vue";
 import homePage from "@/views/Home.vue";
 import ticketBooking from "@/views/ticketBooking.vue";
+import logIn from "@/views/logIn.vue";
+import createUser from "@/views/createUser.vue"
 
 
 Vue.use(VueRouter);
@@ -14,6 +16,11 @@ const routes = [
     path: "/",
     name: "homePage",
     component: homePage
+  },
+  {
+    path: "/login",
+    name: "logIn",
+    component: logIn
   },
   {
     path: "/about",
@@ -34,7 +41,12 @@ const routes = [
     path: "/movies/:movie",
     name: "movie",
     component: Movie
-  }
+  },
+  {
+    path: "/create_user",
+    name: "createUser",
+    component: createUser
+  },
 ];
 
 const router = new VueRouter({

@@ -193,18 +193,12 @@ export default {
       });
       this.$emit("displayConfirmation");
     },
-    getScreeningTime(timestamp) {
-      let screeningDate = timestamp.toDate();
-      let screeningTime = `${this.getHoursAsString(
-        screeningDate.getHours()
-      )}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
-      return screeningTime;
+    getScreeningTime(screeningDate){
+      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+      return screeningTime;      
     },
-    getDateAsString(timestamp) {
-      let date = timestamp.toDate();
-      return `${date.getDate()} ${this.getMonthName(
-        date.getMonth()
-      )} ${date.getFullYear()}`;
+    getDateAsString(date){
+      return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
     },
     getMonthName(monthNumber) {
       switch (monthNumber) {

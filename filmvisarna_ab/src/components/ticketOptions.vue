@@ -101,7 +101,7 @@ export default {
       numberOfRegularTickets: 2,
       numberSeniorCitizenTickets: 0,
       numberOfChildTickets: 0,
-      totalPrice: 170
+      totalPriceForPurchase: 170
     };
   },
 
@@ -180,16 +180,16 @@ export default {
           this.numberOfChildTickets +
           this.numberSeniorCitizenTickets);
       this.$store.dispatch("publishBooking", {
-        screeningID: screening.id,
-        screeningTitle: screening.film,
-        screeningDate: this.getDateAsString(screening.time),
-        screeningTime: this.getScreeningTime(screening.time),
-        seatsLeft: seatsLeft,
-        regularTickets: this.numberOfRegularTickets,
         childTickets: this.numberOfChildTickets,
+        customerBookingReferenceNumber: this.generateCustomerBookingReferenceNumber(),
+        regularTickets: this.numberOfRegularTickets,
+        screeningDate: this.getDateAsString(screening.time),
+        screeningID: screening.id,
+        screeningTime: this.getScreeningTime(screening.time),
+        screeningTitle: screening.film,
         seniorcitizenTickets: this.numberSeniorCitizenTickets,
-        totalPriceForPurchase: this.totalPrice,
-        customerBookingReferenceNumber: this.generateCustomerBookingReferenceNumber()
+        totalPriceForPurchase: this.totalPriceForPurchase,
+        seatsLeft: seatsLeft,
       });
       this.$emit("displayConfirmation");
     },

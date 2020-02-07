@@ -11,16 +11,24 @@
             <img :src="movie.images[0]" :alt="movie.title + ' poster'">
           </router-link>
       </div>
+      <div class="row">
+
+      <FilteringButton class="col s6 m4 l2 only-padding-right" :type="'datum'"></FilteringButton>
+      </div>
+
+      
     <MovieList></MovieList>
   </div>
 </template>
 
 <script>
 import MovieList from '@/components/movieList.vue'
+import FilteringButton from '@/components/FilteringButton.vue'
 
 export default {
     components:{
         MovieList,
+        FilteringButton,
     },
 
   computed: {

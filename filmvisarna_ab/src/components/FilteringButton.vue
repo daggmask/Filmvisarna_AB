@@ -96,7 +96,7 @@ export default {
               break;
           }
         }
-        this.$emit('updateFilter', content.filter)
+        this.$store.commit('setMovieFilter', content.filter)
     },
     dateAsString(date){
       let months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];

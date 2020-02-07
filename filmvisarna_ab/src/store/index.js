@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     publishMovies: false,
     movies: [],
-    screenings: [],          
+    screenings: [], 
+    movieFilter: '',         
   },
   mutations: {
     movieShowing(state, value) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     publishMovies(state){
       state.publishMovies=true;
+    },
+    setMovieFilter(state, data){
+      state.movieFilter = data;
     }
   },
   actions: {

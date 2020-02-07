@@ -6,9 +6,9 @@
     class="col s12 m6 l4" 
     @click="toMovieShowing(movie)">
       <div class="card horizontal black">
-        <div class="card-image">
-          <img :src="movie.images[0]" :alt="movie.title + ' poster'">
-        </div>
+        
+        <img :src="movie.images[0]" :alt="movie.title + ' poster'">
+        
         <div class="card-stacked" :style="{backgroundImage: 'url(' +  movie.images[1] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}">
           <div class="card-content valign-wrapper">
             <div>
@@ -26,15 +26,17 @@
 </template>
 <script>
 export default {
-  props:[
-    'filter',
-  ],
-    
+  
+  
   computed: {
 
+    filter(){
+      return this.$store.state.movieFilter
+    },
     movies() {
      let filter = this.filter;
      let isDate = filter instanceof Date;
+     console.log(filter, "Filter")
      let movies;
      if(!isDate){
       movies = this.setMoviesByGenre(filter);
@@ -93,8 +95,8 @@ export default {
     }
 
   },
-  created(){
-    //this.$store.dispatch("getMovies")
+  destroyed(){
+    this.$store.commit('setMovieFilter', '')
   },
 }
 </script>

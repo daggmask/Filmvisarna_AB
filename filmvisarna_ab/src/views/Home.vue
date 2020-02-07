@@ -68,9 +68,10 @@ width: 100vw !important;
 perspective: none !important;
 -webkit-perspective: none !important;
 height: 55vh !important;
+margin-bottom: 2rem;
 }
 a{
-    height: 80% !important;
+  height: 80% !important;
 }
 .no-padding{
   padding: 0;

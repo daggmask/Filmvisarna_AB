@@ -1,14 +1,11 @@
 <template>
-<div class="container">
   <ul class="row">
     <li v-for="(movie, i) in movies"
     v-bind:key="movie.title + i"
-    class="col s12 m6 l4" 
+    class="col s12 m6 xl4" 
     @click="toMovieShowing(movie)">
       <div class="card horizontal black">
-        <!-- <div class="card-image"> -->
-          <img :src="movie.images[0]" :alt="movie.title + ' poster'">
-        <!-- </div> -->
+        <img :src="movie.images[0]" :alt="movie.title + ' poster'">
         <div class="card-stacked" :style="{backgroundImage: 'url(' +  movie.images[1] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}">
           <div class="card-content valign-wrapper">
             <div>
@@ -20,25 +17,75 @@
       </div>
     </li>
   </ul>
-</div>
- 
-  
 </template>
 <script>
 export default {
+  
+  
   computed: {
+
+    filter(){
+      return this.$store.state.movieFilter
+    },
     movies() {
-        return this.$store.state.movies;
+     let filter = this.filter;
+     let isDate = filter instanceof Date;
+     console.log(filter, "Filter")
+     let movies;
+     if(!isDate){
+      movies = this.setMoviesByGenre(filter);
+      return movies;
+     }
+     else{
+        movies = this.setMoviesByDate(filter)
+        return movies;
     }
   },
+},
+
   methods:{
     toMovieShowing(movie){
       this.$store.commit('movieShowing', movie);
       this.$router.push({path:'/movies/'+ movie.movieId})
+    },
+
+    setMoviesByGenre(filter){
+      let movies = this.$store.state.movies
+      if(filter === '') {
+        return movies;
+      } else {
+        let results = movies.filter(function (movie) {
+          return movie.genre.includes(filter)
+        });
+        return results;  
+      }
+    },
+    setMoviesByDate(filter){
+      let moviesFromStore = this.$store.state.movies
+      let screenings = this.$store.state.screenings;
+      let movies = [];
+
+      screenings.forEach(screening => {
+        if(filter === screening.time){
+          
+          for(let movie of moviesFromStore){
+            if (movie.id === screening.movieId){
+              movies.push(movie);
+            }
+          }
+
+        }
+      })
+
+      movies = Array.from(new Set(movies))
+      console.log(movies)
+      return movies;
+
     }
+
   },
-  created(){
-    this.$store.dispatch("getMovies")
+  destroyed(){
+    this.$store.commit('setMovieFilter', '')
   },
 }
 </script>
@@ -52,21 +99,36 @@ li{
 .card{
   height: 15vh;
   margin: 0 1%;
+  border-radius: 4px;
+}
+.card:hover{
+  box-shadow: 0 0 5px gray;
+  background-image: white;
+  z-index: 1;
 }
 img{
   height: 100%;
   width: auto;
+  border-radius: 4px 0 0 4px;
+}
+.card-stacked{
+  border-radius: 0 4px 4px;
 }
 .card-content{
   height: 100%;
-  padding: 4% !important;
+  padding: 0;
+  padding-left: 2%;
+  padding-bottom: 2%;
   background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2));
+  align-items: flex-end;
+  border-radius: 0 4px 4px;
 }
 .movie-info{
   width: 100%;
   margin: 1%;
+  text-align: left;
 }
-@media screen and (min-width: 993px) {
+@media screen and (min-width: 1200px) {
   .card{
     height: 20vh;
   }

@@ -1,4 +1,5 @@
 <template>
+
   <div class="col">
       <div class="carousel center-block center-align">
           <router-link
@@ -11,16 +12,25 @@
             <img :src="movie.images[0]" :alt="movie.title + ' poster'">
           </router-link>
       </div>
-    <MovieList class="center-align"></MovieList>
+      <div class="container col">
+        <div class="row">
+          <FilteringButton class="col s12 m4 l2 no-padding" :type="'datum'"></FilteringButton>
+        </div>
+        <MovieList></MovieList>
+      </div>
+
+      
   </div>
 </template>
 
 <script>
 import MovieList from '@/components/movieList.vue'
+import FilteringButton from '@/components/FilteringButton.vue'
 
 export default {
     components:{
         MovieList,
+        FilteringButton,
     },
 
   computed: {
@@ -58,8 +68,12 @@ width: 100vw !important;
 perspective: none !important;
 -webkit-perspective: none !important;
 height: 55vh !important;
+margin-bottom: 2rem;
 }
 a{
-    height: 80% !important;
+  height: 80% !important;
+}
+.no-padding{
+  padding: 0;
 }
 </style>

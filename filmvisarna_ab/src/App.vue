@@ -26,6 +26,10 @@ export default {
         this.$store.dispatch("publishMovies")
       }
     },
+    created(){
+      this.$store.dispatch("getMovies");
+      this.$store.dispatch("getScreenings");
+    }
 }
 </script>
 
@@ -53,6 +57,7 @@ export default {
 }
 main{
   flex: 1;
+  margin: 2% 0;
 }
 
 </style>

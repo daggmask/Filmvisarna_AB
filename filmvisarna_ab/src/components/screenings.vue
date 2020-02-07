@@ -88,13 +88,11 @@ export default {
     setDate(date){
       this.date = date;
     },
-    getScreeningTime(timestamp){
-      let screeningDate = timestamp.toDate();
+    getScreeningTime(screeningDate){
       let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
       return screeningTime;      
     },
-    getDateAsString(timestamp){
-      let date = timestamp.toDate();
+    getDateAsString(date){
       return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
     },
     getMonthName(monthNumber){

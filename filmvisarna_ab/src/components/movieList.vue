@@ -3,7 +3,7 @@
   <ul class="row">
     <li v-for="(movie, i) in movies"
     v-bind:key="movie.title + i"
-    class="col s12 m6 l4" 
+    class="col s12 m6 xl4" 
     @click="toMovieShowing(movie)">
       <div class="card horizontal black">
         <img :src="movie.images[0]" :alt="movie.title + ' poster'">
@@ -47,12 +47,6 @@ li{
   padding: 0 !important;
   margin: 1% 0;
 }
-h5{
-  font-size: 1.4rem;
-}
-h6{
-  font-size: 1rem;
-}
 .card{
   height: 15vh;
   margin: 0 1%;
@@ -83,7 +77,7 @@ img{
   margin: 1%;
   text-align: left;
 }
-@media screen and (min-width: 993px) {
+@media screen and (min-width: 1200px) {
   .card{
     height: 20vh;
   }

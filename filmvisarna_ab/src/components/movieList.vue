@@ -6,7 +6,7 @@
     class="col s12 m6 l4" 
     @click="toMovieShowing(movie)">
       <div class="card horizontal black">
-          <img :src="movie.images[0]" :alt="movie.title + ' poster'">
+        <img :src="movie.images[0]" :alt="movie.title + ' poster'">
         <div class="card-stacked" :style="{backgroundImage: 'url(' +  movie.images[1] + ')', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}">
           <div class="card-content valign-wrapper">
             <div>
@@ -47,13 +47,27 @@ li{
   padding: 0 !important;
   margin: 1% 0;
 }
+h5{
+  font-size: 1.4rem;
+}
+h6{
+  font-size: 1rem;
+}
 .card{
   height: 15vh;
   margin: 0 1%;
+  border-radius: 4px;
+}
+.card:hover{
+  box-shadow: 0 0 5px gray;
 }
 img{
   height: 100%;
   width: auto;
+  border-radius: 4px 0 0 4px;
+}
+.card-stacked{
+  border-radius: 0 4px 4px;
 }
 .card-content{
   height: 100%;
@@ -62,6 +76,7 @@ img{
   padding-bottom: 2%;
   background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2));
   align-items: flex-end;
+  border-radius: 0 4px 4px;
 }
 .movie-info{
   width: 100%;

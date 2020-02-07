@@ -2,13 +2,11 @@
 <div>
     <div class="container col">
         <div class="row">
-            <filtering class="col s6 m4 l2 only-padding-right" :type="'genre'" @updateFilter="setFilter"></filtering> 
+            <filtering class="col s6 m4 l2 no-padding" :type="'genre'"></filtering> 
         </div>
         <MovieList></MovieList>
     </div>
-</div>
-    
-    
+</div> 
 </template>
 
 <script>
@@ -20,23 +18,11 @@ export default {
         MovieList,
         filtering
     },
-    methods:{
-        setFilter(filter){
-            this.filter = filter ;
-            console.log(filter,'inne i setfilter')
-        }
-    },
-    data(){
-        return{
-            filter: ''
-        }
-    }
 }
 </script>
 
 <style scoped>
-.only-padding-right{
-    padding-left: 0;
-    padding-right: 1.5rem;
+.no-padding{
+    padding: 0;
 }
 </style>

@@ -1,5 +1,4 @@
 <template>
-
   <ul class="row">
     <li v-for="(movie, i) in movies"
     v-bind:key="movie.title + i"
@@ -18,9 +17,6 @@
       </div>
     </li>
   </ul>
-
- 
-  
 </template>
 <script>
 export default {
@@ -54,7 +50,6 @@ export default {
     },
 
     setMoviesByGenre(filter){
-
       let movies = this.$store.state.movies
       if(filter === '') {
         return movies;
@@ -64,7 +59,6 @@ export default {
         });
         return results;  
       }
-
     },
     setMoviesByDate(filter){
       let moviesFromStore = this.$store.state.movies
@@ -72,9 +66,6 @@ export default {
       let movies = [];
 
       screenings.forEach(screening => {
-        //let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        //let screeningDate = screening.time.getDate() + ' ' + months[screening.time.getMonth()] + ' ' + screening.time.getFullYear();
-          
         if(filter === screening.time){
           
           for(let movie of moviesFromStore){
@@ -112,6 +103,8 @@ li{
 }
 .card:hover{
   box-shadow: 0 0 5px gray;
+  background-image: white;
+  z-index: 1;
 }
 img{
   height: 100%;

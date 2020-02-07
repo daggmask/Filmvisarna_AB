@@ -16,13 +16,11 @@ export default {
     mounted(){
       let elements = document.querySelectorAll('.dropdown-trigger');
       this.$M.Dropdown.init(elements);
-
     },
     computed: {
       dropdownContents(){
         let contents = [];
         switch(this.type) {
-          
           case "genre": {
             let movies = this.$store.state.movies;
             let genres = [];
@@ -79,7 +77,6 @@ export default {
             break;
           }
         }
-        console.log(contents)
         return contents;
       }
     },

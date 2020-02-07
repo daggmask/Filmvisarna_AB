@@ -47,8 +47,8 @@ export default{
 methods: {
      async signOut() {
       let result = await firebase.auth().signOut()
-      console.log(result,"TEST")
-      let isLoggedIn=this.$store.state.user.loggedIn
+      let isLoggedIn=this.$store.state.user.loggedIn;
+      console.log(isLoggedIn)
     }
   },
 }
@@ -90,8 +90,11 @@ h1{
 li{
   list-style: none;
 }
-.userName, .loginIcon{
+.userName{
    display: inline-block;
+}
+.loginIcon{
+  width: 11% !important;
 }
 .sign-out:hover{
 cursor: pointer;

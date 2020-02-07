@@ -3,7 +3,6 @@
     <div class="center-block center-align">
     <h1 class="black"> LOGGA <br> IN</h1>
     <form action="#" @submit.prevent="submit">
-    
       <div class="input-field">
         <input id="email" type="email" name="email" value required autofocus v-model="form.email" />
         <label for="email">Email</label>
@@ -18,6 +17,12 @@
         <button type="submit" class="btn waves-effect waves-light" >Logga in</button>
       </div>
       
+      <div>
+        <p>
+          {{this.loginMessage}}
+        </p>
+      </div>
+
       <router-link to="/create_user">
       <h6>Skapa konto</h6>
       </router-link>
@@ -27,10 +32,12 @@
 </template>
 
 <script>
+import {auth} from "@/firebase.js"
 export default{
     
     data(){
         return{
+          loginMessage: "",
         form: {
         email: "",
         password: ""
@@ -38,10 +45,21 @@ export default{
      }
     },
      methods: {
-    submit() {
-      this.$store.dispatch('loginUser', this.form)
+    async submit() {
+      
+      //this.$store.dispatch('loginUser', this.form)
+
+        let result = await auth.signInWithEmailAndPassword(this.form.email, this.form.password).catch(console.error)
+        if(result){
+          this.$store.dispatch('fetchUser', result.user)
+        }
       let isLoggedIn = this.$store.state.user.loggedIn
       console.log(isLoggedIn)
+      if(isLoggedIn){
+        this.$router.replace({ name: "homePage" });
+      }else{
+        this.loginMessage = "Mata in rätt användarnamn eller lösenord"
+      }
       
     },
   }

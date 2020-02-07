@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     publishMovies: false,
     movies: [],
-    screenings: [],
+    screenings: [], 
+    movieFilter: '',         
     user: {
       loggedIn: false,
       data: null,
@@ -25,10 +26,12 @@ export default new Vuex.Store({
     setScreenings(state, data) {
       state.screenings = data;
     },
-    publishMovies(state) {
-      state.publishMovies = true;
+    publishMovies(state){
+      state.publishMovies=true;
     },
-
+    setMovieFilter(state, data){
+      state.movieFilter = data;
+    },
     setLoggedIn(state, value) {
       state.user.loggedIn = value;
     },
@@ -41,20 +44,28 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getMovies({ commit }) {
-      let querySnapshot = await db.collection("movies").get();
-      let data = [];
-      querySnapshot.forEach(document => {
-        data.push(document.data());
-      });
-      commit("setMovies", data);
-    },
-    async getScreenings({ commit }) {
+    async getMovies({commit}){
+      let querySnapshot = await db.collection("movies").get()
+      let movies = [];
+      querySnapshot.forEach((movie) => {
+        let data = movie.data();
+        data.id = movie.id;
+        movies.push(data);
+      })
+      commit('setMovies', movies)
+     },
+     async getScreenings({commit}){
       let querySnapshot = await db.collection("screenings").get();
       let screenings = [];
       querySnapshot.forEach(screening => {
         let data = screening.data();
         data.id = screening.id;
+        data.time = data.time.toDate();
+        this.state.movies.forEach( movie =>{
+          if(movie.id == data.movieId){
+            screening.film = movie;
+          }
+        })
         screenings.push(data);
       });
       commit("setScreenings", screenings);

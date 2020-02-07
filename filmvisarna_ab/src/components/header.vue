@@ -152,7 +152,7 @@ export default{
   flex-direction: column;
 }
 .main {
-  height: 7.5vh;
+  height: 15vh;
 }
 h1 {
   font-family: "Monoton", cursive;

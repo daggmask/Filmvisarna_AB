@@ -115,7 +115,6 @@ export default {
     $route: {
       deep: true,
       handler: function() {
-        console.log('Menu should be shown')
         this.showheader = true;
         return this.onScroll();
       }

@@ -4,7 +4,7 @@
       class="backgroundColour row  header light-blue darken-4 valign-wrapper"
       :class="{ 'hidden-header': !showheader }"
     >
-      <div class="col s2 m4 l5 xl5 valign-wrapper ">
+      <div class="col s2 m4 l3 xl3 valign-wrapper ">
         <ul class="valign-wrapper ">
           <li>
             <i class="material-icons hide-on-large-only " @click="openSlideMenu"
@@ -33,17 +33,9 @@
         </ul>
       </div>
 
-      <div class="col s8 m4 l2 xl2 valign-wrapper">
+      <div class="col s8 m4 l3 xl2 valign-wrapper center-align center-block">
         <router-link to="/"
-          ><h1 class="col container center-align">Filmvisarna</h1></router-link
-        >
-      </div>
-
-      <div class="col s2 m4 l5 xl5 valign-wrapper ">
-        <router-link to="/login"
-          ><i class="col material-icons account-icon"
-            >account_circle</i
-          ></router-link
+          ><h1 class="center-align">Filmvisarna</h1></router-link
         >
       </div>
 
@@ -76,26 +68,28 @@
         </div>
         <div class="space hide-on-large-only"></div>
       </div>
+      <div class="col s2 m4 l4 xl2 valign-wrapper">
     <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
       <span>{{user.data.displayName}}</span>
       </div>
-    <div class="loginIcon col s2 l8 right-align">
+    <div class="loginIcon">
+      <router-link to="/login">
      <a
-      href="login"
       class="btn-close material-icons user"
       >account_circle</a>
+      </router-link>
     </div>
-     <template v-if="user.loggedIn">
+     <div v-if="user.loggedIn">
           <li>
             <p class="sign-out" @click.prevent="signOut">Logga ut</p>
           </li>
-        </template>
+        </div>
+        </div>
     </header>
   </div>
 </template>
 
 <script>
-import Menu from '@/components/menu.vue';
 import auth from '@/firebase.js'
 import firebase from "firebase";
 export default{
@@ -131,16 +125,14 @@ export default{
       }
       this.showheader = window.pageYOffset < this.lastScrollPosition;
       this.lastScrollPosition = window.pageYOffset;
-    }
-  },
-     async signOut() {
+    },
+      async signOut() {
       let result = await firebase.auth().signOut()
       let isLoggedIn=this.$store.state.user.loggedIn;
       console.log(isLoggedIn)
     }
   },
-}
-  watch: {
+    watch: {
     $route: {
       deep: true,
       handler: function() {
@@ -166,7 +158,7 @@ h1 {
   font-family: "Monoton", cursive;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 1.55rem;
+  font-size: 2rem;
 }
 .header {
   width: 100vw;
@@ -220,20 +212,15 @@ h1 {
   border: 1px solid white;
   border-radius: 100%;
 }
-.account-icon {
-  font-size: 2.5rem;
+.loginIcon {
+  font-size: 1rem;
+  padding-top: 0 !important;
 }
 .header.hidden-header {
   transform: translate3d(0, -100%, 0);
 }
 li{
   list-style: none;
-}
-.userName{
-   display: inline-block;
-}
-.loginIcon{
-  width: 11% !important;
 }
 .sign-out:hover{
 cursor: pointer;

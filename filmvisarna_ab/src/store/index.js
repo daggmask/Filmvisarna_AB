@@ -93,7 +93,7 @@ export default new Vuex.Store({
         screeningID: payload.screeningID,
         screeningTime: payload.screeningTime,
         screeningTitle: payload.screeningTitle,
-        seniorCitizenTickets: payload.seniorcitizenTickets,
+        seniorCitizenTickets: payload.seniorCitizenTickets,
         totalPriceForPurchase: payload.totalPriceForPurchase,
       };
       await db.collection("bookings").add(booking);

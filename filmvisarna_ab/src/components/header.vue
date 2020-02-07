@@ -110,6 +110,16 @@ export default {
       this.showheader = window.pageYOffset < this.lastScrollPosition;
       this.lastScrollPosition = window.pageYOffset;
     }
+  },
+  watch: {
+    $route: {
+      deep: true,
+      handler: function() {
+        console.log('Menu should be shown')
+        this.showheader = true;
+        return this.onScroll();
+      }
+    }
   }
 };
 </script>

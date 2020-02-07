@@ -81,6 +81,7 @@ img{
 .movie-info{
   width: 100%;
   margin: 1%;
+  text-align: left;
 }
 @media screen and (min-width: 993px) {
   .card{

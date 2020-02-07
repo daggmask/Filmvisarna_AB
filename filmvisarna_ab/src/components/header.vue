@@ -92,13 +92,6 @@ export default {
   mounted() {
     this.lastScrollPosition = window.pageYOffset;
     window.addEventListener("scroll", this.onScroll);
-    const viewportMeta = document.createElement("meta");
-    viewportMeta.name = "viewport";
-    viewportMeta.content = "width=device-width, initial-scale=1";
-    document.head.appendChild(viewportMeta);
-  },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.onScroll);
   },
   methods: {
     openSlideMenu() {
@@ -117,6 +110,16 @@ export default {
       this.showheader = window.pageYOffset < this.lastScrollPosition;
       this.lastScrollPosition = window.pageYOffset;
     }
+  },
+  watch: {
+    $route: {
+      deep: true,
+      handler: function() {
+        console.log('Menu should be shown')
+        this.showheader = true;
+        return this.onScroll();
+      }
+    }
   }
 };
 </script>
@@ -128,7 +131,7 @@ export default {
 .container {
   flex-direction: column;
 }
-.main{
+.main {
   height: 7.5vh;
 }
 h1 {

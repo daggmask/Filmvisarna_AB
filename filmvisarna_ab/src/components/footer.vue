@@ -22,8 +22,6 @@
               </p>
             </a>
 <br>
-<br>
-<br>
             <a class="col s4" href="https://www.facebook.com/">
               <p class="left-align">
                 <img

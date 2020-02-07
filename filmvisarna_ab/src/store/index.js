@@ -86,14 +86,15 @@ export default new Vuex.Store({
         });
       //Booking added to Bookings
       let booking = {
-        childtickets: payload.numberOfChildTickets,
-        regularTickets: payload.numberOfRegularTickets,
+        childTickets: payload.childTickets,
+        customerBookingReferenceNumber: payload.customerBookingReferenceNumber,
+        regularTickets: payload.regularTickets,
         screeningDate: payload.screeningDate,
+        screeningID: payload.screeningID,
         screeningTime: payload.screeningTime,
         screeningTitle: payload.screeningTitle,
-        seniorCitizenTickets: payload.numberOfseniorcitizenTickets,
-        totalPriceForPurchase: payload.totalPrice,
-        customerBookingReferenceNumber: payload.customerBookingReferenceNumber
+        seniorCitizenTickets: payload.seniorcitizenTickets,
+        totalPriceForPurchase: payload.totalPriceForPurchase,
       };
       await db.collection("bookings").add(booking);
       commit("publishBooking", booking);

@@ -93,9 +93,6 @@ export default {
     this.lastScrollPosition = window.pageYOffset;
     window.addEventListener("scroll", this.onScroll);
   },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.onScroll);
-  },
   methods: {
     openSlideMenu() {
       document.getElementById("tablet-menu").style.height = "107.5vh";
@@ -124,7 +121,7 @@ export default {
 .container {
   flex-direction: column;
 }
-.main{
+.main {
   height: 7.5vh;
 }
 h1 {

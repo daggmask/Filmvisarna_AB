@@ -133,37 +133,37 @@ export default {
     addRegularTicket() {
       if (this.seatsAvilable()) {
         this.numberOfRegularTickets++;
-        this.totalPrice += 85;
+        this.totalPriceForPurchase += 85;
       }
     },
     deductRegularTicket() {
       if (this.numberOfRegularTickets != 0) {
         this.numberOfRegularTickets--;
-        this.totalPrice -= 85;
+        this.totalPriceForPurchase -= 85;
       }
     },
     addSeniorCitizenTicket() {
       if (this.seatsAvilable()) {
         this.numberSeniorCitizenTickets++;
-        this.totalPrice += 75;
+        this.totalPriceForPurchase += 75;
       }
     },
     deductSeniorCitizenTicket() {
       if (this.numberSeniorCitizenTickets != 0) {
         this.numberSeniorCitizenTickets--;
-        this.totalPrice -= 75;
+        this.totalPriceForPurchase -= 75;
       }
     },
     addChildTicket() {
       if (this.seatsAvilable()) {
         this.numberOfChildTickets++;
-        this.totalPrice += 65;
+        this.totalPriceForPurchase += 65;
       }
     },
     deductChildTicket() {
       if (this.numberOfChildTickets != 0) {
         this.numberOfChildTickets--;
-        this.totalPrice -= 65;
+        this.totalPriceForPurchase -= 65;
       }
     },
     generateCustomerBookingReferenceNumber() {
@@ -187,7 +187,7 @@ export default {
         screeningID: screening.id,
         screeningTime: this.getScreeningTime(screening.time),
         screeningTitle: screening.film,
-        seniorcitizenTickets: this.numberSeniorCitizenTickets,
+        seniorCitizenTickets: this.numberSeniorCitizenTickets,
         totalPriceForPurchase: this.totalPriceForPurchase,
         seatsLeft: seatsLeft,
       });

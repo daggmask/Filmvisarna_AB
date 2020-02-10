@@ -30,7 +30,7 @@
             <div class="">{{movie.director}}</div>
             
             <div class="subheader">Produktions länder:</div>
-            <div><span v-for="country of movie.productionCountries" :key="country" >{{country}}, </span></div>
+            <div><span v-for="country of movie.productionCountries" :key="country" >{{country}} </span></div>
             
             <div class="subheader">Undertext:</div>
             <div>{{movie.subtitles}}</div>

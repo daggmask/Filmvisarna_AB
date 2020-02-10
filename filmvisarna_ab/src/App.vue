@@ -1,35 +1,26 @@
-
-
 <template>
   <div id="app">
-    <!--<a @click="publishMovies" class="btn-floating pulse"><i class="material-icons">publish</i></a>-->
-    <mainHeader/>
-    <main>
-    <router-view></router-view>
-    </main>
-    <Footer></Footer>
-    <!-- Menu -->
+    <mainHeader />
+      <main>
+        <router-view />
+      </main>
+    <Footer />
   </div>
 </template>
 
 <script>
 import mainHeader from '@/components/header.vue'
 import Footer from '@/components/footer.vue'
+
 export default {
   components:{
     Footer,
     mainHeader
   },
-  
-    methods:{
-      publishMovies(){
-        this.$store.dispatch("publishMovies")
-      }
-    },
-    created(){
-      this.$store.dispatch("getMovies");
-      this.$store.dispatch("getScreenings");
-    }
+  created(){
+    this.$store.dispatch("getMovies");
+    this.$store.dispatch("getScreenings");
+  }
 }
 </script>
 

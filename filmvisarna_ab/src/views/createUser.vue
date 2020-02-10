@@ -19,7 +19,7 @@
       </div>
 
       <div class="input-field">
-        <button type="submit" class="btn waves-effect waves-light" >Register</button>
+        <button type="submit" class="btn waves-effect waves-light" >Skapa konto</button>
       </div>
     </form>
     </div>
@@ -28,7 +28,6 @@
 
 <script>
 export default{
-    
     data(){
         return{
         form: {
@@ -52,10 +51,11 @@ methods:{
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 .createUser{
-    background-color: black;
+    background-color: transparent;
 }
 h1{
     font-family: 'Monoton', cursive;
+    font-size: 3rem
 }
 button{
     background-color: #01579b;

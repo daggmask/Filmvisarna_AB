@@ -200,8 +200,9 @@ h1 {
 .desktop-link {
   font-family: "Monoton", cursive;
   color: white;
-  font-size: 1.1em;
+  font-size: 0.95em;
   margin: 1em;
+  width: 100%;
 }
 .btn-close {
   margin-top: 10vh;

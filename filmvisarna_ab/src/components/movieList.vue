@@ -19,37 +19,32 @@
   </ul>
 </template>
 <script>
-export default {
-  
-  
+export default { 
   computed: {
-
     filter(){
       return this.$store.state.movieFilter
     },
     movies() {
      let filter = this.filter;
      let isDate = filter instanceof Date;
-     console.log(filter, "Filter")
      let movies;
      if(!isDate){
-      movies = this.setMoviesByGenre(filter);
+      movies = this.getMoviesByGenre(filter);
       return movies;
      }
      else{
-        movies = this.setMoviesByDate(filter)
+        movies = this.getMoviesByDate(filter)
         return movies;
     }
   },
 },
-
   methods:{
     toMovieShowing(movie){
       this.$store.commit('movieShowing', movie);
       this.$router.push({path:'/movies/'+ movie.movieId})
     },
 
-    setMoviesByGenre(filter){
+    getMoviesByGenre(filter){
       let movies = this.$store.state.movies
       if(filter === '') {
         return movies;
@@ -60,7 +55,7 @@ export default {
         return results;  
       }
     },
-    setMoviesByDate(filter){
+    getMoviesByDate(filter){
       let moviesFromStore = this.$store.state.movies
       let screenings = this.$store.state.screenings;
       let movies = [];
@@ -76,21 +71,15 @@ export default {
 
         }
       })
-
       movies = Array.from(new Set(movies))
-      console.log(movies)
       return movies;
-
     }
-
   },
   destroyed(){
     this.$store.commit('setMovieFilter', '')
   },
 }
 </script>
-
-
 <style scoped>
 li{
   padding: 0 !important;

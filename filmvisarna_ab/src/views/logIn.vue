@@ -37,7 +37,7 @@ export default{
     
     data(){
         return{
-          loginMessage: "",
+        loginMessage: "",
         form: {
         email: "",
         password: ""
@@ -46,9 +46,6 @@ export default{
     },
      methods: {
     async submit() {
-      
-      //this.$store.dispatch('loginUser', this.form)
-
         let result = await auth.signInWithEmailAndPassword(this.form.email, this.form.password).catch(console.error)
         if(result){
           this.$store.dispatch('fetchUser', result.user)
@@ -58,7 +55,7 @@ export default{
       if(isLoggedIn){
         this.$router.replace({ name: "homePage" });
       }else{
-        this.loginMessage = "Mata in rätt användarnamn eller lösenord"
+        this.loginMessage = "Fel användarnamn eller lösenord"
       }
       
     },
@@ -70,7 +67,6 @@ export default{
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
-
 .login{
     background-color: transparent;
 }

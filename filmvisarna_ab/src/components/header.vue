@@ -7,7 +7,7 @@
       <div class="col s2 m4 l4 xl4 valign-wrapper left ">
         <ul class="valign-wrapper ">
           <li>
-            <i class="material-icons hide-on-large-only " @click="openSlideMenu"
+            <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu"
               >menu</i
             >
           </li>
@@ -32,13 +32,11 @@
           </li>
         </ul>
       </div>
-
       <div class="col s8 m4 l4 xl4 valign-wrapper center">
         <router-link to="/"
           ><h1 class="center-align center-block">Filmvisarna</h1></router-link
         >
       </div>
-
       <div id="tablet-menu">
         <div class="tablet-menu-links container">
           <ul class="tablet-links-list container">
@@ -152,13 +150,13 @@ export default{
   flex-direction: column;
 }
 .main {
-  height: 7.5vh;
+  height: 9.5vh;
 }
 h1 {
   font-family: "Monoton", cursive;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 2rem;
+  font-size: 2.4rem;
 }
 .header {
   width: 100vw;
@@ -168,6 +166,7 @@ h1 {
   transform: translate3d(0, 0, 0);
   transition: 0.35s all ease-out;
   z-index: 999;
+  height: 10vh;
 }
 #tablet-menu {
   display: flex;
@@ -202,8 +201,9 @@ h1 {
 .desktop-link {
   font-family: "Monoton", cursive;
   color: white;
-  font-size: 1.1em;
+  font-size: 0.95em;
   margin: 1em;
+  width: 100%;
 }
 .btn-close {
   margin-top: 10vh;
@@ -215,14 +215,12 @@ h1 {
 .loginIcon {
   font-size: 1rem;
   padding-top: 0 !important;
+  height: 30px;
 }
 a{
   font-size: 2rem;
   margin-left: 0.3vw;
   margin-right: 0.3vw;
-}
-.header.hidden-header {
-  transform: translate3d(0, -100%, 0);
 }
 li{
   list-style: none;
@@ -230,5 +228,12 @@ li{
 .sign-out:hover{
 cursor: pointer;
 }
-
+.sign-out{
+  font-size: .85em;
+}
+@media only screen and (max-width: 1024px) {
+  .header.hidden-header {
+    transform: translate3d(0, -100%, 0);
+  }
+}
 </style>

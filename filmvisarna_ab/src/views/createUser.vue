@@ -19,7 +19,7 @@
       </div>
 
       <div class="input-field">
-        <button type="submit" class="btn waves-effect waves-light" >Register</button>
+        <button type="submit" class="btn waves-effect waves-light" >Skapa konto</button>
       </div>
     </form>
     </div>
@@ -28,7 +28,6 @@
 
 <script>
 export default{
-    
     data(){
         return{
         form: {

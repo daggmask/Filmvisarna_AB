@@ -29,11 +29,11 @@ export default {
      let isDate = filter instanceof Date;
      let movies;
      if(!isDate){
-      movies = this.setMoviesByGenre(filter);
+      movies = this.getMoviesByGenre(filter);
       return movies;
      }
      else{
-        movies = this.setMoviesByDate(filter)
+        movies = this.getMoviesByDate(filter)
         return movies;
     }
   },
@@ -44,7 +44,7 @@ export default {
       this.$router.push({path:'/movies/'+ movie.movieId})
     },
 
-    setMoviesByGenre(filter){
+    getMoviesByGenre(filter){
       let movies = this.$store.state.movies
       if(filter === '') {
         return movies;
@@ -55,7 +55,7 @@ export default {
         return results;  
       }
     },
-    setMoviesByDate(filter){
+    getMoviesByDate(filter){
       let moviesFromStore = this.$store.state.movies
       let screenings = this.$store.state.screenings;
       let movies = [];

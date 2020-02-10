@@ -221,9 +221,6 @@ a{
   margin-left: 0.3vw;
   margin-right: 0.3vw;
 }
-.header.hidden-header {
-  transform: translate3d(0, -100%, 0);
-}
 li{
   list-style: none;
 }
@@ -233,5 +230,9 @@ cursor: pointer;
 .sign-out{
   font-size: .85em;
 }
-
+@media only screen and (max-width: 1024px) {
+  .header.hidden-header {
+    transform: translate3d(0, -100%, 0);
+  }
+}
 </style>

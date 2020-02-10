@@ -37,9 +37,7 @@
             
             <div class="subheader">Produktions år:</div>
             <div>{{movie.productionYear}}</div>
-          </div>
-          
-          
+          </div>     
         </div>
       </div>
     </div>
@@ -62,7 +60,6 @@ computed: {
         return movie;
       }
     }
-    //return this.$store.state.movies[this.$route.params.movie];
     return null;
   }
 },

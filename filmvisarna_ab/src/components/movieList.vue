@@ -19,11 +19,8 @@
   </ul>
 </template>
 <script>
-export default {
-  
-  
+export default { 
   computed: {
-
     filter(){
       return this.$store.state.movieFilter
     },
@@ -42,7 +39,6 @@ export default {
     }
   },
 },
-
   methods:{
     toMovieShowing(movie){
       this.$store.commit('movieShowing', movie);
@@ -76,21 +72,16 @@ export default {
 
         }
       })
-
       movies = Array.from(new Set(movies))
       console.log(movies)
       return movies;
-
     }
-
   },
   destroyed(){
     this.$store.commit('setMovieFilter', '')
   },
 }
 </script>
-
-
 <style scoped>
 li{
   padding: 0 !important;

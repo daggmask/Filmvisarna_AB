@@ -38,8 +38,9 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: white;
+  color: white !important;
   font-family: Arial, Helvetica, sans-serif;
+  
 }
 .container{
   display: flex;
@@ -58,6 +59,7 @@ export default {
 main{
   flex: 1;
   margin: 2% 0;
+  
 }
 
 </style>

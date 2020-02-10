@@ -47,6 +47,9 @@ export default {
   display: flex;
   
 }
+body{
+  overflow-x: hidden;
+}
 main{
   flex: 1;
   margin: 2% 0;

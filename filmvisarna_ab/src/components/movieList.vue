@@ -27,7 +27,6 @@ export default {
     movies() {
      let filter = this.filter;
      let isDate = filter instanceof Date;
-     console.log(filter, "Filter")
      let movies;
      if(!isDate){
       movies = this.setMoviesByGenre(filter);
@@ -73,7 +72,6 @@ export default {
         }
       })
       movies = Array.from(new Set(movies))
-      console.log(movies)
       return movies;
     }
   },

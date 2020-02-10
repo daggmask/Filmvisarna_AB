@@ -42,15 +42,12 @@ export default {
             screenings.sort((a,b) => {
               return a.time.getTime() - b.time.getTime();
             })
-
             screenings.forEach(screening =>{
               if(screening.time > timeNow){
                 dates.push(this.dateAsString(screening.time))
               }   
             })
-
             dates = Array.from(new Set(dates));
-
             dates.forEach(date => {
               screenings.every(screening => { 
                 if(date === this.dateAsString(screening.time)) {

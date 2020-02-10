@@ -32,13 +32,11 @@
           </li>
         </ul>
       </div>
-
       <div class="col s8 m4 l4 xl4 valign-wrapper center">
         <router-link to="/"
           ><h1 class="center-align center-block">Filmvisarna</h1></router-link
         >
       </div>
-
       <div id="tablet-menu">
         <div class="tablet-menu-links container">
           <ul class="tablet-links-list container">

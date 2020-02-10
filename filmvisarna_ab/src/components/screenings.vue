@@ -41,9 +41,7 @@
         </router-link>
         </li>
       </ul>
-        
     </div>
-
   </div>
 </template>
 

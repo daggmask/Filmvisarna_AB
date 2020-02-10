@@ -10,7 +10,7 @@
             <img :src="movie.images[0]" alt="MoviePoster" class="responsive-img" id="moviePoster">
           </div>
           <div class="card-stacked">
-            <div class="card-content ">
+            <div class="card-content valign-wrapper">
               <div class="hide-on-med-and-down">
                 <p class="medium-text">{{movie.genre}}</p>
                 <p class="small-text">{{movie.length}} min</p>
@@ -148,6 +148,7 @@ methods: {
   padding-bottom: 2%;
 }
 .card-content{
+  padding: 0 0 0 24px;
   align-items: flex-end;
 }
 @media screen and (min-width: 515px){

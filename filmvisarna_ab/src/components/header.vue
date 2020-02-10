@@ -7,7 +7,7 @@
       <div class="col s2 m4 l4 xl4 valign-wrapper left ">
         <ul class="valign-wrapper ">
           <li>
-            <i class="material-icons hide-on-large-only " @click="openSlideMenu"
+            <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu"
               >menu</i
             >
           </li>
@@ -222,14 +222,18 @@ a{
   margin-left: 0.3vw;
   margin-right: 0.3vw;
 }
-.header.hidden-header {
-  transform: translate3d(0, -100%, 0);
-}
 li{
   list-style: none;
 }
 .sign-out:hover{
 cursor: pointer;
 }
-
+.sign-out{
+  font-size: .85em;
+}
+@media only screen and (max-width: 1024px) {
+  .header.hidden-header {
+    transform: translate3d(0, -100%, 0);
+  }
+}
 </style>

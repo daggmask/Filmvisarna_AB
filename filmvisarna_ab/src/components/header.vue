@@ -150,13 +150,13 @@ export default{
   flex-direction: column;
 }
 .main {
-  height: 7.5vh;
+  height: 9.5vh;
 }
 h1 {
   font-family: "Monoton", cursive;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 2rem;
+  font-size: 2.4rem;
 }
 .header {
   width: 100vw;
@@ -166,6 +166,7 @@ h1 {
   transform: translate3d(0, 0, 0);
   transition: 0.35s all ease-out;
   z-index: 999;
+  height: 10vh;
 }
 #tablet-menu {
   display: flex;

@@ -10,7 +10,7 @@
             <img :src="movie.images[0]" alt="MoviePoster" class="responsive-img" id="moviePoster">
           </div>
           <div class="card-stacked">
-            <div class="card-content">
+            <div class="card-content ">
               <div class="hide-on-med-and-down">
                 <p class="medium-text">{{movie.genre}}</p>
                 <p class="small-text">{{movie.length}} min</p>

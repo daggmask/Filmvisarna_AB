@@ -14,7 +14,7 @@
               <p class="genretext">{{movie.genre}}</p>
               <p class="lengthtext">{{movie.length}} min</p>
               <p class="languagetext">{{movie.language}}</p>
-              <span></span><span v-for="actor of movie.actors" :key="actor" class="actortext">{{actor}}, </span>
+              <span></span><span v-for="actor of movie.actors" :key="actor" class="actortext">{{actor}} </span>
             </div>
           </div>
         </div>
@@ -27,10 +27,10 @@
           </div>
           <div class="card-panel black smallmovieinfo">
             <div class="subheader">Regissör:</div>
-            <div class="">{{movie.director}}</div>
+            <div class="">{{movie.director}} </div>
             
             <div class="subheader">Produktions länder:</div>
-            <div><span v-for="country of movie.productionCountries" :key="country" >{{country}}, </span></div>
+            <div><span v-for="country of movie.productionCountries" :key="country" >{{country}} </span></div>
             
             <div class="subheader">Undertext:</div>
             <div>{{movie.subtitles}}</div>

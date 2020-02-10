@@ -1,5 +1,4 @@
 <template>
-<div class="container">
   <ul class="row">
     <li v-for="(movie, i) in movies"
     v-bind:key="movie.title + i"
@@ -18,25 +17,75 @@
       </div>
     </li>
   </ul>
-</div>
- 
-  
 </template>
 <script>
 export default {
+  
+  
   computed: {
+
+    filter(){
+      return this.$store.state.movieFilter
+    },
     movies() {
-        return this.$store.state.movies;
+     let filter = this.filter;
+     let isDate = filter instanceof Date;
+     console.log(filter, "Filter")
+     let movies;
+     if(!isDate){
+      movies = this.setMoviesByGenre(filter);
+      return movies;
+     }
+     else{
+        movies = this.setMoviesByDate(filter)
+        return movies;
     }
   },
+},
+
   methods:{
     toMovieShowing(movie){
       this.$store.commit('movieShowing', movie);
       this.$router.push({path:'/movies/'+ movie.movieId})
+    },
+
+    setMoviesByGenre(filter){
+      let movies = this.$store.state.movies
+      if(filter === '') {
+        return movies;
+      } else {
+        let results = movies.filter(function (movie) {
+          return movie.genre.includes(filter)
+        });
+        return results;  
+      }
+    },
+    setMoviesByDate(filter){
+      let moviesFromStore = this.$store.state.movies
+      let screenings = this.$store.state.screenings;
+      let movies = [];
+
+      screenings.forEach(screening => {
+        if(filter === screening.time){
+          
+          for(let movie of moviesFromStore){
+            if (movie.id === screening.movieId){
+              movies.push(movie);
+            }
+          }
+
+        }
+      })
+
+      movies = Array.from(new Set(movies))
+      console.log(movies)
+      return movies;
+
     }
+
   },
-  created(){
-    this.$store.dispatch("getMovies")
+  destroyed(){
+    this.$store.commit('setMovieFilter', '')
   },
 }
 </script>
@@ -54,6 +103,8 @@ li{
 }
 .card:hover{
   box-shadow: 0 0 5px gray;
+  background-image: white;
+  z-index: 1;
 }
 img{
   height: 100%;

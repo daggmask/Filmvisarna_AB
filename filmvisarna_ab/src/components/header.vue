@@ -215,6 +215,7 @@ h1 {
 .loginIcon {
   font-size: 1rem;
   padding-top: 0 !important;
+  height: 30px;
 }
 a{
   font-size: 2rem;

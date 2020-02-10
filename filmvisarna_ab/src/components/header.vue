@@ -7,7 +7,7 @@
       <div class="col s2 m4 l4 xl4 valign-wrapper left ">
         <ul class="valign-wrapper ">
           <li>
-            <i class="material-icons hide-on-large-only " @click="openSlideMenu"
+            <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu"
               >menu</i
             >
           </li>
@@ -229,6 +229,9 @@ li{
 }
 .sign-out:hover{
 cursor: pointer;
+}
+.sign-out{
+  font-size: .85em;
 }
 
 </style>

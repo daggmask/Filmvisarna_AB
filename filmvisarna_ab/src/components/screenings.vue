@@ -60,7 +60,7 @@ export default {
         }
       }
       currentMovieScreenings.sort((a, b) => {
-        return a.time.toDate().getTime() - b.time.toDate().getTime();
+        return a.time.getTime() - b.time.getTime();
       })
       return currentMovieScreenings;
     },

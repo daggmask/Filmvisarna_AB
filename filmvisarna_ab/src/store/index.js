@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    auditoriums: [],
     publishMovies: false,
     movies: [],
     screenings: [], 
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     publishBooking(state, data) {
       state.booking = data;
       state.publishBooking = true;
+    },
+    setAuditoriums(state, data){
+      state.auditoriums = data;
     }
   },
   actions: {
@@ -66,6 +70,11 @@ export default new Vuex.Store({
             screening.film = movie;
           }
         })
+        this.state.auditoriums.forEach( auditorium => {
+          if(auditorium.id == data.auditoriumId){
+            data.auditorium = auditorium;
+          }
+        })
         screenings.push(data);
       });
       commit("setScreenings", screenings);
@@ -78,7 +87,7 @@ export default new Vuex.Store({
         data.id = auditorium.id;
         auditoriums.push(data);
       });
-      commit("setScreenings", auditoriums);
+      commit("setAuditoriums", auditoriums);
     },
     async publishMovies({ commit }) {
       let documents = require("@/data/movies.json");

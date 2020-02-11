@@ -11,6 +11,7 @@
       <p class="col s12" v-if="booking.childTickets != 0">Barnbiljetter : {{booking.childTickets}}</p>
       <p class="col s12" v-if="booking.seniorCitizenTickets != 0">Pensionärbiljetter : {{booking.seniorCitizenTickets}}</p>
       <p class="col s12">Pris: {{booking.totalPriceForPurchase}}</p>
+      <p class="col s12">Email: {{booking.account}}</p>
     </div>
   </div>
 </template>

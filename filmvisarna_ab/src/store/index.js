@@ -106,6 +106,7 @@ export default new Vuex.Store({
         screeningTitle: payload.screeningTitle,
         seniorCitizenTickets: payload.seniorCitizenTickets,
         totalPriceForPurchase: payload.totalPriceForPurchase,
+        account: payload.account,
       };
       await db.collection("bookings").add(booking);
       commit("publishBooking", booking);

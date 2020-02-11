@@ -99,6 +99,7 @@
         </button>
       </div>
       <p v-if="user.loggedIn">{{user.data.email}}</p>
+      <p v-if="!user.loggedIn">{{this.email}}</p>
     </div>
   </div>
 </template>
@@ -133,6 +134,15 @@ export default {
     this.$store.dispatch("getMovies");
   },
   methods: {
+      setEmail(){
+      if(this.user.loggedIn){
+        this.email = this.user.data.email
+        return this.email
+      }
+      else{
+        return this.email
+      }
+    },
     seatsAvilable() {
       if (
         this.screening.seatsAvailable >
@@ -187,6 +197,8 @@ export default {
       );
     },
     bookTickets(screening) {
+      console.log(this.email)
+      console.log(this.user.data.email)
       let seatsLeft =
         screening.seatsAvailable -
         (this.numberOfRegularTickets +

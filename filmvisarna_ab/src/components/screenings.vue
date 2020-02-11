@@ -33,7 +33,7 @@
             </div>
             <div class="auditorium-info col s8 m7">
               <h6>
-                {{ screening.auditorium }}<br>
+                {{ screening.auditorium.name }}<br>
                 Platser kvar: {{screening.seatsAvailable}}
               </h6>
             </div>

@@ -74,14 +74,14 @@
             this.numberOfRegularTickets <= 0 &&
               this.numberOfChildTickets <= 0 &&
               this.numberSeniorCitizenTickets <= 0 ||
-              this.email == null &&
+              this.accountEmail == null &&
               user.loggedIn == false
           "
         >
           Du måste välja minst 1 biljett eller ange email
         </p>
         <div class="input-field" v-if="!user.loggedIn">
-        <input type="email" name="email" value required autofocus v-model="email"/>
+        <input type="email" name="email" value required autofocus v-model="accountEmail"/>
         <label for="email">Email</label>
       </div>
         <button
@@ -91,15 +91,14 @@
             this.numberOfRegularTickets >= 1 ||
               this.numberOfChildTickets >= 1 ||
               this.numberSeniorCitizenTickets >= 1 &&
-              this.email != null &&
+              this.accountEmail != null &&
               user.loggedIn
           "
         >
           Boka platser
         </button>
       </div>
-      <p v-if="user.loggedIn">{{user.data.email}}</p>
-      <p v-if="!user.loggedIn">{{this.email}}</p>
+      <p>{{email}}</p>
     </div>
   </div>
 </template>
@@ -112,7 +111,7 @@ export default {
       numberSeniorCitizenTickets: 0,
       numberOfChildTickets: 0,
       totalPriceForPurchase: 170,
-      email: ""
+      accountEmail: ""
     };
   },
 
@@ -136,11 +135,11 @@ export default {
   methods: {
       setEmail(){
       if(this.user.loggedIn){
-        this.email = this.user.data.email
-        return this.email
+        this.accountEmail = this.user.data.email
+        return this.accountEmail
       }
       else{
-        return this.email
+        return this.accountEmail
       }
     },
     seatsAvilable() {
@@ -197,8 +196,6 @@ export default {
       );
     },
     bookTickets(screening) {
-      console.log(this.email)
-      console.log(this.user.data.email)
       let seatsLeft =
         screening.seatsAvailable -
         (this.numberOfRegularTickets +
@@ -215,7 +212,7 @@ export default {
         seniorCitizenTickets: this.numberSeniorCitizenTickets,
         totalPriceForPurchase: this.totalPriceForPurchase,
         seatsLeft: seatsLeft,
-        account: this.email
+        account: this.setEmail()
       });
       this.$emit("displayConfirmation");
     },

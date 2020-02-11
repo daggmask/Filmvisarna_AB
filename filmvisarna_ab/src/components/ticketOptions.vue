@@ -73,23 +73,32 @@
           v-if="
             this.numberOfRegularTickets <= 0 &&
               this.numberOfChildTickets <= 0 &&
-              this.numberSeniorCitizenTickets <= 0
+              this.numberSeniorCitizenTickets <= 0 ||
+              this.email == null &&
+              user.loggedIn == false
           "
         >
-          Du måste välja minst 1 biljett
+          Du måste välja minst 1 biljett eller ange email
         </p>
+        <div class="input-field" v-if="!user.loggedIn">
+        <input type="email" name="email" value required autofocus v-model="email"/>
+        <label for="email">Email</label>
+      </div>
         <button
           @click="bookTickets(screening)"
           class="btn-large blue darken-3"
           v-if="
             this.numberOfRegularTickets >= 1 ||
               this.numberOfChildTickets >= 1 ||
-              this.numberSeniorCitizenTickets >= 1
+              this.numberSeniorCitizenTickets >= 1 &&
+              this.email != null &&
+              user.loggedIn
           "
         >
           Boka platser
         </button>
       </div>
+      <p v-if="user.loggedIn">{{user.data.email}}</p>
     </div>
   </div>
 </template>
@@ -101,7 +110,8 @@ export default {
       numberOfRegularTickets: 2,
       numberSeniorCitizenTickets: 0,
       numberOfChildTickets: 0,
-      totalPriceForPurchase: 170
+      totalPriceForPurchase: 170,
+      email: ""
     };
   },
 
@@ -114,7 +124,10 @@ export default {
         }
       }
       return null;
-    }
+    },
+      user(){
+      return this.$store.state.user
+    },
   },
   created() {
     this.$store.dispatch("getMovies");
@@ -190,6 +203,7 @@ export default {
         seniorCitizenTickets: this.numberSeniorCitizenTickets,
         totalPriceForPurchase: this.totalPriceForPurchase,
         seatsLeft: seatsLeft,
+        account: this.email
       });
       this.$emit("displayConfirmation");
     },

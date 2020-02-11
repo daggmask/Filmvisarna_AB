@@ -18,7 +18,7 @@
       </div>
       
       <div>
-        <p>
+        <p class="red-text">
           {{this.loginMessage}}
         </p>
       </div>

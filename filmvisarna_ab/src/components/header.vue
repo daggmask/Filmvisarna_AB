@@ -68,7 +68,9 @@
       </div>
       <div class="col s2 m4 l4 valign-wrapper right">
     <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
-      <span class="hide-on-med-and-down">{{user.data.displayName}}</span>
+      <router-link class="account" to="/account">
+      <span class="hide-on-med-and-down">Mina sidor</span>
+      </router-link>
       </div>
     <div class="loginIcon">
       <router-link to="/login">
@@ -230,6 +232,9 @@ cursor: pointer;
 }
 .sign-out{
   font-size: .85em;
+}
+.account{
+font-size: 1em;
 }
 @media only screen and (max-width: 1024px) {
   .header.hidden-header {

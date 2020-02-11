@@ -72,7 +72,7 @@ computed: {
   }
 },
 created(){
-  this.$store.dispatch("getMovies")
+  
 },
 methods: {
   getProductionCountries(movie){

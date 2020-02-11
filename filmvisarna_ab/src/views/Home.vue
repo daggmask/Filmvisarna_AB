@@ -1,24 +1,24 @@
 <template>
   <div class="col">
-    <div class="container col">
-      <div class="carousel carousel-slider">
+    <div class="col container valign-wrapper">
+      <h5>På bio idag</h5>
+      <div class="carousel">
         <router-link
           :to="'/movies/' + movie.movieId"
-          class="carousel-item "
+          class="carousel-item"
           href="javascript:void(0)"
           v-for="(movie, i) in moviesShowingToday"
           :key="i + movie.title"
         >
           <img :src="movie.images[0]" :alt="movie.title + ' poster'" />
+          <p class="carousel-movie-title center-align">{{movie.title}}</p>
         </router-link>
       </div>
     </div>
+
     <div class="container col">
       <div class="row">
-        <FilteringButton
-          class="col s12 m4 l2 no-padding"
-          :type="'datum'"
-        ></FilteringButton>
+        <FilteringButton class="col s12 m4 l2 no-padding" :type="'datum'"></FilteringButton>
       </div>
       <MovieList></MovieList>
     </div>
@@ -76,21 +76,19 @@ export default {
   updated() {
     let elems = document.querySelectorAll(".carousel");
     this.$M.Carousel.init(elems);
-  },
-  mounted: {
-    if() {}
   }
 };
 </script>
 
 <style scoped>
+.carousel-item {
+  width: 55vw !important;
+  height: auto !important;
+}
 .carousel {
-  box-sizing: border-box !important;
-  width: 20vw !important;
-  perspective: none !important;
-  -webkit-perspective: none !important;
-  height: 55vh !important;
-  margin-bottom: 2rem;
+  width: 80vw !important;
+  height: 60vh !important;
+  margin: 0 !important;
 }
 a {
   height: 80% !important;
@@ -98,9 +96,24 @@ a {
 .no-padding {
   padding: 0;
 }
-.first-section{
-  width: 100vw;
-  display: flex;
-  justify-content: center;
+@media only screen and (min-width: 768px) {
+  .carousel-item {
+    width: 25vw !important;
+    height: auto !important;
+  }
+  .carousel {
+    width: 55vw !important;
+    height: 35vh !important;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  .carousel-item {
+    width: 12.5vw !important;
+    height: auto !important;
+  }
+  .carousel {
+    width: 45.5vw !important;
+    height: 45.5vh !important;
+  }
 }
 </style>

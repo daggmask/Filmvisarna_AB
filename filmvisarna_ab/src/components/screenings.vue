@@ -59,6 +59,9 @@ export default {
           currentMovieScreenings.push(screening);
         }
       }
+      currentMovieScreenings.sort((a, b) => {
+        return a.time.getTime() - b.time.getTime();
+      })
       return currentMovieScreenings;
     },
     dates(){
@@ -102,6 +105,12 @@ export default {
         minuteNumber = '0' + minuteNumber;
       }
       return minuteNumber;
+    },
+    getHoursAsString(hourNumber){
+      if (hourNumber < 10) {
+        return "0" + hourNumber;
+      }
+      return hourNumber;
     }
   },
   created(){

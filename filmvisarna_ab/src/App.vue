@@ -18,6 +18,7 @@ export default {
     mainHeader
   },
   created(){
+    this.$store.dispatch("getAuditoriums");
     this.$store.dispatch("getMovies");
     this.$store.dispatch("getScreenings");
   }

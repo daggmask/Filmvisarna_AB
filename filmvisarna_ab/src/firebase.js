@@ -18,7 +18,7 @@ let myFirebase = firebase.initializeApp(config);
 
 // Firebase db
 export const db = myFirebase.firestore();
-export const auth = myFirebase.auth()
+export const auth = myFirebase.auth();
 
 auth.onAuthStateChanged(user => {
   store.dispatch("fetchUser", user);

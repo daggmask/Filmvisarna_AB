@@ -41,9 +41,7 @@
         </router-link>
         </li>
       </ul>
-        
     </div>
-
   </div>
 </template>
 
@@ -91,46 +89,20 @@ export default {
     setDate(date){
       this.date = date;
     },
-    getScreeningTime(timestamp){
-      let screeningDate = timestamp.toDate();
-      let screeningTime = `${this.getHoursAsString(screeningDate.getHours())}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+    getScreeningTime(screeningDate){
+      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
       return screeningTime;      
     },
-    getDateAsString(timestamp){
-      let date = timestamp.toDate();
+    getDateAsString(date){
       return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
     },
     getMonthName(monthNumber){
-      switch(monthNumber) {
-        case 0:
-          return "januari";
-        case 1:
-          return "februari";
-        case 2:
-          return "mars";
-        case 3:
-          return "april";
-        case 4:
-          return "maj";
-        case 5:
-          return "juni";
-        case 6:
-          return "juli";
-        case 7:
-          return "augusti";
-        case 8:
-          return "september";
-        case 9:
-          return "oktober";
-        case 10:
-          return "november";
-        case 11:
-          return "december";
-      }
+      let months = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"]
+      return months[monthNumber];
     },
     getMinutesAsString(minuteNumber){
       if(minuteNumber < 10) {
-        return "0" + minuteNumber;
+        minuteNumber = '0' + minuteNumber;
       }
       return minuteNumber;
     },

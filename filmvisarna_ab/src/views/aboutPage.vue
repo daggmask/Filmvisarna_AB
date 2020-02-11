@@ -1,10 +1,10 @@
 <template>
 <div class="aboutPage">
   <img src="https://www.ausflugstippsmitkids.de/wp-content/uploads/2017/09/FTBL2831_Smaragd_8-lpr-1.jpg" alt="">
-  <h3>En bio upplevelse som man sent glömmer</h3>
+  <h3>En bioupplevelse som man sent glömmer</h3>
   <p>Filmvisarnas biografer erbjuder en hög kvalite på både film och salonger. 
-     Hos oss visas alla filmer i imax format och leveraras med ett mäktigt suround ljud som gör det omöjligt somna i våra bekväma fåtöljer.
-     Är du sugen på något tilltugg till filmen så hittar du det mesta snacks,godis och drycker i våran kiosk. 
+     Hos oss visas alla filmer i imax format och leveraras med ett mäktigt surroundljud som gör det omöjligt somna i våra bekväma fåtöljer.
+     Är du sugen på något tilltugg till filmen så hittar du ett stort utbud av snacks, godis och drycker i våran kiosk. 
   </p>
 
   <h4>Öppentider:</h4>

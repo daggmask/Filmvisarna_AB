@@ -19,13 +19,13 @@
       </div>
       <div class="col s6 ticketOption container">
         <button
-          class="btn-small indigo darken-4"
+          class="btn-small blue darken-3"
           @click="deductRegularTicket()"
         >
           -
         </button>
         <p class="ticketAmount">{{ this.numberOfRegularTickets }}</p>
-        <button class="btn-small indigo darken-4" @click="addRegularTicket()">
+        <button class="btn-small blue darken-3" @click="addRegularTicket()">
           +
         </button>
       </div>
@@ -36,11 +36,11 @@
         <p>65kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
-        <button class="btn-small indigo darken-4" @click="deductChildTicket()">
+        <button class="btn-small blue darken-3" @click="deductChildTicket()">
           -
         </button>
         <p class="ticketAmount">{{ this.numberOfChildTickets }}</p>
-        <button class="btn-small indigo darken-4" @click="addChildTicket">
+        <button class="btn-small blue darken-3" @click="addChildTicket">
           +
         </button>
       </div>
@@ -52,14 +52,14 @@
       </div>
       <div class="col s6 ticketOption container">
         <button
-          class="btn-small indigo darken-4"
+          class="btn-small blue darken-3"
           @click="deductSeniorCitizenTicket()"
         >
           -
         </button>
         <p class="ticketAmount">{{ this.numberSeniorCitizenTickets }}</p>
         <button
-          class="btn-small indigo darken-4"
+          class="btn-small blue darken-3"
           @click="addSeniorCitizenTicket()"
         >
           +
@@ -80,7 +80,7 @@
         </p>
         <button
           @click="bookTickets(screening)"
-          class="btn-large indigo darken-4"
+          class="btn-large blue darken-3"
           v-if="
             this.numberOfRegularTickets >= 1 ||
               this.numberOfChildTickets >= 1 ||
@@ -193,18 +193,12 @@ export default {
       });
       this.$emit("displayConfirmation");
     },
-    getScreeningTime(timestamp) {
-      let screeningDate = timestamp.toDate();
-      let screeningTime = `${this.getHoursAsString(
-        screeningDate.getHours()
-      )}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
-      return screeningTime;
+    getScreeningTime(screeningDate){
+      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+      return screeningTime;      
     },
-    getDateAsString(timestamp) {
-      let date = timestamp.toDate();
-      return `${date.getDate()} ${this.getMonthName(
-        date.getMonth()
-      )} ${date.getFullYear()}`;
+    getDateAsString(date){
+      return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
     },
     getMonthName(monthNumber) {
       switch (monthNumber) {

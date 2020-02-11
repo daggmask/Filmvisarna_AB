@@ -19,13 +19,13 @@
       </div>
       <div class="col s6 ticketOption container">
         <button
-          class="btn-small indigo darken-4"
+          class="btn-small blue darken-3"
           @click="deductRegularTicket()"
         >
           -
         </button>
         <p class="ticketAmount">{{ this.numberOfRegularTickets }}</p>
-        <button class="btn-small indigo darken-4" @click="addRegularTicket()">
+        <button class="btn-small blue darken-3" @click="addRegularTicket()">
           +
         </button>
       </div>
@@ -36,11 +36,11 @@
         <p>65kr / st</p>
       </div>
       <div class="col s6 ticketOption container">
-        <button class="btn-small indigo darken-4" @click="deductChildTicket()">
+        <button class="btn-small blue darken-3" @click="deductChildTicket()">
           -
         </button>
         <p class="ticketAmount">{{ this.numberOfChildTickets }}</p>
-        <button class="btn-small indigo darken-4" @click="addChildTicket">
+        <button class="btn-small blue darken-3" @click="addChildTicket">
           +
         </button>
       </div>
@@ -52,14 +52,14 @@
       </div>
       <div class="col s6 ticketOption container">
         <button
-          class="btn-small indigo darken-4"
+          class="btn-small blue darken-3"
           @click="deductSeniorCitizenTicket()"
         >
           -
         </button>
         <p class="ticketAmount">{{ this.numberSeniorCitizenTickets }}</p>
         <button
-          class="btn-small indigo darken-4"
+          class="btn-small blue darken-3"
           @click="addSeniorCitizenTicket()"
         >
           +
@@ -80,7 +80,7 @@
         </p>
         <button
           @click="bookTickets(screening)"
-          class="btn-large indigo darken-4"
+          class="btn-large blue darken-3"
           v-if="
             this.numberOfRegularTickets >= 1 ||
               this.numberOfChildTickets >= 1 ||
@@ -101,7 +101,7 @@ export default {
       numberOfRegularTickets: 2,
       numberSeniorCitizenTickets: 0,
       numberOfChildTickets: 0,
-      totalPrice: 170
+      totalPriceForPurchase: 170
     };
   },
 
@@ -133,37 +133,37 @@ export default {
     addRegularTicket() {
       if (this.seatsAvilable()) {
         this.numberOfRegularTickets++;
-        this.totalPrice += 85;
+        this.totalPriceForPurchase += 85;
       }
     },
     deductRegularTicket() {
       if (this.numberOfRegularTickets != 0) {
         this.numberOfRegularTickets--;
-        this.totalPrice -= 85;
+        this.totalPriceForPurchase -= 85;
       }
     },
     addSeniorCitizenTicket() {
       if (this.seatsAvilable()) {
         this.numberSeniorCitizenTickets++;
-        this.totalPrice += 75;
+        this.totalPriceForPurchase += 75;
       }
     },
     deductSeniorCitizenTicket() {
       if (this.numberSeniorCitizenTickets != 0) {
         this.numberSeniorCitizenTickets--;
-        this.totalPrice -= 75;
+        this.totalPriceForPurchase -= 75;
       }
     },
     addChildTicket() {
       if (this.seatsAvilable()) {
         this.numberOfChildTickets++;
-        this.totalPrice += 65;
+        this.totalPriceForPurchase += 65;
       }
     },
     deductChildTicket() {
       if (this.numberOfChildTickets != 0) {
         this.numberOfChildTickets--;
-        this.totalPrice -= 65;
+        this.totalPriceForPurchase -= 65;
       }
     },
     generateCustomerBookingReferenceNumber() {
@@ -180,31 +180,25 @@ export default {
           this.numberOfChildTickets +
           this.numberSeniorCitizenTickets);
       this.$store.dispatch("publishBooking", {
-        screeningID: screening.id,
-        screeningTitle: screening.film,
-        screeningDate: this.getDateAsString(screening.time),
-        screeningTime: this.getScreeningTime(screening.time),
-        seatsLeft: seatsLeft,
-        regularTickets: this.numberOfRegularTickets,
         childTickets: this.numberOfChildTickets,
-        seniorcitizenTickets: this.numberSeniorCitizenTickets,
-        totalPriceForPurchase: this.totalPrice,
-        customerBookingReferenceNumber: this.generateCustomerBookingReferenceNumber()
+        customerBookingReferenceNumber: this.generateCustomerBookingReferenceNumber(),
+        regularTickets: this.numberOfRegularTickets,
+        screeningDate: this.getDateAsString(screening.time),
+        screeningID: screening.id,
+        screeningTime: this.getScreeningTime(screening.time),
+        screeningTitle: screening.film,
+        seniorCitizenTickets: this.numberSeniorCitizenTickets,
+        totalPriceForPurchase: this.totalPriceForPurchase,
+        seatsLeft: seatsLeft,
       });
       this.$emit("displayConfirmation");
     },
-    getScreeningTime(timestamp) {
-      let screeningDate = timestamp.toDate();
-      let screeningTime = `${this.getHoursAsString(
-        screeningDate.getHours()
-      )}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
-      return screeningTime;
+    getScreeningTime(screeningDate){
+      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+      return screeningTime;      
     },
-    getDateAsString(timestamp) {
-      let date = timestamp.toDate();
-      return `${date.getDate()} ${this.getMonthName(
-        date.getMonth()
-      )} ${date.getFullYear()}`;
+    getDateAsString(date){
+      return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
     },
     getMonthName(monthNumber) {
       switch (monthNumber) {

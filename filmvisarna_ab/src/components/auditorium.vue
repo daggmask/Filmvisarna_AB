@@ -5,9 +5,9 @@
       class="white seat" 
       v-for="(seat, j) in row" 
       :key="seat + j"
-      :class="{marked: seat.isMarked}"
+      :class="{marked: seat.isMarked, available: seat.isAvailable}"
       :style="{margin: seatMargin + 'px', width: seatSize + 'px', height: seatSize + 'px'}" 
-      @click="clicked(), seat.isMarked = !seat.isMarked"></div>
+      @click="updateSeat(seat)"></div>
     </div>
   </div>
   
@@ -55,22 +55,19 @@ export default {
     this.getAuditoriumWidth();
   },
   created() {
-    window.addEventListener('resize', this.onReziseListener.bind(this), true)
+    window.addEventListener('resize', this.onResizeListener.bind(this))
   },
   updated(){
     this.getAuditoriumWidth();
   },
   methods:{
-    onReziseListener() {
+    onResizeListener() {
       if(this.$refs.auditorium){
         this.auditoriumWidth = this.$refs.auditorium.clientWidth
       }
     },
-    clicked(){
-      
-    },
     updateSeat(seat){
-      seat.isAvailable = false;
+      seat.isMarked = !seat.isMarked;
     },
     getAuditoriumWidth(){
       if(!this.runOnce) {
@@ -80,21 +77,27 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.onReziseListener, true)
+    window.removeEventListener('resize', this.onResizeListener)
   }
 }
 </script>
 
 <style scoped>
-.marked{
-  background-color: beige !important;
-}
 .seat{
-  border-radius: 0 0 4px 4px;
+  border-radius: 2px 2px 6px 6px;
 }
 .row{
   margin: 0;
   display: flex;
   justify-content: center;
+}
+.available{
+  background-color: white !important;
+}
+.marked{
+  background-color: blue !important;
+}
+.unavailable{
+  background-color: red !important;
 }
 </style>

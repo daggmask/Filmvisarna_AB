@@ -89,7 +89,12 @@ export default new Vuex.Store({
           }
           dispatch("updateScreeningSeats", data)
         }
-
+        data.seats.forEach(row => {
+          row = Object.values(row);
+          row.forEach(seat => {
+            seat.isMarked = false;
+          })
+        })
         screenings.push(data);
       });
       commit("setScreenings", screenings);

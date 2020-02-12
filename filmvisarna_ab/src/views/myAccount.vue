@@ -17,8 +17,7 @@
               <li>Datum: {{booking.screeningDate}}</li>
               <li>Tid: {{booking.screeningTime}}</li>
               <li>Antal biljetter: {{booking.regularTickets + booking.childTickets + booking.seniorCitizenTickets}}</li>
-              <li>Pris: {{booking.totalPriceForPurchase}}kr</li>
-              <li>boknings id: {{booking.screeningID}}</li>
+              <li>Referens nummer: {{booking.customerBookingReferenceNumber}}</li>
           </ul>
   </div>
   </div>

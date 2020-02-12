@@ -75,6 +75,19 @@ export default new Vuex.Store({
             data.auditorium = auditorium;
           }
         })
+        if(data.seats.length === 0){
+          for(let row = 0; row < data.auditorium.seatsPerRow.length; row++) {
+            data.seats[row] = {}
+            for(let col = 0; col < data.auditorium.seatsPerRow[row]; col++) {
+              let seat = {
+                  x: col,
+                  y: row, 
+                  isAvailable: true
+                }
+              data.seats[row][col]=seat; 
+            }
+          }
+        }
         screenings.push(data);
       });
       commit("setScreenings", screenings);

@@ -96,9 +96,6 @@
 
 <script>
 export default {
-  props:[
-    'screening'
-  ],
   data() {
     return {
       numberOfRegularTickets: 2,
@@ -107,8 +104,18 @@ export default {
       totalPriceForPurchase: 170
     };
   },
-
-  
+  computed: {
+    screening() {
+      let screenings = this.$store.state.screenings;
+      let movieScreening;
+      for (let screening of screenings) {
+        if (screening.id === this.$route.params.screening) {
+          movieScreening = screening;
+        }
+      }
+      return movieScreening;
+    }
+  },  
   created() {
     this.$store.dispatch("getMovies");
   },

@@ -44,10 +44,6 @@ export default {
           console.log(this.$store.state.bookings)
           console.log(email)
           console.log(emailAccountName)
-
-          if(email==emailAccountName){
-            
-          }
       }
   },
     created() {

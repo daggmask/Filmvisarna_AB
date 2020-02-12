@@ -4,10 +4,10 @@
       class="backgroundColour row  header light-blue darken-4 valign-wrapper"
       :class="{ 'hidden-header': !showheader }"
     >
-      <div class="col s2 m4 l5 xl5 valign-wrapper ">
+      <div class="col s2 m4 l4 xl4 valign-wrapper left ">
         <ul class="valign-wrapper ">
           <li>
-            <i class="material-icons hide-on-large-only " @click="openSlideMenu"
+            <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu"
               >menu</i
             >
           </li>
@@ -32,21 +32,11 @@
           </li>
         </ul>
       </div>
-
-      <div class="col s8 m4 l2 xl2 valign-wrapper">
+      <div class="col s8 m4 l4 xl4 valign-wrapper center">
         <router-link to="/"
-          ><h1 class="col container center-align">Filmvisarna</h1></router-link
+          ><h1 class="center-align center-block">Filmvisarna</h1></router-link
         >
       </div>
-
-      <div class="col s2 m4 l5 xl5 valign-wrapper ">
-        <router-link to="/login"
-          ><i class="col material-icons account-icon"
-            >account_circle</i
-          ></router-link
-        >
-      </div>
-
       <div id="tablet-menu">
         <div class="tablet-menu-links container">
           <ul class="tablet-links-list container">
@@ -76,18 +66,42 @@
         </div>
         <div class="space hide-on-large-only"></div>
       </div>
+      <div class="col s2 m4 l4 valign-wrapper right">
+    <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
+      <span class="hide-on-med-and-down">{{user.data.displayName}}</span>
+      </div>
+    <div class="loginIcon">
+      <router-link to="/login">
+     <a
+      class="material-icons user"
+      >account_circle</a>
+      </router-link>
+    </div>
+     <div v-if="user.loggedIn">
+          <li>
+            <p class="sign-out" @click.prevent="signOut">Logga ut</p>
+          </li>
+        </div>
+        </div>
     </header>
   </div>
 </template>
 
 <script>
-export default {
+import auth from '@/firebase.js'
+import firebase from "firebase";
+export default{
   data() {
     return {
       showheader: true,
       lastScrollPosition: 0,
       scrollValue: 0
     };
+  },
+   computed: {
+    user(){
+      return this.$store.state.user
+    }
   },
   mounted() {
     this.lastScrollPosition = window.pageYOffset;
@@ -109,13 +123,17 @@ export default {
       }
       this.showheader = window.pageYOffset < this.lastScrollPosition;
       this.lastScrollPosition = window.pageYOffset;
+    },
+      async signOut() {
+      let result = await firebase.auth().signOut()
+      let isLoggedIn=this.$store.state.user.loggedIn;
+      console.log(isLoggedIn)
     }
   },
-  watch: {
+    watch: {
     $route: {
       deep: true,
       handler: function() {
-        console.log('Menu should be shown')
         this.showheader = true;
         return this.onScroll();
       }
@@ -132,13 +150,13 @@ export default {
   flex-direction: column;
 }
 .main {
-  height: 7.5vh;
+  height: 9.5vh;
 }
 h1 {
   font-family: "Monoton", cursive;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 1.55rem;
+  font-size: 2.4rem;
 }
 .header {
   width: 100vw;
@@ -148,6 +166,7 @@ h1 {
   transform: translate3d(0, 0, 0);
   transition: 0.35s all ease-out;
   z-index: 999;
+  height: 10vh;
 }
 #tablet-menu {
   display: flex;
@@ -182,8 +201,9 @@ h1 {
 .desktop-link {
   font-family: "Monoton", cursive;
   color: white;
-  font-size: 1.1em;
+  font-size: 0.95em;
   margin: 1em;
+  width: 100%;
 }
 .btn-close {
   margin-top: 10vh;
@@ -192,10 +212,28 @@ h1 {
   border: 1px solid white;
   border-radius: 100%;
 }
-.account-icon {
-  font-size: 2.5rem;
+.loginIcon {
+  font-size: 1rem;
+  padding-top: 0 !important;
+  height: 30px;
 }
-.header.hidden-header {
-  transform: translate3d(0, -100%, 0);
+a{
+  font-size: 2rem;
+  margin-left: 0.3vw;
+  margin-right: 0.3vw;
+}
+li{
+  list-style: none;
+}
+.sign-out:hover{
+cursor: pointer;
+}
+.sign-out{
+  font-size: .85em;
+}
+@media only screen and (max-width: 1024px) {
+  .header.hidden-header {
+    transform: translate3d(0, -100%, 0);
+  }
 }
 </style>

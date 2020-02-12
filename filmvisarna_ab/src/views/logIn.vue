@@ -53,9 +53,9 @@ export default{
       let isLoggedIn = this.$store.state.user.loggedIn
       console.log(isLoggedIn)
       if(isLoggedIn){
-        this.$router.replace({ name: "homePage" });
+        this.$router.replace({ name: "account" });
       }else{
-        this.loginMessage = "Fel användarnamn eller lösenord"
+        this.loginMessage = "Felaktigt användarnamn eller lösenord"
       }
       
     },

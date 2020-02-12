@@ -59,6 +59,17 @@
                 >
               </a>
             </li>
+             <li class="tablet-link" v-if="user.loggedIn">
+              <a href="#" @click.prevent="closeSlideMenu,signOut">
+                <router-link class="tablet-link" to="/">Mina <br> sidor</router-link>
+              </a>
+            </li>
+            <li class="tablet-link" v-if="user.loggedIn">
+              <a href="#" @click.prevent="closeSlideMenu,signOut">
+                <router-link class="tablet-link" to="/">Logga ut</router-link>
+              </a>
+            </li>
+           
             <a href="#" class="material-icons" @click.prevent="closeSlideMenu">
               <i class="material-icons btn-close">close</i></a
             >
@@ -73,7 +84,12 @@
       </router-link>
       </div>
     <div class="loginIcon">
-      <router-link to="/login">
+      <router-link to="/login" v-if="!user.loggedIn">
+     <a
+      class="material-icons user"
+      >account_circle</a>
+      </router-link>
+         <router-link to="/account" v-if="user.loggedIn">
      <a
       class="material-icons user"
       >account_circle</a>
@@ -81,7 +97,7 @@
     </div>
      <div v-if="user.loggedIn">
           <li>
-            <p class="sign-out" @click.prevent="signOut">Logga ut</p>
+            <p class="sign-out hide-on-med-and-down" @click.prevent="signOut">Logga ut</p>
           </li>
         </div>
         </div>
@@ -245,6 +261,9 @@ font-size: 1em;
 @media only screen and (max-width: 1024px) {
   .header.hidden-header {
     transform: translate3d(0, -100%, 0);
+  }
+  .tablet-links-list{
+    margin-top: 5vh;
   }
 }
 </style>

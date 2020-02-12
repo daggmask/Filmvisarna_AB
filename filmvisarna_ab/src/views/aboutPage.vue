@@ -53,7 +53,7 @@
       .image-container img{
         width: 100vw;
       }
-      @media screen and (min-width:480px) {
+      @media screen and (min-width:516px) {
       .iframe-container iframe{
        width: 40vw;
       

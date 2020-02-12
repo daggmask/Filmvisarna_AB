@@ -55,6 +55,11 @@ export default {
 .card{
     border-radius: 5%;
 }
+.card:hover{
+    box-shadow: 0 0 10px white;
+    background-image: white;
+    z-index: 1;
+}
 .bookingsList{
     width: 25vw !important;
 }

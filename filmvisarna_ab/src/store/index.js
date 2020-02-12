@@ -58,7 +58,7 @@ export default new Vuex.Store({
       })
       commit('setMovies', movies)
      },
-     async getScreenings({commit}){
+     async getScreenings({commit, dispatch}){
       let querySnapshot = await db.collection("screenings").get();
       let screenings = [];
       querySnapshot.forEach(screening => {
@@ -87,7 +87,9 @@ export default new Vuex.Store({
               data.seats[row][col]=seat; 
             }
           }
+          dispatch("updateScreeningSeats", data)
         }
+
         screenings.push(data);
       });
       commit("setScreenings", screenings);
@@ -109,6 +111,9 @@ export default new Vuex.Store({
         console.log("publishmovies res" + res);
       }
       commit("publishMovies");
+    },
+    async updateScreeningSeats({commit}, payload){
+      db.collection("screenings").doc(payload.id).update({seats: payload.seats})
     },
     async publishBooking({ commit }, payload) {
       //Screening update

@@ -1,8 +1,9 @@
 <template>
+
   <div class="aboutPage">
-    
-  
-<div class="container">
+   
+
+<div class="image-container">
       <div class="row">
         <div class="col s12 l12">
     <img
@@ -13,7 +14,7 @@
       </div>
 
     
-        <div class="col s12 l6">
+        <div class="col s12 l12 center-align">
           <h3>En bioupplevelse som man sent glömmer</h3>
 
           <p>
@@ -23,7 +24,7 @@
           </p>
         </div>
 
-        <div class="col s12 l6 push-l2">
+        <div class="col s12 l12 center-align">
           <h4>Öppentider:</h4>
           <p>mån-tors:12:00-22:00</p>
           <p>fre - lör 12:00 - 00:00</p>
@@ -32,13 +33,28 @@
       </div>
     </div>
     <div class="s12 l12">
-      <h4 class="center-align">Hitta Hit:</h4> <br>
-
-          
+      <h4 class="center-align ">Hitta Hit:</h4> 
+<div class="iframe-container s12 l12">           
     <iframe class="center-align center-block" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2248.8428505604247!2d13.209326015928184!3d55.69171988053711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4653979677c463cf%3A0xdc335a111238b2d7!2sKalkstensv%C3%A4gen%203%2C%20224%2078%20Lund!5e0!3m2!1ssv!2sse!4v1579679349171!5m2!1ssv!2sse" frameborder="0"></iframe>
     </div>
+    </div>
   </div>
+
 </template>
+ <style>
+      .iframe-container iframe{
+        width: 50vw;
+        height: 240px;
+      }
+      .image-container img{
+        width: 100vw;
+      }
+      @media screen and (max-width: 670px) {
+       iframe-container{
+         max-height: 100px
+       }
+      }
+    </style>
 
 
 

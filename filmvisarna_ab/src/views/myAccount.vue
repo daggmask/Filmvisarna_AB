@@ -3,7 +3,10 @@
     <h4 class="center-block" v-if="user.loggedIn" @click="logBookings">{{user.data.displayName}}</h4>
     <h4 class="center-block" v-if="!user.loggedIn">Hej anonym</h4>
     <div class="col s4 m4 l4">
-    <div class="bookings" v-for="(booking, i) in bookings" :key="booking + i">     
+    <div class="bookings" 
+    v-for="(booking, i) in bookings"
+     :key="booking + i"
+     v-show="booking.account === user.data.email">     
     <div class="row s4 m4 l4 x4 bookingsList">
     <div class="col">
       <div class="card blue darken-3">

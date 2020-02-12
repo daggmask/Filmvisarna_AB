@@ -1,14 +1,15 @@
 <template>
-<div class="container center-block s4 m4 l4 col">
-    <h4 class="center-block" v-if="user.loggedIn" @click="logBookings">{{user.data.displayName}}</h4>
-    <h4 class="center-block" v-if="!user.loggedIn">Hej anonym</h4>
-    <div class="col s4 m4 l4">
-    <div class="bookings" 
+<div>
+<div class="header container center-block">
+    <h4 class="center-block" v-if="user.loggedIn" @click="logBookings">{{user.data.displayName}}s konto</h4>
+    <h4 class="center-block" v-if="!user.loggedIn"><em>Anonym</em></h4>
+    </div>
+    <div class="row">
+        <h5 class="center-block center-align">Bokade filmer:</h5>
+    <div class="card-container s12 m4 col " 
     v-for="(booking, i) in bookings"
      :key="booking + i"
      v-show="booking.account === user.data.email">     
-    <div class="row s4 m4 l4 x4 bookingsList">
-    <div class="col">
       <div class="card blue darken-3">
           <span class="card-title center-block center-align">{{booking.screeningTitle}}</span>
         <div class="card-content">
@@ -19,9 +20,7 @@
               <li>Pris: {{booking.totalPriceForPurchase}}kr</li>
               <li>boknings id: {{booking.screeningID}}</li>
           </ul>
-        </div>
-      </div>
-    </div>
+  </div>
   </div>
     </div>
     </div>
@@ -44,9 +43,6 @@ export default {
         let emailAccountName = this.bookings.map((accountName) => {
           return accountName.account
         })
-          console.log(this.$store.state.bookings)
-          console.log(email)
-          console.log(emailAccountName)
       }
   },
     created() {
@@ -58,5 +54,11 @@ export default {
 <style>
 .card{
     border-radius: 5%;
+}
+.bookingsList{
+    width: 25vw !important;
+}
+.bookings{
+    width: 25vw !important;
 }
 </style>

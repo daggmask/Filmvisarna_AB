@@ -230,6 +230,12 @@ li{
 .sign-out:hover{
 cursor: pointer;
 }
+.user:hover{
+  text-shadow: 0 0 20px white;
+  background-image: white;
+  color: #01579b !important;
+  z-index: 1;
+}
 .sign-out{
   font-size: .85em;
 }

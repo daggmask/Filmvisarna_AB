@@ -1,20 +1,20 @@
 <template>
-<div class="container center-block s12 m12 l12">
+<div class="container center-block s4 m4 l4 col">
     <h4 class="center-block" v-if="user.loggedIn" @click="logBookings">{{user.data.displayName}}</h4>
     <h4 class="center-block" v-if="!user.loggedIn">Hej anonym</h4>
-    <div class="col s12 m12 l12">
+    <div class="col s4 m4 l4">
     <div class="bookings" v-for="(booking, i) in bookings" :key="booking + i">     
-    <div class="row">
-    <div class="col s12 m7">
-      <div class="card">
-        <div class="card-image">
-          <img src="images/sample-1.jpg">
-          <span class="card-title">booking.screeningTitle</span>
-        </div>
+    <div class="row s4 m4 l4 x4 bookingsList">
+    <div class="col">
+      <div class="card blue darken-3">
+          <span class="card-title center-block center-align">{{booking.screeningTitle}}</span>
         <div class="card-content">
           <ul>
-              <li>booking.screeningDate</li>
-              <li>booking.screeningID</li>
+              <li>Datum: {{booking.screeningDate}}</li>
+              <li>Tid: {{booking.screeningTime}}</li>
+              <li>Antal biljetter: {{booking.regularTickets + booking.childTickets + booking.seniorCitizenTickets}}</li>
+              <li>Pris: {{booking.totalPriceForPurchase}}kr</li>
+              <li>boknings id: {{booking.screeningID}}</li>
           </ul>
         </div>
       </div>
@@ -32,17 +32,22 @@ export default {
       return this.$store.state.user
     },
     bookings(){
-       return this.$store.dispatch("getBookings");
+       return this.$store.state.bookings
     }
   },
   methods:{
       logBookings(){
-          console.log(this.bookings)
+          console.log(this.$store.state.bookings)
       }
-  }
+  },
+    created() {
+    this.$store.dispatch("getBookings");
+  },
 }
 </script>
 
 <style>
-
+.card{
+    border-radius: 5%;
+}
 </style>

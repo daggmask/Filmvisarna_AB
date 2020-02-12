@@ -37,7 +37,17 @@ export default {
   },
   methods:{
       logBookings(){
+        let email = this.user.data.email
+        let emailAccountName = this.bookings.map((accountName) => {
+          return accountName.account
+        })
           console.log(this.$store.state.bookings)
+          console.log(email)
+          console.log(emailAccountName)
+
+          if(email==emailAccountName){
+            
+          }
       }
   },
     created() {

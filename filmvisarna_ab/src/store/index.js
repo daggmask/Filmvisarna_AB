@@ -9,6 +9,7 @@ export default new Vuex.Store({
     publishMovies: false,
     movies: [],
     screenings: [], 
+    bookings: [], 
     movieFilter: '',         
     user: {
       loggedIn: false,
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     setMovies(state, data) {
       state.movies = data;
+    },
+    setBookings(state, data) {
+      state.bookings = data;
     },
     setScreenings(state, data) {
       state.screenings = data;
@@ -48,6 +52,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async getBookings({commit}){
+      let querySnapshot = await db.collection("bookings").get()
+      let bookings = [];
+      querySnapshot.forEach((booking) => {
+        let data = booking.data();
+        data.id = booking.id;
+        bookings.push(data);
+      })
+      commit('setBookings', bookings)
+     },
     async getMovies({commit}){
       let querySnapshot = await db.collection("movies").get()
       let movies = [];
@@ -138,6 +152,7 @@ export default new Vuex.Store({
         screeningTitle: payload.screeningTitle,
         seniorCitizenTickets: payload.seniorCitizenTickets,
         totalPriceForPurchase: payload.totalPriceForPurchase,
+        account: payload.account,
       };
       await db.collection("bookings").add(booking);
       commit("publishBooking", booking);

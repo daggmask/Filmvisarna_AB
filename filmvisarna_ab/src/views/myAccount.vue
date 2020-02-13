@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .card {
     border-radius: 5%;
     opacity: 0.8;

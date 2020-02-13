@@ -152,7 +152,7 @@ h1 {
     font-family: "Monoton", cursive;
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 2.4rem;
+    font-size: 2.9rem;
 }
 
 .header {
@@ -206,6 +206,7 @@ h1 {
     font-size: 0.95em;
     margin: 1em;
     width: 100%;
+    font-size: 1.5em;
 }
 
 .btn-close {
@@ -236,6 +237,10 @@ li {
     cursor: pointer;
 }
 
+.user{
+  font-size: 2.5rem;
+}
+
 .user:hover {
     text-shadow: 0 0 20px white;
     background-image: white;
@@ -258,6 +263,12 @@ li {
 
     .tablet-links-list {
         margin-top: 5vh;
+    }
+    h1{
+      font-size: 2rem;
+    }
+    .user{
+      font-size: 2rem;
     }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="container col main">
-    <ticketOptions @displayConfirmation="displayConfirmation()" v-if="!showConfirmation"/>
-    <auditorium></auditorium>
+    <ticketOptions @toAuditorium="showTicketOptions=!showTicketOptions,showAuditorium=!showAuditorium" v-if="showTicketOptions"/>
+    <auditorium v-if="showAuditorium"></auditorium>
     <bookingConfirmation v-if="showConfirmation" />
   </div>
 </template>
@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-      showConfirmation: false
+      showConfirmation: false,
+      showTicketOptions: true
     };
   },
   methods:{

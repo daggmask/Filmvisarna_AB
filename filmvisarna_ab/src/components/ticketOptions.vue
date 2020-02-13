@@ -83,11 +83,11 @@
         <label for="email">Email</label>
       </form>
         <button
-          @click="bookTickets(screening)"
+          @click="showAuditorium()"
           class="btn-large blue darken-3"
           v-if="displayBookingButton"
         >
-          Boka platser
+          Välj platser
         </button>
       </div>
     </div>
@@ -132,6 +132,14 @@ export default {
     this.$store.dispatch("getMovies");
   },
   methods: {
+
+      showAuditorium(){
+        let numberOfTickets = {numberOfRegularTickets: this.numberOfRegularTickets,
+                              numberOfChildTickets: this.numberOfChildTickets,
+                              numberSeniorCitizenTickets: this.numberSeniorCitizenTickets}
+        this.$store.commit('setNumberOfTickets', numberOfTickets)
+        this.$emit('toAuditorium')
+      },
       setEmail(){
       if(this.user.loggedIn){
         this.accountEmail = this.user.data.email

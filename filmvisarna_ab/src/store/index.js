@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    numberOfTickets: {},
     auditoriums: [],
     publishMovies: false,
     movies: [],
@@ -49,7 +50,10 @@ export default new Vuex.Store({
     },
     setAuditoriums(state, data){
       state.auditoriums = data;
-    }
+    },
+    setNumberOfTickets(state, data){
+      state.numberOfTickets = data;
+    },
   },
   actions: {
     async getBookings({commit}){

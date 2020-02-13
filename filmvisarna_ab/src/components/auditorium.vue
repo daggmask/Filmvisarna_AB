@@ -1,14 +1,19 @@
 <template>
   <div ref="auditorium">
+    <div class="flow-text headline">Välj Platser</div>
+    
+    <div class=" col movie-screen "></div>
     <div class="row" v-for="(row, i) in screening.seats" :key="row + i">
       <div 
       class="white seat" 
       v-for="(seat, j) in row" 
       :key="seat + j"
-      :class="{marked: seat.isMarked, available: seat.isAvailable}"
+      :class="{marked: seat.isMarked, available: seat.isAvailable, doneMarking: numberOfSeats == 0}"
       :style="{margin: seatMargin + 'px', width: seatSize + 'px', height: seatSize + 'px'}" 
       @click="updateSeat(seat)"></div>
     </div>
+    <p v-for="(seat, i) in seatsMarked" :key="seat + i">Rad : {{seat.y+1}} Plats: {{seat.x+1}}</p>
+    <div class="btn">Boka</div>
   </div>
   
 </template>
@@ -20,6 +25,9 @@ export default {
     return {
       seatMargin: 4,
       auditoriumWidth: 0,
+      numberOfSeats: 0,
+      numberOfSeatsRead: false,
+      seatsMarked: [] 
     }
   },
   computed:{
@@ -59,6 +67,13 @@ export default {
   },
   updated(){
     this.getAuditoriumWidth();
+    if(!this.numberOfSeatsRead){
+        let numberOfTickets = this.$store.state.numberOfTickets
+        this.numberOfSeats = numberOfTickets.numberOfRegularTickets +
+                             numberOfTickets.numberOfChildTickets +
+                             numberOfTickets.numberSeniorCitizenTickets;
+        this.numberOfSeatsRead = true;
+    }
   },
   methods:{
     onResizeListener() {
@@ -66,8 +81,28 @@ export default {
         this.auditoriumWidth = this.$refs.auditorium.clientWidth
       }
     },
+    removeMarkedSeat(seatToRemove){
+      let remainingSeats = [];
+      for(let seat of this.seatsMarked) {
+        if(seat.x === seatToRemove.x && seat.y === seatToRemove.y){
+          continue;
+        }
+        remainingSeats.push(seat)
+      }
+     this.seatsMarked = remainingSeats;
+    },
     updateSeat(seat){
-      seat.isMarked = !seat.isMarked;
+      if(seat.isAvailable && !seat.isMarked && this.numberOfSeats > 0 ){
+        this.numberOfSeats--;
+        seat.isMarked = !seat.isMarked;
+        this.seatsMarked.push(seat)
+      }else if(seat.isAvailable && seat.isMarked){
+        this.numberOfSeats++;
+        this.removeMarkedSeat(seat)
+        seat.isMarked = !seat.isMarked
+
+      }
+      console.log(this.seatsMarked)
     },
     getAuditoriumWidth(){
       if(!this.runOnce) {
@@ -99,5 +134,23 @@ export default {
 }
 .unavailable{
   background-color: red !important;
+}
+.movie-screen{
+  margin-top: 5%;
+  margin-bottom: 10%;
+  height: 0;
+  border-top: 50px solid white;
+  border-right: 30px solid transparent;
+  border-left: 30px solid transparent;
+  width: 100%;
+  
+}
+.headline{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.5rem;
+}
+.doneMarking{
+  opacity: 0.7 !important;
 }
 </style>

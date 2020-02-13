@@ -71,21 +71,21 @@
         <p
           class="red-text center"
           v-if="
-            this.numberOfRegularTickets <= 0 &&
+             this.numberOfRegularTickets <= 0 &&
               this.numberOfChildTickets <= 0 &&
-              this.numberSeniorCitizenTickets <= 0
-          "
-        >
+              this.numberSeniorCitizenTickets <= 0  
+          " >
           Du måste välja minst 1 biljett
         </p>
+        <p v-if="user.loggedIn==false"> Logga in eller ange en email för att boka </p>
+        <form class="input-field" v-if="!user.loggedIn">
+        <input type="email" name="email" value required autofocus v-model="accountEmail"/>
+        <label for="email">Email</label>
+      </form>
         <button
           @click="bookTickets(screening)"
           class="btn-large blue darken-3"
-          v-if="
-            this.numberOfRegularTickets >= 1 ||
-              this.numberOfChildTickets >= 1 ||
-              this.numberSeniorCitizenTickets >= 1
-          "
+          v-if="displayBookingButton"
         >
           Boka platser
         </button>
@@ -101,7 +101,8 @@ export default {
       numberOfRegularTickets: 2,
       numberSeniorCitizenTickets: 0,
       numberOfChildTickets: 0,
-      totalPriceForPurchase: 170
+      totalPriceForPurchase: 170,
+      accountEmail: ""
     };
   },
 
@@ -114,12 +115,32 @@ export default {
         }
       }
       return null;
+    },
+      user(){
+      return this.$store.state.user
+    },
+    displayBookingButton() {
+      if(this.user.loggedIn || this.accountEmail) {
+        return this.numberOfRegularTickets >= 1 ||
+                this.numberOfChildTickets >= 1 ||
+                this.numberSeniorCitizenTickets >= 1
+      }
+      return false
     }
   },
   created() {
     this.$store.dispatch("getMovies");
   },
   methods: {
+      setEmail(){
+      if(this.user.loggedIn){
+        this.accountEmail = this.user.data.email
+        return this.accountEmail
+      }
+      else{
+        return this.accountEmail
+      }
+    },
     seatsAvilable() {
       if (
         this.screening.seatsAvailable >
@@ -190,6 +211,7 @@ export default {
         seniorCitizenTickets: this.numberSeniorCitizenTickets,
         totalPriceForPurchase: this.totalPriceForPurchase,
         seatsLeft: seatsLeft,
+        account: this.setEmail()
       });
       this.$emit("displayConfirmation");
     },

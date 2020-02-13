@@ -7,6 +7,7 @@ import homePage from "@/views/Home.vue";
 import ticketBooking from "@/views/ticketBooking.vue";
 import logIn from "@/views/logIn.vue";
 import createUser from "@/views/createUser.vue"
+import myAccount from "@/views/myAccount.vue"
 
 
 Vue.use(VueRouter);
@@ -46,6 +47,11 @@ const routes = [
     path: "/create_user",
     name: "createUser",
     component: createUser
+  },
+  {
+    path: "/account",
+    name: "account",
+    component: myAccount
   },
 ];
 

@@ -60,13 +60,18 @@
               </a>
             </li>
              <li class="tablet-link" v-if="user.loggedIn">
-              <a href="#" @click.prevent="closeSlideMenu,signOut">
-                <router-link class="tablet-link" to="/">Mina <br> sidor</router-link>
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link accountPage" to="/account">Mina sidor</router-link>
               </a>
             </li>
             <li class="tablet-link" v-if="user.loggedIn">
-              <a href="#" @click.prevent="closeSlideMenu,signOut">
+              <a href="#" @click.prevent="closeSlideMenu ();signOut();">
                 <router-link class="tablet-link" to="/">Logga ut</router-link>
+              </a>
+            </li>
+            <li class="tablet-link" v-if="!user.loggedIn">
+              <a href="#" @click.prevent="closeSlideMenu ()">
+                <router-link class="tablet-link" to="/login">Logga in</router-link>
               </a>
             </li>
            
@@ -257,6 +262,9 @@ cursor: pointer;
 }
 .account{
 font-size: 1em;
+}
+.accountPage{
+  font-size: 1.2em
 }
 @media only screen and (max-width: 1024px) {
   .header.hidden-header {

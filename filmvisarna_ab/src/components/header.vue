@@ -1,21 +1,84 @@
 <template>
-<div class="main">
-    <header class="backgroundColour row  header light-blue darken-4 valign-wrapper" :class="{ 'hidden-header': !showheader }">
-        <div class="col s2 m4 l4 xl4 valign-wrapper left ">
-            <ul class="valign-wrapper ">
-                <li>
-                    <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu">menu</i>
-                </li>
-                <li>
-                    <router-link class="col hide-on-med-and-down desktop-link" to="/">Hem</router-link>
-                </li>
-                <li>
-                    <router-link class="col hide-on-med-and-down desktop-link" to="/movies">Filmer</router-link>
-                </li>
-                <li>
-                    <router-link class="col hide-on-med-and-down desktop-link" to="/about">Om oss</router-link>
-                </li>
-            </ul>
+  <div class="main">
+    <header
+      class="backgroundColour row  header light-blue darken-4 valign-wrapper"
+      :class="{ 'hidden-header': !showheader }"
+    >
+      <div class="col s2 m4 l4 xl4 valign-wrapper left ">
+        <ul class="valign-wrapper ">
+          <li>
+            <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu"
+              >menu</i
+            >
+          </li>
+          <li>
+            <router-link class="col hide-on-med-and-down desktop-link" to="/"
+              >Hem</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              class="col hide-on-med-and-down desktop-link"
+              to="/movies"
+              >Filmer</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              class="col hide-on-med-and-down desktop-link"
+              to="/about"
+              >Om oss</router-link
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="col s8 m4 l4 xl4 valign-wrapper center">
+        <router-link to="/"
+          ><h1 class="center-align center-block">Filmvisarna</h1></router-link
+        >
+      </div>
+      <div id="tablet-menu">
+        <div class="tablet-menu-links container">
+          <ul class="tablet-links-list container">
+            <li class="tablet-link">
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link" to="/">Hem</router-link>
+              </a>
+            </li>
+            <li class="tablet-link">
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link" to="/movies"
+                  >Filmer</router-link
+                >
+              </a>
+            </li>
+            <li class="tablet-link">
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link" to="/about"
+                  >Om oss</router-link
+                >
+              </a>
+            </li>
+             <li class="tablet-link" v-if="user.loggedIn">
+              <a href="#" @click.prevent="closeSlideMenu">
+                <router-link class="tablet-link accountPage" to="/account">Mina sidor</router-link>
+              </a>
+            </li>
+            <li class="tablet-link" v-if="user.loggedIn">
+              <a href="#" @click.prevent="closeSlideMenu ();signOut();">
+                <router-link class="tablet-link" to="/">Logga ut</router-link>
+              </a>
+            </li>
+            <li class="tablet-link" v-if="!user.loggedIn">
+              <a href="#" @click.prevent="closeSlideMenu ()">
+                <router-link class="tablet-link" to="/login">Logga in</router-link>
+              </a>
+            </li>
+           
+            <a href="#" class="material-icons" @click.prevent="closeSlideMenu">
+              <i class="material-icons btn-close">close</i></a
+            >
+          </ul>
         </div>
         <div class="col s8 m4 l4 xl4 valign-wrapper center">
             <router-link to="/">
@@ -250,6 +313,9 @@ li {
 
 .sign-out {
     font-size: .85em;
+}
+.accountPage{
+  font-size: 1.2em
 }
 
 .account {

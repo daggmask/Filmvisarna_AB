@@ -211,7 +211,8 @@ export default {
         seniorCitizenTickets: this.numberSeniorCitizenTickets,
         totalPriceForPurchase: this.totalPriceForPurchase,
         seatsLeft: seatsLeft,
-        account: this.setEmail()
+        account: this.setEmail(),
+        screeningTimeStamp: screening.time,
       });
       this.$emit("displayConfirmation");
     },

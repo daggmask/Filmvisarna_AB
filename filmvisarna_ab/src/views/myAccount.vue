@@ -7,7 +7,7 @@
       </h4>
     </div>
     <div class="row">
-      <h5 class="center-block center-align">Bokade filmer:</h5>
+      <h5 class="center-block center-align">Kommande visningar:</h5>
       <div
         class="card-container s12 m4 col"
         v-for="(booking, i) in future"
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="row">
-      <h5 class="center-block center-align">Tidigare bokningar:</h5>
+      <h5 class="center-block center-align">Tidigare visningar:</h5>
       <div
         class="card-container s12 m4 col"
         v-for="(booking, i) in history"

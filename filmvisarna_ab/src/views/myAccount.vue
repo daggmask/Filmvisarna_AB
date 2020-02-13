@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="header container center-block">
-        <h4 class="center-block" v-if="user.loggedIn" @click="logBookings">{{user.data.displayName}}s konto</h4>
+        <h4 class="center-block" v-if="user.loggedIn">{{user.data.displayName}}s konto</h4>
         <h4 class="center-block" v-if="!user.loggedIn"><em>Anonym</em></h4>
     </div>
     <div class="row">

@@ -1,28 +1,28 @@
 <template>
-  <div class="container col main">
-    <ticketOptions @displayConfirmation="displayConfirmation()" v-if="!showConfirmation"/>
+<div class="container col main">
+    <ticketOptions @displayConfirmation="displayConfirmation()" v-if="!showConfirmation" />
     <bookingConfirmation v-if="showConfirmation" />
-  </div>
+</div>
 </template>
 
 <script>
 import ticketOptions from "@/components/ticketOptions.vue";
 import bookingConfirmation from "@/components/bookingConfirmation.vue";
 export default {
-  components: {
-    ticketOptions,
-    bookingConfirmation
-  },
-  data() {
-    return {
-      showConfirmation: false
-    };
-  },
-  methods:{
-    displayConfirmation(){
-      this.showConfirmation = true;
+    components: {
+        ticketOptions,
+        bookingConfirmation
+    },
+    data() {
+        return {
+            showConfirmation: false
+        };
+    },
+    methods: {
+        displayConfirmation() {
+            this.showConfirmation = true;
+        }
     }
-  }
 };
 </script>
 

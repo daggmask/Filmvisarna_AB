@@ -1,63 +1,67 @@
 <template>
 <div class="container col createUser">
     <div class="center-block center-align">
-    <h1 class="black">SKAPA <br> KONTO</h1>
-    <form action="#" @submit.prevent="submit">
-      <div class="input-field">
-        <input id="name" type="text" name="name" value required autofocus v-model="form.name" />
-        <label for="name">Namn</label>
-      </div>
+        <h1 class="black">SKAPA <br> KONTO</h1>
+        <form action="#" @submit.prevent="submit">
+            <div class="input-field">
+                <input id="name" type="text" name="name" value required autofocus v-model="form.name" />
+                <label for="name">Namn</label>
+            </div>
 
-      <div class="input-field">
-        <input id="email" type="email" name="email" value required autofocus v-model="form.email" />
-        <label for="email">Email</label>
-      </div>
+            <div class="input-field">
+                <input id="email" type="email" name="email" value required autofocus v-model="form.email" />
+                <label for="email">Email</label>
+            </div>
 
-      <div class="input-field">
-        <input id="password" type="password" name="password" required v-model="form.password" />
-        <label for="password">Lösenord</label>
-      </div>
+            <div class="input-field">
+                <input id="password" type="password" name="password" required v-model="form.password" />
+                <label for="password">Lösenord</label>
+            </div>
 
-      <div class="input-field">
-        <button type="submit" class="btn waves-effect waves-light" >Skapa konto</button>
-      </div>
-    </form>
+            <div class="input-field">
+                <button type="submit" class="btn waves-effect waves-light">Skapa konto</button>
+            </div>
+        </form>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
-export default{
-    data(){
-        return{
-        form: {
-        name: "",
-        email: "",
-        password: ""
-      }
-     }
+export default {
+    data() {
+        return {
+            form: {
+                name: "",
+                email: "",
+                password: ""
+            }
+        }
     },
-methods:{
-       submit() {
-      this.$store.dispatch('registerUser', this.form)
-      this.$router.replace({ name: "homePage" });
-    }
- 
-}
-}
+    methods: {
+        submit() {
+            this.$store.dispatch('registerUser', this.form)
+            this.$router.replace({
+                name: "homePage"
+            });
+        }
 
+    }
+}
 </script>
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
-.createUser{
+.createUser {
     background-color: transparent;
 }
-h1{
+
+h1 {
     font-family: 'Monoton', cursive;
     font-size: 3rem
 }
-button{
+
+button {
     background-color: #01579b;
 }
 </style>

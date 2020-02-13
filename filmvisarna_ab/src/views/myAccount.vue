@@ -35,31 +35,6 @@ export default {
     bookings(){
        return this.$store.state.bookings
     },
-   /* currentTime(){
-      let today = new Date();
-      let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-      let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-      let dateTime = date+' '+time;
-      return this.datetime;
-    }*/
-  },
-  methods:{
-      logBookings(){
-        let email = this.user.data.email
-        let emailAccountName = this.bookings.map((accountName) => {
-          return accountName.account
-          
-        });
-        let today = new Date();
-        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        let dateTime = date+' '+time;
-          console.log(this.$store.state.bookings)
-          console.log(email)
-          console.log(emailAccountName)
-          console.log(dateTime)
-          console.log(this.booking.screeningDate)
-      }
   },
     created() {
     this.$store.dispatch("getBookings");
@@ -70,6 +45,7 @@ export default {
 <style>
 .card{
     border-radius: 5%;
+    opacity: 0.8;
 }
 .card:hover{
     box-shadow: 0 0 10px white;

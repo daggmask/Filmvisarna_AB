@@ -12,7 +12,7 @@
                 <div class="card-stacked">
                     <div class="card-content valign-wrapper">
                         <div class="hide-on-med-and-down">
-                            <p class="medium-text">{{movie.genre}}</p>
+                            <p class="large-text">{{movie.genre}}</p>
                             <p class="small-text">{{movie.length}} min</p>
                             <p class="small-text">{{movie.language}}</p>
                             <p class="small-margin large-text">{{ movie.description }}</p>

@@ -1,9 +1,10 @@
 <template>
   <div ref="auditorium">
     <div class="flow-text headline">Välj Platser</div>
-    
-    <div class=" col movie-screen "></div>
-    <div class="row" v-for="(row, i) in screening.seats" :key="i">
+    <div class="movie-screen-container">
+     <div class="movie-screen"></div>
+    </div>
+    <div class="row seats" v-for="(row, i) in screening.seats" :key="i">
       <div 
       class="white seat" 
       v-for="(seat, j) in row" 
@@ -12,8 +13,14 @@
       :style="{margin: seatMargin + 'px', width: seatSize + 'px', height: seatSize + 'px'}" 
       @click="updateSeat(seat)"></div>
     </div>
-    <p v-for="(seat, i) in seatsMarked" :key="seat + i">Rad : {{seat.y+1}} Plats: {{seat.x+1}}</p>
-    <div class="btn light-blue darken-4 " @click="bookTickets()">Boka</div>
+    <div class="row">
+      <div class="btn col light-blue darken-4 s5 l2 offset-l3" @click="returnToTicketOptions()">Tillbaka</div>
+      <div class="btn light-blue darken-4 col s5 offset-s2 l2 offset-l2" @click="bookTickets()">Boka</div>
+    </div>
+    <div class="row">
+      <p class="col s12 center-align text-flow" v-for="(seat, i) in seatsMarked" :key="seat + i">Rad : {{seat.y+1}} Plats: {{seat.x+1}}</p>
+    </div>
+    
   </div>
   
 </template>
@@ -54,9 +61,19 @@ export default {
       return length;
     },
     seatSize(){
+      
       let width = this.auditoriumWidth;
-      width -= (this.longestRow * this.seatMargin * 2);
-      let seatSize = width / this.longestRow;
+      let seatSize;
+      if(width > 840){
+        seatSize = 25;
+      }else if(width > 621){
+        seatSize = 45
+      }
+      else{
+        width -= (this.longestRow * this.seatMargin * 2);
+        seatSize = width / this.longestRow;
+
+      }
       return seatSize;
     }
   },
@@ -77,6 +94,10 @@ export default {
     }
   },
   methods:{
+    returnToTicketOptions(){
+      this.$emit('return')
+      this.removeIsMarkedFromSeats()
+    },
     bookTickets(){
       this.removeIsMarkedFromSeats();
       this.changeSeatAvailabilty();
@@ -154,10 +175,11 @@ export default {
 .seat{
   border-radius: 2px 2px 6px 6px;
 }
-.row{
+.seats{
   margin: 0;
   display: flex;
   justify-content: center;
+  flex-direction: row-reverse;
 }
 .available{
   background-color: white !important;
@@ -176,7 +198,10 @@ export default {
   border-right: 30px solid transparent;
   border-left: 30px solid transparent;
   width: 100%;
-  
+}
+.movie-screen-container{
+  display: flex;
+  justify-content: center;
 }
 .headline{
   text-align: center;
@@ -185,6 +210,19 @@ export default {
 }
 .doneMarking{
   opacity: 0.7 !important;
+}
+.btn{
+  margin-top: 3%;
+  width: 100%;
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 1200px){
+  .movie-screen{
+    width: 40%;
+    margin-bottom: 3%;
+    margin-top: 2%;
+  }
 }
 
 </style>

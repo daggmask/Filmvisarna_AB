@@ -1,7 +1,7 @@
 <template>
-  <div class="container col main">
+  <div class="container col">
     <ticketOptions @toAuditorium="showTicketOptions=!showTicketOptions,showAuditorium=!showAuditorium" v-if="showTicketOptions"/>
-    <auditorium v-if="showAuditorium" @toConfirmation="displayConfirmation(),showAuditorium=!showAuditorium"></auditorium>
+    <auditorium v-if="showAuditorium" @return="showTicketOptions=!showTicketOptions,showAuditorium=!showAuditorium" @toConfirmation="displayConfirmation(),showAuditorium=!showAuditorium"></auditorium>
     <bookingConfirmation v-if="showConfirmation" />
   </div>
 </template>

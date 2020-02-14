@@ -64,32 +64,55 @@ export default {
       let allBookings = this.$store.state.bookings;
       let pastBookings = [];
       let today = new Date();
-        allBookings.forEach(booking => {
-          if (
-            today.getDate() >= booking.time.getDate() &&
-            today.getMonth() >= booking.time.getMonth() &&
-            today.getFullYear() >= booking.time.getFullYear()
-          ) {
-            pastBookings.push(booking);
-          }
-        });
+      allBookings.forEach(booking => {
+        if (
+          //Past bookings from TODAY
+          today.getDate() == booking.time.getDate() &&
+          today.getMonth() == booking.time.getMonth() &&
+          today.getFullYear() == booking.time.getFullYear() &&
+          today.getHours() >= booking.time.getHours() &&
+          today.getMinutes() >= booking.time.getMinutes()
+        ) {
+          pastBookings.push(booking);
+        } else if (
+          //Past bookings from THIS YEAR
+          today.getDate() > booking.time.getDate() &&
+          today.getMonth() >= booking.time.getMonth() &&
+          today.getFullYear() >= booking.time.getFullYear()
+        ) {
+          pastBookings.push(booking);
+        } else if (today.getFullYear() > booking.time.getFullYear()) {
+          //Past bookings from EARLIER YAERS
+          pastBookings.push(booking);
+        }
+      });
       return pastBookings;
     },
     future() {
       let allBookings = this.$store.state.bookings;
       let pastBookings = [];
       let today = new Date();
-        allBookings.forEach(booking => {
-          if (
-            today.getDate() <= booking.time.getDate() &&
-            today.getMonth() <= booking.time.getMonth() &&
-            today.getFullYear() <= booking.time.getFullYear()
-          ) {
-            pastBookings.push(booking);
-          }
-        });
+      allBookings.forEach(booking => {
+        //Booked screenings for TODAY ONLY
+        if (
+          today.getDate() == booking.time.getDate() &&
+          today.getMonth() == booking.time.getMonth() &&
+          today.getFullYear() == booking.time.getFullYear() &&
+          today.getHours() <= booking.time.getHours() &&
+          today.getMinutes() < booking.time.getMinutes()
+        ) {
+          pastBookings.push(booking);
+          //Booked screenings TOMORROW AND ONWARDS
+        } else if (
+          today.getDate() + 1 <= booking.time.getDate() &&
+          today.getMonth() <= booking.time.getMonth() &&
+          today.getFullYear() <= booking.time.getFullYear()
+        ) {
+          pastBookings.push(booking);
+        }
+      });
       return pastBookings;
-    },
+    }
   },
   created() {
     this.$store.dispatch("getBookings");

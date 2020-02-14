@@ -21,7 +21,6 @@
                             <p class="genretext">{{movie.genre}}</p>
                             <p class="lengthtext">{{movie.length}} min</p>
                             <p class="languagetext">{{movie.language}}</p>
-                            <span class="actortext">{{ this.getActors(movie) }}</span>
                         </div>
                     </div>
                 </div>
@@ -37,6 +36,9 @@
                     <div class="subheader">Regissör:</div>
                     <div class="">{{movie.director}}</div>
 
+                    <div class="subheader">Skådespelare:</div>
+                    <div>{{ this.getActors(movie)}}</div>
+
                     <div class="subheader">Produktionsländer:</div>
                     <div>{{ this.getProductionCountries(movie) }}</div>
 
@@ -45,6 +47,7 @@
 
                     <div class="subheader">Produktionsår:</div>
                     <div>{{movie.productionYear}}</div>
+                    
                 </div>
             </div>
         </div>
@@ -110,10 +113,6 @@ export default {
 .img {
     max-width: 15vw;
     height: auto;
-}
-
-.actortext {
-    font-size: 0.7em;
 }
 
 .genretext {

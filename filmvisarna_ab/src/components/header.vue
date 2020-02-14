@@ -19,7 +19,8 @@
         </div>
         <div class="col s8 m4 l4 xl4 valign-wrapper center">
             <router-link to="/">
-                <h1 class="center-align center-block">Filmvisarna</h1>
+                <img src="@/images/logo_2.png" class="responsive-img" v-show="!user.loggedIn">
+                <img src="@/images/logo_1.png" class="responsive-img" v-show="user.loggedIn">
             </router-link>
         </div>
         <div id="tablet-menu">
@@ -148,11 +149,8 @@ export default {
     height: 9.5vh;
 }
 
-h1 {
-    font-family: "Monoton", cursive;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 2.4rem;
+img{
+  margin-top: 3%;
 }
 
 .header {

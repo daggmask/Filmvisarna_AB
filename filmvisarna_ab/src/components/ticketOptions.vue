@@ -194,6 +194,7 @@ export default {
           .substr(2, 5)
       );
     },
+    /* bookTickets sends the object with attributes to store */
     bookTickets(screening) {
       let seatsLeft =
         screening.seatsAvailable -
@@ -214,8 +215,10 @@ export default {
         account: this.setEmail(),
         screeningTimeStamp: screening.time,
       });
+      /* emits to bookingConfirmation and displays needed information about the booking made */
       this.$emit("displayConfirmation");
     },
+    /* Methods below renders toDate to a string that can be comparable and renderable for webbrowser and developer */
     getScreeningTime(screeningDate){
       let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
       return screeningTime;      

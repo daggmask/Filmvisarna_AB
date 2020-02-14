@@ -14,6 +14,7 @@
         :key="booking + i"
         v-show="booking.account === user.data.email"
       >
+      <!-- Renders upcoming screenings -->
         <div class="card blue darken-3">
           <span class="card-title center-block center-align">{{booking.screeningTitle}}</span>
           <div class="card-content">
@@ -35,6 +36,7 @@
         :key="booking + i"
         v-show="booking.account === user.data.email"
       >
+      <!-- Renders past bookings -->
         <div class="card blue darken-3">
           <span class="card-title center-block center-align">{{booking.screeningTitle}}</span>
           <div class="card-content">

@@ -38,6 +38,7 @@ export default {
         }
     },
     methods: {
+      /* This method registers account and sends it to firebase and redirects webbbrowser to homepage upon button click */
         submit() {
             this.$store.dispatch('registerUser', this.form)
             this.$router.replace({

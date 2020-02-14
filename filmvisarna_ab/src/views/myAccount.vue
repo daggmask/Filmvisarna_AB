@@ -65,8 +65,8 @@ export default {
       let pastBookings = [];
       let today = new Date();
       allBookings.forEach(booking => {
-        //Booked screenings for TODAY ONLY
         if (
+          //Past bookings from TODAY
           today.getDate() == booking.time.getDate() &&
           today.getMonth() == booking.time.getMonth() &&
           today.getFullYear() == booking.time.getFullYear() &&
@@ -74,12 +74,15 @@ export default {
           today.getMinutes() >= booking.time.getMinutes()
         ) {
           pastBookings.push(booking);
-          //Booked screenings TODAY AND ONWARDS
         } else if (
-          today.getDate()  > booking.time.getDate() &&
+          //Past bookings from THIS YEAR
+          today.getDate() > booking.time.getDate() &&
           today.getMonth() >= booking.time.getMonth() &&
           today.getFullYear() >= booking.time.getFullYear()
         ) {
+          pastBookings.push(booking);
+        } else if (today.getFullYear() > booking.time.getFullYear()) {
+          //Past bookings from EARLIER YAERS
           pastBookings.push(booking);
         }
       });
@@ -96,7 +99,7 @@ export default {
           today.getMonth() == booking.time.getMonth() &&
           today.getFullYear() == booking.time.getFullYear() &&
           today.getHours() <= booking.time.getHours() &&
-          today.getMinutes() < booking.time.getMinutes() 
+          today.getMinutes() < booking.time.getMinutes()
         ) {
           pastBookings.push(booking);
           //Booked screenings TOMORROW AND ONWARDS

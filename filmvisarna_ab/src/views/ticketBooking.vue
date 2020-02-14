@@ -1,7 +1,7 @@
 <template>
   <div class="container col main">
     <ticketOptions @toAuditorium="showTicketOptions=!showTicketOptions,showAuditorium=!showAuditorium" v-if="showTicketOptions"/>
-    <auditorium v-if="showAuditorium"></auditorium>
+    <auditorium v-if="showAuditorium" @toConfirmation="displayConfirmation(),showAuditorium=!showAuditorium"></auditorium>
     <bookingConfirmation v-if="showConfirmation" />
   </div>
 </template>
@@ -25,19 +25,8 @@ export default {
   methods:{
     displayConfirmation(){
       this.showConfirmation = true;
-    }
-  },
-  computed: {
-    screening() {
-      let screenings = this.$store.state.screenings;
-      let movieScreening;
-      for (let screening of screenings) {
-        if (screening.id === this.$route.params.screening) {
-          movieScreening = screening;
-        }
-      }
-      return movieScreening;
-    }
+    },
+    
   },
 };
 </script>

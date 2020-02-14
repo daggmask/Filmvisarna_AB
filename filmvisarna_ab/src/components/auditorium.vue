@@ -3,17 +3,17 @@
     <div class="flow-text headline">Välj Platser</div>
     
     <div class=" col movie-screen "></div>
-    <div class="row" v-for="(row, i) in screening.seats" :key="row + i">
+    <div class="row" v-for="(row, i) in screening.seats" :key="i">
       <div 
       class="white seat" 
       v-for="(seat, j) in row" 
-      :key="seat + j"
-      :class="{marked: seat.isMarked, available: seat.isAvailable, doneMarking: numberOfSeats == 0}"
+      :key="seat.x + seat.y + i + j"
+      :class="{unavailable: !seat.isAvailable, marked: seat.isMarked, available: seat.isAvailable, doneMarking: numberOfSeats == 0}"
       :style="{margin: seatMargin + 'px', width: seatSize + 'px', height: seatSize + 'px'}" 
       @click="updateSeat(seat)"></div>
     </div>
     <p v-for="(seat, i) in seatsMarked" :key="seat + i">Rad : {{seat.y+1}} Plats: {{seat.x+1}}</p>
-    <div class="btn">Boka</div>
+    <div class="btn light-blue darken-4 " @click="bookTickets()">Boka</div>
   </div>
   
 </template>
@@ -45,6 +45,7 @@ export default {
       let seats = this.screening.seats;
       let length = 0;
       seats.forEach(row => {
+        console.log(row, 'row')
         row = Object.values(row);
         if(row.length > length) {
           length = row.length;
@@ -76,6 +77,38 @@ export default {
     }
   },
   methods:{
+    bookTickets(){
+      this.removeIsMarkedFromSeats();
+      this.changeSeatAvailabilty();
+      this.addSeatsToBooking();
+      this.$store.dispatch('publishBooking', this.$store.state.booking)
+      this.$emit('toConfirmation')
+    },
+    addSeatsToBooking(){
+      this.$store.commit('updateBooking',{bookedSeats: this.seatsMarked, seats: this.screening.seats})
+    },
+    removeIsMarkedFromSeats(){
+      this.screening.seats.forEach(row =>{
+        row = Object.values(row) 
+        row.forEach(seat =>{
+          delete seat.isMarked;
+        })
+      })
+    },
+    changeSeatAvailabilty(){
+      this.screening.seats.forEach(row =>{
+        row = Object.values(row)
+
+        row.forEach(seat =>{
+
+          this.seatsMarked.forEach(marked =>{
+            if(marked.x === seat.x && marked.y === seat.y){
+              seat.isAvailable = false;
+            }
+          })  
+        })
+      })
+    },
     onResizeListener() {
       if(this.$refs.auditorium){
         this.auditoriumWidth = this.$refs.auditorium.clientWidth
@@ -130,7 +163,7 @@ export default {
   background-color: white !important;
 }
 .marked{
-  background-color: blue !important;
+  background-color: #01579b !important;
 }
 .unavailable{
   background-color: red !important;
@@ -153,4 +186,5 @@ export default {
 .doneMarking{
   opacity: 0.7 !important;
 }
+
 </style>

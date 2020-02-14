@@ -83,7 +83,7 @@
         <label for="email">Email</label>
       </form>
         <button
-          @click="showAuditorium()"
+          @click="showAuditorium(screening)"
           class="btn-large blue darken-3"
           v-if="displayBookingButton"
         >
@@ -133,11 +133,31 @@ export default {
   },
   methods: {
 
-      showAuditorium(){
+      showAuditorium(screening){
         let numberOfTickets = {numberOfRegularTickets: this.numberOfRegularTickets,
                               numberOfChildTickets: this.numberOfChildTickets,
                               numberSeniorCitizenTickets: this.numberSeniorCitizenTickets}
         this.$store.commit('setNumberOfTickets', numberOfTickets)
+
+        let seatsLeft = screening.seatsAvailable -
+          (this.numberOfRegularTickets +
+          this.numberOfChildTickets +
+          this.numberSeniorCitizenTickets);
+
+        this.$store.commit('setBooking',{
+        childTickets: this.numberOfChildTickets,
+        customerBookingReferenceNumber: this.generateCustomerBookingReferenceNumber(),
+        regularTickets: this.numberOfRegularTickets,
+        screeningDate: this.getDateAsString(screening.time),
+        screeningID: screening.id,
+        screeningTime: this.getScreeningTime(screening.time),
+        screeningTitle: screening.film,
+        seniorCitizenTickets: this.numberSeniorCitizenTickets,
+        totalPriceForPurchase: this.totalPriceForPurchase,
+        seatsLeft: seatsLeft,
+        account: this.setEmail(),
+        screeningTimeStamp: screening.time
+      })
         this.$emit('toAuditorium')
       },
       setEmail(){

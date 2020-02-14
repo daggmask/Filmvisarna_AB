@@ -44,7 +44,7 @@ export default new Vuex.Store({
     setUser(state, data) {
       state.user.data = data;
     },
-    publishBooking(state, data) {
+    setBooking(state, data) {
       state.booking = data;
       state.publishBooking = true;
     },
@@ -54,6 +54,11 @@ export default new Vuex.Store({
     setNumberOfTickets(state, data){
       state.numberOfTickets = data;
     },
+    updateBooking(state, data){
+      state.booking.bookedSeats = data.bookedSeats;
+      state.booking.seats = data.seats;
+      console.log('state :',state.booking.seats, 'data:', data.seats)
+    }
   },
   actions: {
     async getBookings({commit}){
@@ -107,12 +112,12 @@ export default new Vuex.Store({
           }
           dispatch("updateScreeningSeats", data)
         }
-        data.seats.forEach(row => {
-          row = Object.values(row);
-          row.forEach(seat => {
-            seat.isMarked = false;
-          })
-        })
+        // data.seats.forEach(row => {
+        //   row = Object.values(row);
+        //   row.forEach(seat => {
+        //     seat.isMarked = false;
+        //   })
+        // })
         screenings.push(data);
       });
       commit("setScreenings", screenings);
@@ -140,11 +145,15 @@ export default new Vuex.Store({
     },
     async publishBooking({ commit }, payload) {
       //Screening update
-      db.collection("screenings")
+      
+      
+        db.collection("screenings")
         .doc(payload.screeningID)
         .update({
+          seats: payload.seats,
           seatsAvailable: payload.seatsLeft
-        });
+        })
+      
       //Booking added to Bookings
       let booking = {
         childTickets: payload.childTickets,
@@ -157,9 +166,11 @@ export default new Vuex.Store({
         seniorCitizenTickets: payload.seniorCitizenTickets,
         totalPriceForPurchase: payload.totalPriceForPurchase,
         account: payload.account,
+        seats: payload.seats
       };
+      console.log(booking, ': booking')
       await db.collection("bookings").add(booking);
-      commit("publishBooking", booking);
+      //commit("publishBooking", booking);
     },
     async createUser(user){
       console.log(user)

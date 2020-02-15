@@ -19,6 +19,12 @@
       :class="{disabled: this.numberOfSeats != 0}"
       @click="bookTickets()">Boka</div>
     </div>
+    <div class="row" v-if="!user.loggedIn">
+      <form class="input-field col s12 l6 offset-l3">
+        <input type="email" name="email" value required autofocus v-model="accountEmail"/>
+        <label for="email">Email</label>
+      </form>
+    </div>
     <div class="row">
       <p class="col s12 center-align text-flow" v-for="(seat, i) in seatsMarked" :key="seat + i">Rad : {{seat.y+1}} Plats: {{seat.x+1}}</p>
     </div>
@@ -36,10 +42,14 @@ export default {
       auditoriumWidth: 0,
       numberOfSeats: 0,
       numberOfSeatsRead: false,
-      seatsMarked: [] 
+      seatsMarked: [],
+      userEmail: "",
     }
   },
   computed:{
+    user() {
+      return this.$store.state.user;
+    },
     screening() {
       let screenings = this.$store.state.screenings;
       let movieScreening;
@@ -79,22 +89,6 @@ export default {
       return seatSize;
     }
   },
-  mounted(){
-    this.getAuditoriumWidth();
-  },
-  created() {
-    window.addEventListener('resize', this.onResizeListener.bind(this))
-  },
-  updated(){
-    this.getAuditoriumWidth();
-    if(!this.numberOfSeatsRead){
-        let numberOfTickets = this.$store.state.numberOfTickets
-        this.numberOfSeats = numberOfTickets.numberOfRegularTickets +
-                             numberOfTickets.numberOfChildTickets +
-                             numberOfTickets.numberSeniorCitizenTickets;
-        this.numberOfSeatsRead = true;
-    }
-  },
   methods:{
     returnToTicketOptions(){
       this.$emit('return')
@@ -102,13 +96,13 @@ export default {
     },
     bookTickets(){
       this.removeIsMarkedFromSeats();
-      this.changeSeatAvailabilty();
+      this.changeSeatAvailability();
       this.addSeatsToBooking();
       this.$store.dispatch('publishBooking', this.$store.state.booking)
       this.$emit('toConfirmation')
     },
     addSeatsToBooking(){
-      this.$store.commit('updateBooking',{bookedSeats: this.seatsMarked, seats: this.screening.seats})
+      this.$store.commit('updateBooking',{bookedSeats: this.seatsMarked, auditoriumSeats: this.screening.seats})
     },
     removeIsMarkedFromSeats(){
       this.screening.seats.forEach(row =>{
@@ -118,7 +112,7 @@ export default {
         })
       })
     },
-    changeSeatAvailabilty(){
+    changeSeatAvailability(){
       this.screening.seats.forEach(row =>{
         row = Object.values(row)
 
@@ -137,16 +131,6 @@ export default {
         this.auditoriumWidth = this.$refs.auditorium.clientWidth
       }
     },
-    removeMarkedSeat(seatToRemove){
-      let remainingSeats = [];
-      for(let seat of this.seatsMarked) {
-        if(seat.x === seatToRemove.x && seat.y === seatToRemove.y){
-          continue;
-        }
-        remainingSeats.push(seat)
-      }
-     this.seatsMarked = remainingSeats;
-    },
     updateSeat(seat){
       if(seat.isAvailable && !seat.isMarked && this.numberOfSeats > 0 ){
         this.numberOfSeats--;
@@ -156,8 +140,12 @@ export default {
         this.numberOfSeats++;
         this.removeMarkedSeat(seat)
         seat.isMarked = !seat.isMarked
-
       }
+    },
+    removeMarkedSeat(seatToRemove){
+      this.seatsMarked = this.seatsMarked.filter(seat => {
+        return !(seat.x === seatToRemove.x && seat.y === seatToRemove.y)
+      })
       console.log(this.seatsMarked)
     },
     getAuditoriumWidth(){
@@ -165,6 +153,22 @@ export default {
         this.auditoriumWidth = this.$refs.auditorium.clientWidth
         this.runOnce = true;
       }
+    }
+  },
+  created() {
+    window.addEventListener('resize', this.onResizeListener.bind(this))
+  },
+  mounted(){
+    this.getAuditoriumWidth();
+  },
+  updated(){
+    this.getAuditoriumWidth();
+    if(!this.numberOfSeatsRead){
+        let numberOfTickets = this.$store.state.numberOfTickets
+        this.numberOfSeats = numberOfTickets.numberOfRegularTickets +
+                             numberOfTickets.numberOfChildTickets +
+                             numberOfTickets.numberSeniorCitizenTickets;
+        this.numberOfSeatsRead = true;
     }
   },
   beforeDestroy() {

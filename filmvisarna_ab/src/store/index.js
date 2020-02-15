@@ -56,8 +56,7 @@ export default new Vuex.Store({
     },
     updateBooking(state, data){
       state.booking.bookedSeats = data.bookedSeats;
-      state.booking.seats = data.seats;
-      console.log('state :',state.booking.seats, 'data:', data.seats)
+      state.booking.auditoriumSeats = data.auditoriumSeats;
     }
   },
   actions: {
@@ -150,7 +149,7 @@ export default new Vuex.Store({
         db.collection("screenings")
         .doc(payload.screeningID)
         .update({
-          seats: payload.seats,
+          seats: payload.auditoriumSeats,
           seatsAvailable: payload.seatsLeft
         })
       

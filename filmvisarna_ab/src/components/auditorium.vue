@@ -15,7 +15,9 @@
     </div>
     <div class="row">
       <div class="btn col light-blue darken-4 s5 l2 offset-l3" @click="returnToTicketOptions()">Tillbaka</div>
-      <div class="btn light-blue darken-4 col s5 offset-s2 l2 offset-l2" @click="bookTickets()">Boka</div>
+      <div class="btn light-blue darken-4 col s5 offset-s2 l2 offset-l2"
+      :class="{disabled: this.numberOfSeats != 0}"
+      @click="bookTickets()">Boka</div>
     </div>
     <div class="row">
       <p class="col s12 center-align text-flow" v-for="(seat, i) in seatsMarked" :key="seat + i">Rad : {{seat.y+1}} Plats: {{seat.x+1}}</p>

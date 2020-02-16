@@ -50,13 +50,9 @@ export default {
     },
     screening() {
       let screenings = this.$store.state.screenings;
-      let movieScreening;
-      for (let screening of screenings) {
-        if (screening.id === this.$route.params.screening) {
-          movieScreening = screening;
-        }
-      }
-      return movieScreening;
+      return screenings.filter(screening => {
+        return screening.id === this.$route.params.screening;
+      })[0];
     },
     longestRow(){
       let seats = this.screening.seats;
@@ -102,13 +98,11 @@ export default {
       })
     },
     bookTickets(){
-      if(this.emailIsValid || this.user.loggedIn) {
         this.removeIsMarkedFromSeats();
         this.changeSeatAvailability();
         this.updateBooking();
         this.$store.dispatch('publishBooking', this.$store.state.booking)
         this.$emit('toConfirmation')
-      }
     },
     changeSeatAvailability(){
       this.screening.seats.forEach(row =>{
@@ -198,8 +192,12 @@ export default {
 .marked{
   background-color: #01579b !important;
 }
+.marked:hover{
+  background-color: #0091ea !important;
+}
 .unavailable{
-  background-color: red !important;
+  background-color: transparent !important;
+  border: 3px solid white;
 }
 .movie-screen{
   margin-top: 5%;
@@ -227,12 +225,18 @@ export default {
   width: 100%;
   font-size: 1rem;
 }
-
+.input-field input[type=email]:focus {
+     border-bottom: 1px solid #01579b;
+     box-shadow: 0 1px 0 0 #01579b;
+   }
 @media screen and (min-width: 1200px){
   .movie-screen{
     width: 40%;
     margin-bottom: 3%;
     margin-top: 2%;
+  }
+  .unavailable{
+    border-width: 5px;
   }
 }
 

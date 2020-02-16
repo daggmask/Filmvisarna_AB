@@ -57,6 +57,7 @@ export default new Vuex.Store({
     updateBooking(state, data){
       state.booking.bookedSeats = data.bookedSeats;
       state.booking.auditoriumSeats = data.auditoriumSeats;
+      state.booking.account = data.account;
     }
   },
   actions: {

@@ -1,6 +1,6 @@
 <template>
   <div ref="auditorium">
-    <div class="flow-text headline">Välj Platser</div>
+    <div class="flow-text headline">Välj {{numberOfSeats}} platser</div>
     <div class="movie-screen-container">
      <div class="movie-screen"></div>
     </div>
@@ -16,25 +16,23 @@
     <div class="row">
       <div class="btn col light-blue darken-4 s5 l2 offset-l3" @click="returnToTicketOptions()">Tillbaka</div>
       <div class="btn light-blue darken-4 col s5 offset-s2 l2 offset-l2"
-      :class="{disabled: this.numberOfSeats != 0}"
+      :class="{disabled: numberOfSeats != 0 || !(user.loggedIn || emailIsValid)}"
       @click="bookTickets()">Boka</div>
     </div>
     <div class="row" v-if="!user.loggedIn">
       <form class="input-field col s12 l6 offset-l3">
-        <input type="email" name="email" value required autofocus v-model="accountEmail"/>
+        <input type="email" name="email" value required autofocus v-model="userEmail"/>
         <label for="email">Email</label>
+        <p v-if="!(emailIsValid || user.loggedIn) && numberOfSeats === 0">Logga in eller skriv in en giltig e-mail</p>
       </form>
     </div>
     <div class="row">
       <p class="col s12 center-align text-flow" v-for="(seat, i) in seatsMarked" :key="seat + i">Rad : {{seat.y+1}} Plats: {{seat.x+1}}</p>
-    </div>
-    
-  </div>
-  
+    </div>  
+  </div> 
 </template>
 
 <script>
-
 export default {
   data(){
     return {
@@ -64,7 +62,6 @@ export default {
       let seats = this.screening.seats;
       let length = 0;
       seats.forEach(row => {
-        console.log(row, 'row')
         row = Object.values(row);
         if(row.length > length) {
           length = row.length;
@@ -73,7 +70,6 @@ export default {
       return length;
     },
     seatSize(){
-      
       let width = this.auditoriumWidth;
       let seatSize;
       if(width > 840){
@@ -84,25 +80,18 @@ export default {
       else{
         width -= (this.longestRow * this.seatMargin * 2);
         seatSize = width / this.longestRow;
-
       }
       return seatSize;
-    }
+    },
+    emailIsValid(){
+      let regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      return regEx.test(this.userEmail);
+    },
   },
   methods:{
     returnToTicketOptions(){
       this.$emit('return')
       this.removeIsMarkedFromSeats()
-    },
-    bookTickets(){
-      this.removeIsMarkedFromSeats();
-      this.changeSeatAvailability();
-      this.addSeatsToBooking();
-      this.$store.dispatch('publishBooking', this.$store.state.booking)
-      this.$emit('toConfirmation')
-    },
-    addSeatsToBooking(){
-      this.$store.commit('updateBooking',{bookedSeats: this.seatsMarked, auditoriumSeats: this.screening.seats})
     },
     removeIsMarkedFromSeats(){
       this.screening.seats.forEach(row =>{
@@ -112,12 +101,19 @@ export default {
         })
       })
     },
+    bookTickets(){
+      if(this.emailIsValid || this.user.loggedIn) {
+        this.removeIsMarkedFromSeats();
+        this.changeSeatAvailability();
+        this.updateBooking();
+        this.$store.dispatch('publishBooking', this.$store.state.booking)
+        this.$emit('toConfirmation')
+      }
+    },
     changeSeatAvailability(){
       this.screening.seats.forEach(row =>{
         row = Object.values(row)
-
         row.forEach(seat =>{
-
           this.seatsMarked.forEach(marked =>{
             if(marked.x === seat.x && marked.y === seat.y){
               seat.isAvailable = false;
@@ -125,6 +121,16 @@ export default {
           })  
         })
       })
+    },
+    updateBooking(){
+      this.$store.commit('updateBooking',{bookedSeats: this.seatsMarked, auditoriumSeats: this.screening.seats, account: this.setEmail()})
+    },
+    setEmail(){
+      if(this.user.loggedIn){
+        return this.user.data.email;
+      } else {
+        return this.userEmail;
+      }
     },
     onResizeListener() {
       if(this.$refs.auditorium){
@@ -146,7 +152,6 @@ export default {
       this.seatsMarked = this.seatsMarked.filter(seat => {
         return !(seat.x === seatToRemove.x && seat.y === seatToRemove.y)
       })
-      console.log(this.seatsMarked)
     },
     getAuditoriumWidth(){
       if(!this.runOnce) {

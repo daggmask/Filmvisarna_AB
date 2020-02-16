@@ -68,25 +68,16 @@
     </div>
     <div class="row checkOut">
       <div class="col container s12">
-        <p
-          class="red-text center"
-          v-if="
-             this.numberOfRegularTickets <= 0 &&
-              this.numberOfChildTickets <= 0 &&
-              this.numberSeniorCitizenTickets <= 0  
-          " >
+        <p class="red-text center"
+        v-if="this.numberOfRegularTickets <= 0 &&
+        this.numberOfChildTickets <= 0 &&
+        this.numberSeniorCitizenTickets <= 0">
           Du måste välja minst 1 biljett
         </p>
-        <p v-if="user.loggedIn==false"> Logga in eller ange en email för att boka </p>
-        <form class="input-field" v-if="!user.loggedIn">
-        <input type="email" name="email" value required autofocus v-model="accountEmail"/>
-        <label for="email">Email</label>
-      </form>
         <button
-          @click="showAuditorium(screening)"
-          class="btn-large blue darken-3"
-          v-if="displayBookingButton"
-        >
+        @click="showAuditorium(screening)"
+        class="btn-large blue darken-3"
+        v-if="displayBookingButton">
           Välj platser
         </button>
       </div>
@@ -116,16 +107,11 @@ export default {
       }
       return movieScreening;
     },
-      user(){
+    user(){
       return this.$store.state.user
     },
     displayBookingButton() {
-      if(this.user.loggedIn || this.accountEmail) {
-        return this.numberOfRegularTickets >= 1 ||
-                this.numberOfChildTickets >= 1 ||
-                this.numberSeniorCitizenTickets >= 1
-      }
-      return false
+        return (this.numberOfRegularTickets + this.numberOfChildTickets + this.numberSeniorCitizenTickets) > 0
     }
   },  
   created() {
@@ -154,19 +140,9 @@ export default {
       seniorCitizenTickets: this.numberSeniorCitizenTickets,
       totalPriceForPurchase: this.totalPriceForPurchase,
       seatsLeft: seatsLeft,
-      account: this.setEmail(),
       screeningTimeStamp: screening.time
     })
       this.$emit('toAuditorium')
-    },
-    setEmail(){
-      if(this.user.loggedIn){
-        this.accountEmail = this.user.data.email
-        return this.accountEmail
-      }
-      else{
-        return this.accountEmail
-      }
     },
     seatsAvailable() {
       if (
@@ -221,27 +197,6 @@ export default {
           .substr(2, 5)
       );
     },
-    bookTickets(screening) {
-      let seatsLeft =
-        screening.seatsAvailable -
-        (this.numberOfRegularTickets +
-          this.numberOfChildTickets +
-          this.numberSeniorCitizenTickets);
-      this.$store.dispatch("publishBooking", {
-        childTickets: this.numberOfChildTickets,
-        customerBookingReferenceNumber: this.generateCustomerBookingReferenceNumber(),
-        regularTickets: this.numberOfRegularTickets,
-        screeningDate: this.getDateAsString(screening.time),
-        screeningID: screening.id,
-        screeningTime: this.getScreeningTime(screening.time),
-        screeningTitle: screening.film,
-        seniorCitizenTickets: this.numberSeniorCitizenTickets,
-        totalPriceForPurchase: this.totalPriceForPurchase,
-        seatsLeft: seatsLeft,
-        account: this.setEmail()
-      });
-      this.$emit("displayConfirmation");
-    },
     getScreeningTime(screeningDate){
       let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
       return screeningTime;      
@@ -250,32 +205,8 @@ export default {
       return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
     },
     getMonthName(monthNumber) {
-      switch (monthNumber) {
-        case 0:
-          return "januari";
-        case 1:
-          return "februari";
-        case 2:
-          return "mars";
-        case 3:
-          return "april";
-        case 4:
-          return "maj";
-        case 5:
-          return "juni";
-        case 6:
-          return "juli";
-        case 7:
-          return "augusti";
-        case 8:
-          return "september";
-        case 9:
-          return "oktober";
-        case 10:
-          return "november";
-        case 11:
-          return "december";
-      }
+      let months = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
+      return months[monthNumber];
     },
     getMinutesAsString(minuteNumber) {
       if (minuteNumber < 10) {

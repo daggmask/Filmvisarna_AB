@@ -1,8 +1,14 @@
 <template>
   <div class="container col">
-    <ticketOptions @toAuditorium="showTicketOptions=!showTicketOptions,showAuditorium=!showAuditorium" v-if="showTicketOptions"/>
-    <auditorium v-if="showAuditorium" @return="showTicketOptions=!showTicketOptions,showAuditorium=!showAuditorium" @toConfirmation="displayConfirmation(),showAuditorium=!showAuditorium"></auditorium>
-    <bookingConfirmation v-if="showConfirmation" />
+    <ticketOptions
+    @toAuditorium="displayAuditorium"
+    v-if="showTicketOptions" />
+    <auditorium
+    v-if="showAuditorium"
+    @return="displayTicketOptions"
+    @toConfirmation="displayConfirmation" />
+    <bookingConfirmation
+    v-if="showConfirmation" />
   </div>
 </template>
 
@@ -19,11 +25,21 @@ export default {
   data() {
     return {
       showConfirmation: false,
-      showTicketOptions: true
+      showTicketOptions: true,
+      showAuditorium: false,
     };
   },
   methods:{
+    displayTicketOptions(){
+      this.showTicketOptions = true;
+      this.showAuditorium = false;
+    },
+    displayAuditorium(){
+      this.showTicketOptions = false;
+      this.showAuditorium = true;
+    },
     displayConfirmation(){
+      this.showAuditorium = false;
       this.showConfirmation = true;
     },
     

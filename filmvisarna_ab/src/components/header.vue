@@ -77,11 +77,9 @@
                     <a class="material-icons user">account_circle</a>
                 </router-link>
             </div>
-            <div v-if="user.loggedIn">
-                <li>
-                    <p class="sign-out hide-on-med-and-down" @click.prevent="signOut">Logga ut</p>
-                </li>
-            </div>
+            <router-link class="account" to="/" v-if="user.loggedIn">
+                <p class="sign-out hide-on-med-and-down" @click="signOut">Logga ut</p>
+            </router-link>
         </div>
     </header>
 </div>

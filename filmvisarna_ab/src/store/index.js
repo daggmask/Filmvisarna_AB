@@ -61,15 +61,19 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getBookings({commit}){
-      let querySnapshot = await db.collection("bookings").get()
+    async getBookings({commit}, payload){
+
       let bookings = [];
-      querySnapshot.forEach((booking) => {
-        let data = booking.data();
-        data.id = booking.id;
-        data.time = data.time.toDate();
-        bookings.push(data);
+      const col = db.collection("bookings")
+      const query = col.where('account', '==', payload.account)
+      query.get().then(snapshot => {
+        snapshot.docs.forEach(doc => {
+          let booking = doc.data()
+          booking.time = booking.time.toDate()
+          bookings.push(booking)
+        })
       })
+
       commit('setBookings', bookings)
      },
     async getMovies({commit}){

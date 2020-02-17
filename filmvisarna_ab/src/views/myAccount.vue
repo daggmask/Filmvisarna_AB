@@ -18,7 +18,7 @@
                         <li>Tid: {{booking.screeningTime}}</li>
                         <li>Antal biljetter: {{booking.regularTickets + booking.childTickets + booking.seniorCitizenTickets}}</li>
                         <li>Referens nummer: {{booking.customerBookingReferenceNumber}}</li>
-                        <li v-for="seat in booking.seats" :key="seat">Rad: {{seat.y+1}}  Plats: {{seat.x+1}}</li>
+                        <li v-for="(seat,i) in booking.seats" :key="seat + i">Rad: {{seat.y+1}}  Plats: {{seat.x+1}}</li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         <li>Tid: {{booking.screeningTime}}</li>
                         <li>Antal biljetter: {{booking.regularTickets + booking.childTickets + booking.seniorCitizenTickets}}</li>
                         <li>Referens nummer: {{booking.customerBookingReferenceNumber}}</li>
-                        <li v-for="seat in booking.seats" :key="seat">Rad: {{seat.y+1}}  Plats: {{seat.x+1}}</li>
+                        <li v-for="(seat,i) in booking.seats" :key="seat + i">Rad: {{seat.y+1}}  Plats: {{seat.x+1}}</li>
                     </ul>
                 </div>
             </div>

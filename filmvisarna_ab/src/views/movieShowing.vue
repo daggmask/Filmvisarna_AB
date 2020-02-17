@@ -51,8 +51,8 @@
                 </div>
             </div>
         </div>
+      <screenings :movieTitle="movie.title" />
     </div>
-    <screenings :movieTitle="movie.title" />
 </div>
 </template>
 
@@ -121,7 +121,7 @@ export default {
 }
 
 .languagetext {
-    font-size: 0.7em;
+    font-size: 0.8em;
 }
 
 .subheader {

@@ -58,19 +58,18 @@ export default {
             let moviesFromStore = this.$store.state.movies
             let screenings = this.$store.state.screenings;
             let movies = [];
-
             screenings.forEach(screening => {
-                if (filter === screening.time) {
-
-                    for (let movie of moviesFromStore) {
-                        if (movie.id === screening.movieId) {
-                            movies.push(movie);
+                if (filter.getDay() === screening.time.getDay() &&
+                filter.getMonth() === screening.time.getMonth() &&
+                filter.getFullYear() === screening.time.getFullYear()) {
+                    moviesFromStore.forEach(movie => {
+                        if(screening.film === movie.title) {
+                            movies.push(movie)
                         }
-                    }
-
+                    })
                 }
             })
-            movies = Array.from(new Set(movies))
+            movies = Array.from(new Set(movies));
             return movies;
         }
     },
@@ -103,19 +102,17 @@ img {
     width: auto;
     border-radius: 4px 0 0 4px;
 }
-
-.card-stacked {
-    border-radius: 0 4px 4px;
+.card-stacked{
+  border-radius: 0 4px 4px 0;
 }
-
-.card-content {
-    height: 100%;
-    padding: 0;
-    padding-left: 2%;
-    padding-bottom: 2%;
-    background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2));
-    align-items: flex-end;
-    border-radius: 0 4px 4px;
+.card-content{
+  height: 100%;
+  padding: 0;
+  padding-left: 2%;
+  padding-bottom: 2%;
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2));
+  align-items: flex-end;
+  border-radius: 0 4px 4px 0;
 }
 
 .movie-info {

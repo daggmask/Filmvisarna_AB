@@ -51,8 +51,8 @@
                 </div>
             </div>
         </div>
+      <screenings :movieTitle="movie.title" />
     </div>
-    <screenings :movieTitle="movie.title" />
 </div>
 </template>
 

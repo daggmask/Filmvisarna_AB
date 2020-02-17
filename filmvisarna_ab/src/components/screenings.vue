@@ -1,5 +1,5 @@
 <template>
-<div class="col">
+<div class="screenings">
     <div class="row small-margin">
         <a href="javascript:void(0)"
         class="dropdown-trigger btn light-blue darken-4 col s12 m6 offset-m3 l4 offset-l4"
@@ -18,24 +18,24 @@
     </div>
 
     <div class="row">
-      <ul class="collection col s12 m6 offset-m3 l4 offset-l4"
+      <ul class="collection no-padding col s12 m6 offset-m3 l4 offset-l4"
       :class="{ hidden: !screeningsAreShowing }">
-        <li class="collection-item col s12 light-blue darken-2"
+        <li class="collection-item no-padding row light-blue darken-2"
         v-for="(screening, i) in screeningsOnSelectedDate"
         :key="i + screening">
-        <router-link :to="'/tickets/' + screening.id">
-          <div class="row screening-info valign-wrapper">
-            <div class="col s4 m5 center-align">
-              <h4>{{ getScreeningTime(screening.time) }}</h4>
-            </div>
-            <div class="auditorium-info col s8 m7">
-              <h6>
-                {{ screening.auditorium.name }}<br>
-                Platser kvar: {{screening.seatsAvailable}}
-              </h6>
-            </div>
-          </div>
-        </router-link>
+            <router-link class="col s12 no-padding" :to="'/tickets/' + screening.id">
+                <div class="row screening-info valign-wrapper">
+                    <div class="col s4 m5 center-align">
+                        <h4>{{ getScreeningTime(screening.time) }}</h4>
+                    </div>
+                    <div class="auditorium-info col s8 m7">
+                        <h6>
+                            {{ screening.auditorium.name }}<br>
+                            Platser kvar: {{screening.seatsAvailable}}
+                        </h6>
+                    </div>
+                </div>
+            </router-link>
         </li>
       </ul>
     </div>
@@ -63,8 +63,9 @@ export default {
         },
         dates() {
             let dates = [];
+            let now = new Date().getTime();
             this.screenings.forEach(screening => {
-                if (this.movieTitle === screening.film) {
+                if (this.movieTitle === screening.film && now < screening.time.getTime()) {
                     let date = this.getDateAsString(screening.time);
                     dates.push(date);
                 }
@@ -125,6 +126,10 @@ export default {
 </script>
 
 <style scoped>
+.screenings{
+    display: flex;
+    flex-direction: column;
+}
 .btn{
     font-size: 1.5rem;
 }
@@ -138,9 +143,6 @@ export default {
     justify-content: center;
     font-size: 1.5rem;
 }
-.small-margin {
-    margin-bottom: 5px;
-}
 .hidden {
     border: 0px;
 }
@@ -150,7 +152,17 @@ export default {
 .screening-time {
     text-align: center;
 }
-.collection {
+.auditorium-info{
+    padding-right: 0;
+}
+.no-padding {
     padding: 0;
+}
+.row{
+    width: 100%;
+    margin: 0;
+}
+.small-margin {
+    margin-bottom: 5px;
 }
 </style>

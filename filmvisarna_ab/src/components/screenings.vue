@@ -1,189 +1,171 @@
 <template>
-  <div class="container col screenings">
-
+<div class="screenings">
     <div class="row small-margin">
-      <a href="javascript:void(0)"
-      class="btn-large light-blue darken-4 col s12 m6 offset-m3 xl4 offset-xl4"
-      @click="isOpen = !isOpen">
-        <h5>{{ date }}</h5>
-      </a>
-    </div>
-
-    <div class="dates-div" v-if="isOpen">
-      <div class="row small-margin"
-      v-for="(date, i) in dates"
-      :key="i + date">
         <a href="javascript:void(0)"
-        class="btn-large light-blue darken-2 col s12 m6 offset-m3 xl4 offset-xl4"
-        @click="setDate(date), isOpen = !isOpen, screeningsAreShowing = true">
-          <h5>{{ date }}</h5>
+        class="dropdown-trigger btn-large light-blue darken-4 col s12 m6 offset-m3 l4 offset-l4"
+        data-target="dropdown-menu">
+            {{ date }}
         </a>
-      </div>
+        <ul class="dropdown-content" id="dropdown-menu">
+            <li
+            class="light-blue darken-2 dropDownContent valign-wrapper"
+            :class="{firstDropdownContent: i === 0}"
+            v-for="(date, i) in dates" :key="i+date"
+            @click="setDate(date), screeningsAreShowing = true">
+                {{ date }}
+            </li>
+        </ul>
     </div>
 
-    <div class="row" v-if="!isOpen">
-      <ul :class="{ hidden: !screeningsAreShowing }" class="collection col s12 m6 offset-m3 xl4 offset-xl4">
-        <li class="collection-item col s12 light-blue darken-2"
+    <div class="row">
+      <ul class="collection no-padding col s12 m6 offset-m3 l4 offset-l4"
+      :class="{ hidden: !screeningsAreShowing }">
+        <li class="collection-item no-padding row light-blue darken-2"
         v-for="(screening, i) in screeningsOnSelectedDate"
         :key="i + screening">
-        <router-link :to="'/tickets/' + screening.id">
-          <div class="row screening-info valign-wrapper">
-            <div class="col s4 m5 center-align">
-              <h4>{{ getScreeningTime(screening.time) }}</h4>
-            </div>
-            <div class="auditorium-info col s8 m7">
-              <h6>
-                {{ screening.auditorium }}<br>
-                Platser kvar: {{screening.seatsAvailable}}
-              </h6>
-            </div>
-          </div>
-        </router-link>
+            <router-link class="col s12 no-padding" :to="'/tickets/' + screening.id">
+                <div class="row screening-info valign-wrapper">
+                    <div class="col s4 m5 center-align">
+                        <h4>{{ getScreeningTime(screening.time) }}</h4>
+                    </div>
+                    <div class="auditorium-info col s8 m7">
+                        <h6>
+                            {{ screening.auditorium.name }}<br>
+                            Platser kvar: {{screening.seatsAvailable}}
+                        </h6>
+                    </div>
+                </div>
+            </router-link>
         </li>
       </ul>
-        
     </div>
-
-  </div>
+</div>
 </template>
 
 <script>
 export default {
-  props: {
-    movieTitle: String,
-  },
-  computed: {
-    screenings(){
-      let allScreenings = this.$store.state.screenings;
-      let currentMovieScreenings = [];
-      for(let screening of allScreenings){
-        if(screening.film === this.movieTitle){
-          currentMovieScreenings.push(screening);
+    props: {
+        movieTitle: String,
+    },
+    computed: {
+        screenings() {
+            let allScreenings = this.$store.state.screenings;
+            let currentMovieScreenings = [];
+            allScreenings.forEach(screening => {
+                if (screening.film === this.movieTitle) {
+                    currentMovieScreenings.push(screening);
+                }
+            })
+            currentMovieScreenings.sort((a, b) => {
+                return a.time.getTime() - b.time.getTime();
+            })
+            return currentMovieScreenings;
+        },
+        dates() {
+            let dates = [];
+            let now = new Date().getTime();
+            this.screenings.forEach(screening => {
+                if (this.movieTitle === screening.film && now < screening.time.getTime()) {
+                    let date = this.getDateAsString(screening.time);
+                    dates.push(date);
+                }
+            })
+            dates = Array.from(new Set(dates))
+            return dates;
+        },
+        screeningsOnSelectedDate() {
+            let screeningsOnSelectedDate = []
+            this.screenings.forEach(screening => {
+                if (this.getDateAsString(screening.time) === this.date) {
+                    screeningsOnSelectedDate.push(screening);
+                }
+            })
+            return screeningsOnSelectedDate;
         }
-      }
-      return currentMovieScreenings;
     },
-    dates(){
-      let dates = [];
-      for(let screening of this.screenings) {
-        if(this.movieTitle === screening.film){
-          let date = this.getDateAsString(screening.time);
-          dates.push(date);
+    methods: {
+        setDate(date) {
+            this.date = date;
+        },
+        getScreeningTime(screeningDate) {
+            let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
+            return screeningTime;
+        },
+        getDateAsString(date) {
+            return `${date.getDate()} ${this.getMonthName(date.getMonth()).toUpperCase()} ${date.getFullYear()}`
+        },
+        getMonthName(monthNumber) {
+            let months = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"]
+            return months[monthNumber];
+        },
+        getMinutesAsString(minuteNumber) {
+            if (minuteNumber < 10) {
+                minuteNumber = '0' + minuteNumber;
+            }
+            return minuteNumber;
+        },
+        getHoursAsString(hourNumber) {
+            if (hourNumber < 10) {
+                return "0" + hourNumber;
+            }
+            return hourNumber;
         }
-      }
-      dates = Array.from(new Set(dates))
-      return dates;
     },
-    screeningsOnSelectedDate(){
-      let screeningsOnSelectedDate = []
-      for(let screening of this.screenings){
-        if(this.getDateAsString(screening.time) === this.date){
-          screeningsOnSelectedDate.push(screening);
+    data() {
+        return {
+            date: 'Välj datum',
+            isOpen: false,
+            screeningsAreShowing: false,
         }
-      }
-      return screeningsOnSelectedDate;
+    },
+    mounted() {
+        let elems = document.querySelectorAll(".dropdown-trigger")
+        this.$M.Dropdown.init(elems);
     }
-  },
-  methods: {
-    setDate(date){
-      this.date = date;
-    },
-    getScreeningTime(timestamp){
-      let screeningDate = timestamp.toDate();
-      let screeningTime = `${screeningDate.getHours()}:${this.getMinutesAsString(screeningDate.getMinutes())}`;
-      return screeningTime;      
-    },
-    getDateAsString(timestamp){
-      let date = timestamp.toDate();
-      return `${date.getDate()} ${this.getMonthName(date.getMonth())} ${date.getFullYear()}`
-    },
-    getMonthName(monthNumber){
-      switch(monthNumber) {
-        case 0:
-          return "januari";
-        case 1:
-          return "februari";
-        case 2:
-          return "mars";
-        case 3:
-          return "april";
-        case 4:
-          return "maj";
-        case 5:
-          return "juni";
-        case 6:
-          return "juli";
-        case 7:
-          return "augusti";
-        case 8:
-          return "september";
-        case 9:
-          return "oktober";
-        case 10:
-          return "november";
-        case 11:
-          return "december";
-      }
-    },
-    getMinutesAsString(minuteNumber){
-      switch(minuteNumber){
-        case 0:
-          return '00';
-        case 1:
-          return '01';
-        case 2:
-          return '02';
-        case 3:
-          return '03';
-        case 4:
-          return '04';
-        case 5:
-          return '05';
-        case 6:
-          return '06';
-        case 7:
-          return '07';
-        case 8:
-          return '08';
-        case 9:
-          return '09';
-      }
-      return minuteNumber;
-    }
-  },
-  created(){
-    this.$store.dispatch("getScreenings");
-  },
-  data() {
-    return {
-      date: 'Välj datum',
-      isOpen: false,
-      screeningsAreShowing: false,
-    }
-  }
 }
 </script>
-  
+
 <style scoped>
-  .small-margin{
-    margin-bottom: 5px;
-  }
-  .no-margin{
-    margin-bottom: 0px;
-  }
-  .btn-large:hover{
-    background-color: #0091ea !important;
-  }
-  .hidden{
+.screenings{
+    display: flex;
+    flex-direction: column;
+}
+.dropdown-content li {
+    min-height: 54px;
+}
+.btn-large{
+    font-size: 1.5rem;
+}
+.firstDropdownContent{
+    border-top: 1px solid white;
+}
+.dropDownContent{
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.hidden {
     border: 0px;
-  }
-  .screening-info{
+}
+.screening-info {
     margin: 0;
-  }
-  .screening-time{
+}
+.screening-time {
     text-align: center;
-  }
-  .collection{
+}
+.auditorium-info{
+    padding-right: 0;
+}
+.no-padding {
     padding: 0;
-  }
+}
+.row{
+    width: 100%;
+    margin: 0;
+}
+.small-margin {
+    margin-bottom: 5px;
+}
 </style>

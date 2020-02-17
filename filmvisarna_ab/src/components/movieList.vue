@@ -103,19 +103,17 @@ img {
     width: auto;
     border-radius: 4px 0 0 4px;
 }
-
-.card-stacked {
-    border-radius: 0 4px 4px;
+.card-stacked{
+  border-radius: 0 4px 4px 0;
 }
-
-.card-content {
-    height: 100%;
-    padding: 0;
-    padding-left: 2%;
-    padding-bottom: 2%;
-    background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2));
-    align-items: flex-end;
-    border-radius: 0 4px 4px;
+.card-content{
+  height: 100%;
+  padding: 0;
+  padding-left: 2%;
+  padding-bottom: 2%;
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.9), rgb(0, 0, 0, 0.2));
+  align-items: flex-end;
+  border-radius: 0 4px 4px 0;
 }
 
 .movie-info {

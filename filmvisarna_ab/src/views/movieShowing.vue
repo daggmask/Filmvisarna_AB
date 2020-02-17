@@ -124,7 +124,7 @@ export default {
 }
 
 .languagetext {
-    font-size: 0.7em;
+    font-size: 0.8em;
 }
 
 .subheader {

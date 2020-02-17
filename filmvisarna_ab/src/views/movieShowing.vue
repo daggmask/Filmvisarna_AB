@@ -60,47 +60,44 @@
 import screenings from "@/components/screenings.vue"
 
 export default {
-    components: {
-        screenings,
-    },
-    computed: {
-        movie() {
-            let movies = this.$store.state.movies;
-            for (let movie of movies) {
-                if (movie.movieId === this.$route.params.movie) {
-                    return movie;
-                }
-            }
-            return null;
-        }
-    },
-    created() {
-        this.$store.dispatch("getMovies")
-    },
-    methods: {
-        getProductionCountries(movie) {
-            let productionCountries = '';
-            for (let i = 0; i < movie.productionCountries.length; i++) {
-                if (i === movie.productionCountries.length - 1) {
-                    productionCountries += movie.productionCountries[i];
-                } else {
-                    productionCountries += `${movie.productionCountries[i]}, `
-                }
-            }
-            return productionCountries;
-        },
-        getActors(movie) {
-            let actors = '';
-            for (let i = 0; i < movie.actors.length; i++) {
-                if (i === movie.actors.length - 1) {
-                    actors += movie.actors[i]
-                } else {
-                    actors += `${movie.actors[i]}, `
-                }
-            }
-            return actors;
-        }
-    },
+  components: {
+    screenings,
+  },
+computed: {
+  movie() {
+    let movies = this.$store.state.movies;
+    for(let movie of movies){
+      if(movie.movieId === this.$route.params.movie ){
+        return movie;
+      }
+    }
+    return null;
+  }
+},
+methods: {
+  getProductionCountries(movie){
+    let productionCountries = '';
+    for(let i = 0; i < movie.productionCountries.length; i++) {
+      if(i === movie.productionCountries.length - 1) {
+        productionCountries += movie.productionCountries[i];
+      } else {
+        productionCountries += `${movie.productionCountries[i]}, `
+      }
+    }
+    return productionCountries;
+  },
+  getActors(movie){
+    let actors = '';
+    for(let i = 0; i < movie.actors.length; i++) {
+      if(i === movie.actors.length - 1) {
+        actors += movie.actors[i]
+      } else {
+        actors += `${movie.actors[i]}, `
+      }
+    }
+    return actors;
+  }
+},
 }
 </script>
 

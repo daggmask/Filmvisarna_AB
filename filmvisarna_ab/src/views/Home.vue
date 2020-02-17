@@ -1,97 +1,124 @@
 <template>
-  <div id="slider">
-      <figure>
-    <img :src= movie.images[1]
-    v-for="(movie, i) in movies"
-    v-bind:key="movie.title + i + movie.images[1]"
-    :movie="movie"
-    @click="toMovieShowing(movie)"  
-    class="responsive-img pic">
-
-    <div class="movieTitle">
-    <p v-for="(movie, i) in movies"
-    v-bind:key="movie.title + i"
-    :movie="movie"
-    @click="toMovieShowing(movie)">
-    {{movie.title}}
-    </p>
+<div class="col">
+    <div class="col container valign-wrapper">
+        <h5>På bio idag</h5>
+        <!-- Carousel renders movies by today's date from an array created in moviesShowingToday() -->
+        <div class="carousel">
+            <router-link :to="'/movies/' + movie.movieId" class="carousel-item" href="javascript:void(0)" v-for="(movie, i) in moviesShowingToday" :key="i + movie.title">
+                <img :src="movie.images[0]" :alt="movie.title + ' poster'" />
+                <p class="carousel-movie-title center-align">{{movie.title}}</p>
+            </router-link>
+        </div>
     </div>
-   
-   
-      </figure>
-  </div>
 
+    <div class="container col">
+        <div class="row">
+            <FilteringButton class="col s12 m4 l2 no-padding" :type="'datum'"></FilteringButton>
+        </div>
+        <MovieList></MovieList>
+    </div>
+</div>
 </template>
 
 <script>
+import MovieList from "@/components/movieList.vue";
+import FilteringButton from "@/components/FilteringButton.vue";
+
 export default {
+    components: {
+        MovieList,
+        FilteringButton
+    },
+
     computed: {
         movies() {
-            let movie = this.$store.state.movies
-            movie.push(movie[0])
-            return movie
-            // return this.$store.state.movies;
+            let movies = this.$store.state.movies;
+            return movies;
+        },
+        /* moviesShowingToday filters movies and compares screening time with today's date and returns the array to render in carousel */
+        moviesShowingToday() {
+            let allScreenings = this.$store.state.screenings;
+            let allMovies = this.$store.state.movies;
+            let moviesShowingToday = [];
+            let today = new Date();
+            allMovies.forEach(movie => {
+                allScreenings.forEach(screening => {
+                    if (
+                        today.getDate() === screening.time.getDate() &&
+                        today.getMonth() === screening.time.getMonth() &&
+                        today.getFullYear() === screening.time.getFullYear() &&
+                        screening.movieId == movie.id
+                    ) {
+                        moviesShowingToday.push(movie);
+                    }
+                });
+            });
+            return moviesShowingToday;
         }
     },
-    methods:{
-            toMovieShowing(movie){
-                try{
-            console.log(movie)
-            this.$router.push({path:'/movies/'+ movie.movieId})
-                }
-                catch{
-                    console.log()
-                }
+    methods: {
+        toMovieShowing(movie) {
+            try {
+                console.log(movie);
+                this.$router.push({
+                    path: "/movies/" + movie.movieId
+                });
+            } catch {
+                console.log();
+            }
         }
     },
-        created(){
-      this.$store.dispatch("getMovies")
+    created() {
+        this.$store.dispatch("getMovies");
     },
-}
-
+    updated() {
+        let elems = document.querySelectorAll(".carousel");
+        this.$M.Carousel.init(elems);
+    }
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-#slider{
-    overflow: hidden;
+.carousel-item {
+    width: 55vw !important;
+    height: auto !important;
 }
-#slider figure {
-    position: relative;
-    width: 600%;
-    margin: 0;
-    left: 0;
-    animation: 20s slider infinite;
-    height: 60vh;
+
+.carousel {
+    width: 80vw !important;
+    height: 60vh !important;
+    margin: 0 !important;
 }
-#slider figure img{
-    height: 50vh;
-    width: 100vw;
-    float: left;
+
+a {
+    height: 80% !important;
 }
-@keyframes slider{
-0%{
-    left: 0;
+
+.no-padding {
+    padding: 0;
 }
-100%{
-    left: -500%;
+
+@media only screen and (min-width: 768px) {
+    .carousel-item {
+        width: 25vw !important;
+        height: auto !important;
+    }
+
+    .carousel {
+        width: 55vw !important;
+        height: 35vh !important;
+    }
 }
-}
-.movieTitle{
-  display: flex;
-  justify-content: space-around;
-  position: absolute;
-  align-items: flex-end;
-  width: 100%;
-  top: 50vh;
-  padding:0%;
-  font-family: 'Lato', sans-serif;
-  font-size: 1.5em
-}
-p{
-  width: 40vw;
-  text-align: center;
-  height: 10vh;
+
+@media only screen and (min-width: 1025px) {
+    .carousel-item {
+        width: 12.5vw !important;
+        height: auto !important;
+    }
+
+    .carousel {
+        width: 45.5vw !important;
+        height: 45.5vh !important;
+    }
 }
 </style>
-

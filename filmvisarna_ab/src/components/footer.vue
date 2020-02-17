@@ -30,12 +30,12 @@
 
 <script>
 export default {
-    
+
 }
 </script>
 
 <style scoped>
-footer{
+.footback{
     background-color: #01579b;
     width: 100%;
     padding-top: 10px

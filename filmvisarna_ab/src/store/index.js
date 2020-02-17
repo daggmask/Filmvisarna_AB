@@ -113,12 +113,6 @@ export default new Vuex.Store({
           }
           dispatch("updateScreeningSeats", data)
         }
-        // data.seats.forEach(row => {
-        //   row = Object.values(row);
-        //   row.forEach(seat => {
-        //     seat.isMarked = false;
-        //   })
-        // })
         screenings.push(data);
       });
       commit("setScreenings", screenings);
@@ -146,8 +140,6 @@ export default new Vuex.Store({
     },
     async publishBooking({ commit }, payload) {
       //Screening update
-      
-      
         db.collection("screenings")
         .doc(payload.screeningID)
         .update({
@@ -167,15 +159,12 @@ export default new Vuex.Store({
         seniorCitizenTickets: payload.seniorCitizenTickets,
         totalPriceForPurchase: payload.totalPriceForPurchase,
         account: payload.account,
-        seats: payload.seats
+        seats: payload.seats,
         time: payload.screeningTimeStamp,
       };
-      console.log(booking, ': booking')
       await db.collection("bookings").add(booking);
-      //commit("publishBooking", booking);
     },
     async createUser(user){
-      console.log(user)
      await db.collection('accounts').add(user);
   },
     async registerUser({ commit },form){

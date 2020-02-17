@@ -2,7 +2,7 @@
 <div class="screenings">
     <div class="row small-margin">
         <a href="javascript:void(0)"
-        class="dropdown-trigger btn light-blue darken-4 col s12 m6 offset-m3 l4 offset-l4"
+        class="dropdown-trigger btn-large light-blue darken-4 col s12 m6 offset-m3 l4 offset-l4"
         data-target="dropdown-menu">
             {{ date }}
         </a>
@@ -130,7 +130,10 @@ export default {
     display: flex;
     flex-direction: column;
 }
-.btn{
+.dropdown-content li {
+    min-height: 54px;
+}
+.btn-large{
     font-size: 1.5rem;
 }
 .firstDropdownContent{

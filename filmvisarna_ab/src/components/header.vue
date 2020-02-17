@@ -177,6 +177,7 @@ export default {
 
 img{
   margin-top: 3%;
+  height: 11vh !important;
 }
 
 .header {

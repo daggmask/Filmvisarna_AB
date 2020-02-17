@@ -159,7 +159,7 @@ export default new Vuex.Store({
         seniorCitizenTickets: payload.seniorCitizenTickets,
         totalPriceForPurchase: payload.totalPriceForPurchase,
         account: payload.account,
-        seats: payload.seats,
+        seats: payload.bookedSeats,
         time: payload.screeningTimeStamp,
       };
       await db.collection("bookings").add(booking);

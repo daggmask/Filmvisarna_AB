@@ -18,7 +18,7 @@
     </div>
 
     <div class="row">
-      <ul class="collection col s12 m6 offset-m3 xl4 offset-xl4"
+      <ul class="collection col s12 m6 offset-m3 l4 offset-l4"
       :class="{ hidden: !screeningsAreShowing }">
         <li class="collection-item col s12 light-blue darken-2"
         v-for="(screening, i) in screeningsOnSelectedDate"

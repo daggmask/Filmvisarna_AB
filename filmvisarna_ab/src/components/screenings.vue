@@ -51,11 +51,11 @@ export default {
         screenings() {
             let allScreenings = this.$store.state.screenings;
             let currentMovieScreenings = [];
-            for (let screening of allScreenings) {
+            allScreenings.forEach(screening => {
                 if (screening.film === this.movieTitle) {
                     currentMovieScreenings.push(screening);
                 }
-            }
+            })
             currentMovieScreenings.sort((a, b) => {
                 return a.time.getTime() - b.time.getTime();
             })
@@ -63,22 +63,22 @@ export default {
         },
         dates() {
             let dates = [];
-            for (let screening of this.screenings) {
+            this.screenings.forEach(screening => {
                 if (this.movieTitle === screening.film) {
                     let date = this.getDateAsString(screening.time);
                     dates.push(date);
                 }
-            }
+            })
             dates = Array.from(new Set(dates))
             return dates;
         },
         screeningsOnSelectedDate() {
             let screeningsOnSelectedDate = []
-            for (let screening of this.screenings) {
+            this.screenings.forEach(screening => {
                 if (this.getDateAsString(screening.time) === this.date) {
                     screeningsOnSelectedDate.push(screening);
                 }
-            }
+            })
             return screeningsOnSelectedDate;
         }
     },

@@ -17,37 +17,37 @@
                 </li>
             </ul>
         </div>
-        <div class="col s8 m4 l4 xl4 valign-wrapper center">
-            <router-link to="/">
-                <h1 class="center-align center-block">Filmvisarna</h1>
-            </router-link>
-        </div>
         <div id="tablet-menu">
             <div class="tablet-menu-links container">
                 <ul class="tablet-links-list container">
                     <li class="tablet-link">
                         <a href="#" @click.prevent="closeSlideMenu">
-                            <router-link class="tablet-link" to="/">Hem</router-link>
+                            <router-link class="tablet-link" to="/">HEM</router-link>
                         </a>
                     </li>
                     <li class="tablet-link">
                         <a href="#" @click.prevent="closeSlideMenu">
-                            <router-link class="tablet-link" to="/movies">Filmer</router-link>
+                            <router-link class="tablet-link" to="/movies">FILMER</router-link>
                         </a>
                     </li>
                     <li class="tablet-link">
                         <a href="#" @click.prevent="closeSlideMenu">
-                            <router-link class="tablet-link" to="/about">Om oss</router-link>
+                            <router-link class="tablet-link" to="/about">OM OSS</router-link>
                         </a>
                     </li>
                     <li class="tablet-link" v-if="user.loggedIn">
-                        <a href="#" @click.prevent="closeSlideMenu,signOut">
-                            <router-link class="tablet-link" to="/">Mina <br> sidor</router-link>
+                        <a href="#" @click.prevent="closeSlideMenu">
+                            <router-link class="tablet-link" to="/account">MINA SIDOR</router-link>
                         </a>
                     </li>
                     <li class="tablet-link" v-if="user.loggedIn">
-                        <a href="#" @click.prevent="closeSlideMenu,signOut">
-                            <router-link class="tablet-link" to="/">Logga ut</router-link>
+                        <a href="#" @click.prevent="closeSlideMenu ();signOut();">
+                            <router-link class="tablet-link" to="/">LOGGA UT</router-link>
+                        </a>
+                    </li>
+                    <li class="tablet-link" v-if="!user.loggedIn">
+                        <a href="#" @click.prevent="closeSlideMenu ()">
+                            <router-link class="tablet-link" to="/login">LOGGA IN</router-link>
                         </a>
                     </li>
 
@@ -55,8 +55,14 @@
                         <i class="material-icons btn-close">close</i></a>
                 </ul>
             </div>
-            <div class="space hide-on-large-only"></div>
         </div>
+        <div class="col s8 m4 l4 xl4 valign-wrapper center">
+            <router-link to="/">
+                <img src="@/images/logo_2.png" class="responsive-img" v-show="!user.loggedIn">
+                <img src="@/images/logo_1.png" class="responsive-img" v-show="user.loggedIn">
+            </router-link>
+        </div>
+
         <div class="col s2 m4 l4 valign-wrapper right">
             <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
                 <router-link class="account" to="/account">
@@ -148,11 +154,9 @@ export default {
     height: 9.5vh;
 }
 
-h1 {
-    font-family: "Monoton", cursive;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 2.9rem;
+img {
+    margin-top: 3%;
+    height: 11vh !important;
 }
 
 .header {
@@ -196,7 +200,7 @@ h1 {
 .tablet-link {
     font-family: "Monoton", cursive;
     color: white;
-    font-size: 1.35em;
+    font-size: 1em;
     margin: 1em;
 }
 
@@ -237,8 +241,8 @@ li {
     cursor: pointer;
 }
 
-.user{
-  font-size: 2.5rem;
+.user {
+    font-size: 2.5rem;
 }
 
 .user:hover {
@@ -264,11 +268,13 @@ li {
     .tablet-links-list {
         margin-top: 5vh;
     }
-    h1{
-      font-size: 2rem;
+
+    h1 {
+        font-size: 2rem;
     }
-    .user{
-      font-size: 2rem;
+
+    .user {
+        font-size: 2rem;
     }
 }
 </style>

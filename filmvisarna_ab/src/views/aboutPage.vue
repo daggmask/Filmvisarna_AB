@@ -5,7 +5,7 @@
             <div class="col s12 l12">
                 <img class="responsive-img" src="https://www.ausflugstippsmitkids.de/wp-content/uploads/2017/09/FTBL2831_Smaragd_8-lpr-1.jpg" alt />
             </div>
-            <div class="col s12 l12 center-align">
+            <div class="col s12 l12 center-align flow-text">
                 <h3>En bioupplevelse som man sent glömmer</h3>
                 <p>
                     Filmvisarnas biografer erbjuder en hög kvalite på både film och salonger.
@@ -13,7 +13,7 @@
                     Är du sugen på något tilltugg till filmen så hittar du ett stort utbud av snacks, godis och drycker i våran kiosk.
                 </p>
             </div>
-            <div class="col s12 l12 center-align">
+            <div class="col s12 l12 center-align flow-text">
                 <h4>Öppentider:</h4>
                 <p>mån-tors:12:00-22:00</p>
                 <p>fre - lör 12:00 - 00:00</p>
@@ -30,7 +30,6 @@
 </div>
 </template>
 
- 
 <style>
 .iframe-container iframe {
     width: 100vw;

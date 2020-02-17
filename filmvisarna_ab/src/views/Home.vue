@@ -2,6 +2,7 @@
 <div class="col">
     <div class="col container valign-wrapper">
         <h5>På bio idag</h5>
+        <!-- Carousel renders movies by today's date from an array created in moviesShowingToday() -->
         <div class="carousel">
             <router-link :to="'/movies/' + movie.movieId" class="carousel-item" href="javascript:void(0)" v-for="(movie, i) in moviesShowingToday" :key="i + movie.title">
                 <img :src="movie.images[0]" :alt="movie.title + ' poster'" />
@@ -34,6 +35,7 @@ export default {
             let movies = this.$store.state.movies;
             return movies;
         },
+        /* moviesShowingToday filters movies and compares screening time with today's date and returns the array to render in carousel */
         moviesShowingToday() {
             let allScreenings = this.$store.state.screenings;
             let allMovies = this.$store.state.movies;

@@ -67,6 +67,7 @@ export default new Vuex.Store({
       querySnapshot.forEach((booking) => {
         let data = booking.data();
         data.id = booking.id;
+        data.time = data.time.toDate();
         bookings.push(data);
       })
       commit('setBookings', bookings)
@@ -167,6 +168,7 @@ export default new Vuex.Store({
         totalPriceForPurchase: payload.totalPriceForPurchase,
         account: payload.account,
         seats: payload.seats
+        time: payload.screeningTimeStamp,
       };
       console.log(booking, ': booking')
       await db.collection("bookings").add(booking);

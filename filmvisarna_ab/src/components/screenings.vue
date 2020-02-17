@@ -16,25 +16,23 @@
     </div>
 
     <div class="row" v-if="!isOpen">
-      <ul :class="{ hidden: !screeningsAreShowing }" class="collection col s12 m6 offset-m3 xl4 offset-xl4">
-        <li class="collection-item col s12 light-blue darken-2"
-        v-for="(screening, i) in screeningsOnSelectedDate"
-        :key="i + screening">
-        <router-link :to="'/tickets/' + screening.id">
-          <div class="row screening-info valign-wrapper">
-            <div class="col s4 m5 center-align">
-              <h4>{{ getScreeningTime(screening.time) }}</h4>
-            </div>
-            <div class="auditorium-info col s8 m7">
-              <h6>
-                {{ screening.auditorium.name }}<br>
-                Platser kvar: {{screening.seatsAvailable}}
-              </h6>
-            </div>
-          </div>
-        </router-link>
-        </li>
-      </ul>
+        <ul :class="{ hidden: !screeningsAreShowing }" class="collection col s12 m6 offset-m3 xl4 offset-xl4">
+            <li class="collection-item col s12 light-blue darken-2" v-for="(screening, i) in screeningsOnSelectedDate" :key="i + screening">
+                <router-link :to="'/tickets/' + screening.id">
+                    <div class="row screening-info valign-wrapper">
+                        <div class="col s4 m5 center-align">
+                            <h4>{{ getScreeningTime(screening.time) }}</h4>
+                        </div>
+                        <div class="auditorium-info col s8 m7">
+                            <h6>
+                                {{ screening.auditorium.name }}<br>
+                                Platser kvar: {{screening.seatsAvailable}}
+                            </h6>
+                        </div>
+                    </div>
+                </router-link>
+            </li>
+        </ul>
     </div>
 </div>
 </template>

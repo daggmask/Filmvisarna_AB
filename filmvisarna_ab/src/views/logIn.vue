@@ -47,8 +47,8 @@ export default {
         }
     },
     methods: {
-      /* Method submit is made async because it has to wait until auth method has gone through or the order in which codes are read
-      by computer leads to error */
+        /* Method submit is made async because it has to wait until auth method has gone through or the order in which codes are read
+        by computer leads to error */
         async submit() {
             let result = await auth.signInWithEmailAndPassword(this.form.email, this.form.password).catch(console.error)
             if (result) {

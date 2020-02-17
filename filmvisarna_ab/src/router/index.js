@@ -7,6 +7,7 @@ import homePage from "@/views/Home.vue";
 import ticketBooking from "@/views/ticketBooking.vue";
 import logIn from "@/views/logIn.vue";
 import createUser from "@/views/createUser.vue"
+import myAccount from "@/views/myAccount.vue"
 
 
 Vue.use(VueRouter);
@@ -47,12 +48,20 @@ const routes = [
     name: "createUser",
     component: createUser
   },
+  {
+    path: "/account",
+    name: "account",
+    component: myAccount
+  },
 ];
 
 const router = new VueRouter({
   routes,
   mode: "history",
-  base: process.env.BASE_URL
+  base: process.env.BASE_URL,
+  scrollBehavior() {
+    document.getElementById("app").scrollIntoView();
+  }
 });
 
 export default router;

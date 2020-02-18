@@ -2,11 +2,11 @@
 <div>
     <div class="container col">
         <div class="row">
-            <filtering class="col s6 m4 l2 no-padding" :type="'genre'"></filtering> 
+            <filtering class="col s6 m4 l2 no-padding" :type="'genre'"></filtering>
         </div>
         <MovieList></MovieList>
     </div>
-</div> 
+</div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ import MovieList from '@/components/movieList.vue'
 import filtering from '@/components/FilteringButton.vue'
 
 export default {
-    components:{
+    components: {
         MovieList,
         filtering
     },
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.no-padding{
+.no-padding {
     padding: 0;
 }
 </style>

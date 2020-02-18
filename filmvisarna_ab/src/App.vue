@@ -1,11 +1,11 @@
 <template>
-  <div id="app">
+<div id="app">
     <mainHeader />
-      <main>
+    <main>
         <router-view />
-      </main>
+    </main>
     <Footer />
-  </div>
+</div>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ export default {
     mainHeader
   },
   created(){
+    this.$store.dispatch("getAuditoriums");
     this.$store.dispatch("getMovies");
     this.$store.dispatch("getScreenings");
   }
@@ -25,35 +26,39 @@ export default {
 </script>
 
 <style>
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: white !important;
-  font-family: Arial, Helvetica, sans-serif;
-  
-}
-.container{
-  display: flex;
-}
-.col{
-  flex-direction: column;
-}
-#app{
-  width: 100vw;
-  min-height: 100vh;
-  background-color: rgb(0, 0, 0);
-  flex-direction: column;
-  display: flex;
-  
-}
-body{
-  overflow-x: hidden;
-}
-main{
-  flex: 1;
-  margin: 2% 0;
-  
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white !important;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
+.container {
+    display: flex;
+}
+
+.col {
+    flex-direction: column;
+}
+
+#app {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgb(0, 0, 0);
+    flex-direction: column;
+    display: flex;
+
+}
+
+body {
+    overflow-x: hidden;
+}
+
+main {
+    flex: 1;
+    margin: 2% 0;
+
+}
 </style>

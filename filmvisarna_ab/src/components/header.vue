@@ -19,7 +19,7 @@
         </div>
         <div id="tablet-menu">
             <div class="tablet-menu-links container">
-                <ul class="tablet-links-list container">
+                <ul class="tablet-links-list container ">
                     <li class="tablet-link">
                         <a href="#" @click.prevent="closeSlideMenu">
                             <router-link class="tablet-link" to="/">HEM</router-link>
@@ -70,18 +70,16 @@
                 </router-link>
             </div>
             <div class="loginIcon">
-                <router-link to="/login" v-if="!user.loggedIn">
+                <router-link to="/inloggning" v-if="!user.loggedIn">
                     <a class="material-icons user">account_circle</a>
                 </router-link>
                 <router-link to="/account" v-if="user.loggedIn">
                     <a class="material-icons user">account_circle</a>
                 </router-link>
             </div>
-            <div v-if="user.loggedIn">
-                <li>
-                    <p class="sign-out hide-on-med-and-down" @click.prevent="signOut">Logga ut</p>
-                </li>
-            </div>
+            <router-link class="account" to="/" v-if="user.loggedIn">
+                <p class="sign-out hide-on-med-and-down" @click="signOut">Logga ut</p>
+            </router-link>
         </div>
     </header>
 </div>
@@ -127,7 +125,6 @@ export default {
         async signOut() {
             let result = await firebase.auth().signOut()
             let isLoggedIn = this.$store.state.user.loggedIn;
-            console.log(isLoggedIn)
         }
     },
     watch: {
@@ -184,10 +181,10 @@ img {
 }
 
 .tablet-menu-links {
-    height: 70vh;
-    width: 90vw;
-    justify-content: space-between;
-    flex-direction: column;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
 }
 
 .tablet-links-list {

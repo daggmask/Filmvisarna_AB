@@ -1,18 +1,18 @@
 <template>
   <div class="col">
     <div class="col container valign-wrapper">
-      <h5>På bio idag</h5>
-      <div class="carousel">
-        <router-link
-          :to="'/movies/' + movie.movieId"
-          class="carousel-item"
-          href="javascript:void(0)"
-          v-for="(movie, i) in moviesShowingToday"
-          :key="i + movie.title"
-        >
-          <img :src="movie.images[0]" :alt="movie.title + ' poster'" />
-          <p class="carousel-movie-title center-align">{{movie.title}}</p>
-        </router-link>
+
+     <h5 class="">Aktuella filmer</h5>
+
+      <div class="col valign-wrapper carousel-contain">
+       <div class="carousel carousel-slider center top-carousel" >
+        <router-link :to="'/movies/' + movie.movieId" class="carousel-item top-carousel-item" v-for="(movie, i) in movies" :key="movie +i">
+         <img class="img-carousel-top responsive-img" :src="movie.images[1]" alt="">
+         <div class="carousel-fixed-item">
+          <h5 class="flow-text">{{movie.title}}</h5>
+         </div>
+        </router-link>  
+       </div>
       </div>
     </div>
 
@@ -61,6 +61,12 @@ export default {
     }
   },
   methods: {
+      initializeCarousels(){
+      if(!this.runOnce){
+        let elems = document.querySelectorAll(".top-carousel");
+        this.$M.Carousel.init(elems, {fullWidth: true, indicators: true});
+      }
+    },
     toMovieShowing(movie) {
       try {
         console.log(movie);
@@ -73,47 +79,77 @@ export default {
   created() {
     this.$store.dispatch("getMovies");
   },
-  updated() {
-    let elems = document.querySelectorAll(".carousel");
-    this.$M.Carousel.init(elems);
+  mounted() {
+   this.initializeCarousels();
+  },  
+  updated(){
+    this.initializeCarousels();
   }
+
 };
 </script>
 
 <style scoped>
+.carousel-contain{
+    margin-bottom: 5%;
+}
+.carousel-fixed-item{  
+    text-align: left !important;
+    margin: -1% 5%;
+  }
 .carousel-item {
-  width: 55vw !important;
-  height: auto !important;
+  width: 100% !important;
+  height: 53% !important;
 }
 .carousel {
-  width: 80vw !important;
-  height: 60vh !important;
+  width: 100vw !important;
+  height: 40vh !important;
   margin: 0 !important;
+}
+.img-carousel-top{
+  height: 55%!important;
+  width: 100%!important; 
 }
 a {
   height: 80% !important;
+}
+.carousel-fixed-item{
+    position: relative !important;
 }
 .no-padding {
   padding: 0;
 }
 @media only screen and (min-width: 768px) {
   .carousel-item {
-    width: 25vw !important;
-    height: auto !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   .carousel {
-    width: 55vw !important;
-    height: 35vh !important;
+    width: 80vw !important;
+    height: 50vh !important;
   }
+  .img-carousel-top{
+  height: 70%!important;
+  width: 100%!important; 
+}
 }
 @media only screen and (min-width: 1025px) {
   .carousel-item {
-    width: 12.5vw !important;
-    height: auto !important;
+    width: 100% !important;
+  height: 100% !important;
   }
   .carousel {
-    width: 45.5vw !important;
-    height: 45.5vh !important;
+    width: 50.5vw !important;
+    height: 55.5vh !important;
   }
+  .img-carousel-top{
+  height: 100%!important;
+  width: 100%!important;
+  }
+  .carousel-fixed-item{  
+    text-align: left !important;
+    margin: -1% 5%;
+  }
+  
 }
 </style>

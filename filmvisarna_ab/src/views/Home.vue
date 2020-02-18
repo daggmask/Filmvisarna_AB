@@ -62,26 +62,6 @@ export default {
         }
     },
     methods: {
-        toMovieShowing(movie) {
-            try {
-                console.log(movie);
-                this.$router.push({
-                    path: "/movies/" + movie.movieId
-                });
-            } catch {
-                console.log();
-            }
-        }
-    },
-    created() {
-        this.$store.dispatch("getMovies");
-    },
-    updated() {
-        let elems = document.querySelectorAll(".carousel");
-        this.$M.Carousel.init(elems);
-    }
-  },
-  methods: {
       initializeCarousels(){
       if(!this.runOnce){
         let elems = document.querySelectorAll(".top-carousel");

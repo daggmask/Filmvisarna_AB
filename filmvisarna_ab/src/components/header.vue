@@ -70,7 +70,7 @@
                 </router-link>
             </div>
             <div class="loginIcon">
-                <router-link to="/inloggning" v-if="!user.loggedIn">
+                <router-link to="/login" v-if="!user.loggedIn">
                     <a class="material-icons user">account_circle</a>
                 </router-link>
                 <router-link to="/account" v-if="user.loggedIn">

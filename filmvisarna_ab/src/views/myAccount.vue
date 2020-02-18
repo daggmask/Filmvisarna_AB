@@ -116,7 +116,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("getBookings");
+    this.$store.dispatch("getBookings", {account: this.user.data.email});
   }
 };
 </script>

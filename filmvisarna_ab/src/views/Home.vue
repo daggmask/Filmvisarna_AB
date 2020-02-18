@@ -1,5 +1,5 @@
 <template>
-  <div class="col">
+<div class="col">
     <div class="col container valign-wrapper">
 
      <h5 class="">Aktuella filmer</h5>
@@ -17,12 +17,12 @@
     </div>
 
     <div class="container col">
-      <div class="row">
-        <FilteringButton class="col s12 m4 l2 no-padding" :type="'datum'"></FilteringButton>
-      </div>
-      <MovieList></MovieList>
+        <div class="row">
+            <FilteringButton class="col s12 m4 l2 no-padding" :type="'datum'"></FilteringButton>
+        </div>
+        <MovieList></MovieList>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -30,34 +30,55 @@ import MovieList from "@/components/movieList.vue";
 import FilteringButton from "@/components/FilteringButton.vue";
 
 export default {
-  components: {
-    MovieList,
-    FilteringButton
-  },
-
-  computed: {
-    movies() {
-      let movies = this.$store.state.movies;
-      return movies;
+    components: {
+        MovieList,
+        FilteringButton
     },
-    moviesShowingToday() {
-      let allScreenings = this.$store.state.screenings;
-      let allMovies = this.$store.state.movies;
-      let moviesShowingToday = [];
-      let today = new Date();
-      allMovies.forEach(movie => {
-        allScreenings.forEach(screening => {
-          if (
-            today.getDate() === screening.time.getDate() &&
-            today.getMonth() === screening.time.getMonth() &&
-            today.getFullYear() === screening.time.getFullYear() &&
-            screening.movieId == movie.id
-          ) {
-            moviesShowingToday.push(movie);
-          }
-        });
-      });
-      return moviesShowingToday;
+
+    computed: {
+        movies() {
+            let movies = this.$store.state.movies;
+            return movies;
+        },
+        /* moviesShowingToday filters movies and compares screening time with today's date and returns the array to render in carousel */
+        moviesShowingToday() {
+            let allScreenings = this.$store.state.screenings;
+            let allMovies = this.$store.state.movies;
+            let moviesShowingToday = [];
+            let today = new Date();
+            allMovies.forEach(movie => {
+                allScreenings.forEach(screening => {
+                    if (
+                        today.getDate() === screening.time.getDate() &&
+                        today.getMonth() === screening.time.getMonth() &&
+                        today.getFullYear() === screening.time.getFullYear() &&
+                        screening.movieId == movie.id
+                    ) {
+                        moviesShowingToday.push(movie);
+                    }
+                });
+            });
+            return moviesShowingToday;
+        }
+    },
+    methods: {
+        toMovieShowing(movie) {
+            try {
+                console.log(movie);
+                this.$router.push({
+                    path: "/movies/" + movie.movieId
+                });
+            } catch {
+                console.log();
+            }
+        }
+    },
+    created() {
+        this.$store.dispatch("getMovies");
+    },
+    updated() {
+        let elems = document.querySelectorAll(".carousel");
+        this.$M.Carousel.init(elems);
     }
   },
   methods: {
@@ -101,6 +122,7 @@ export default {
   width: 100% !important;
   height: 53% !important;
 }
+
 .carousel {
   width: 100vw !important;
   height: 40vh !important;
@@ -111,14 +133,15 @@ export default {
   width: 100%!important; 
 }
 a {
-  height: 80% !important;
+    height: 80% !important;
 }
 .carousel-fixed-item{
     position: relative !important;
 }
 .no-padding {
-  padding: 0;
+    padding: 0;
 }
+
 @media only screen and (min-width: 768px) {
   .carousel-item {
     width: 100% !important;

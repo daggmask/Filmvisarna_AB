@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="header container center-block">
-      <h4 class="center-block" v-if="user.loggedIn">{{user.data.displayName}}s konto</h4>
+      <h4 class="center-block" v-if="user.loggedIn">
+        {{ user.data.displayName }}s konto
+      </h4>
       <h4 class="center-block" v-if="!user.loggedIn">
         <em>Anonym</em>
       </h4>
@@ -14,14 +16,29 @@
         :key="booking + i"
         v-show="booking.account === user.data.email"
       >
+        <!-- Renders upcoming screenings -->
         <div class="card blue darken-3">
-          <span class="card-title center-block center-align">{{booking.screeningTitle}}</span>
+          <span class="card-title center-block center-align">{{
+            booking.screeningTitle
+          }}</span>
           <div class="card-content">
             <ul>
-              <li>Datum: {{booking.screeningDate}}</li>
-              <li>Tid: {{booking.screeningTime}}</li>
-              <li>Antal biljetter: {{booking.regularTickets + booking.childTickets + booking.seniorCitizenTickets}}</li>
-              <li>Referens nummer: {{booking.customerBookingReferenceNumber}}</li>
+              <li>Datum: {{ booking.screeningDate }}</li>
+              <li>Tid: {{ booking.screeningTime }}</li>
+              <li>
+                Antal biljetter:
+                {{
+                  booking.regularTickets +
+                    booking.childTickets +
+                    booking.seniorCitizenTickets
+                }}
+              </li>
+              <li>
+                Referens nummer: {{ booking.customerBookingReferenceNumber }}
+              </li>
+              <li v-for="(seat, i) in booking.seats" :key="seat + i">
+                Rad: {{ seat.y + 1 }} Plats: {{ seat.x + 1 }}
+              </li>
             </ul>
           </div>
         </div>
@@ -35,14 +52,29 @@
         :key="booking + i"
         v-show="booking.account === user.data.email"
       >
+        <!-- Renders past bookings -->
         <div class="card blue darken-3">
-          <span class="card-title center-block center-align">{{booking.screeningTitle}}</span>
+          <span class="card-title center-block center-align">{{
+            booking.screeningTitle
+          }}</span>
           <div class="card-content">
             <ul>
-              <li>Datum: {{booking.screeningDate}}</li>
-              <li>Tid: {{booking.screeningTime}}</li>
-              <li>Antal biljetter: {{booking.regularTickets + booking.childTickets + booking.seniorCitizenTickets}}</li>
-              <li>Referens nummer: {{booking.customerBookingReferenceNumber}}</li>
+              <li>Datum: {{ booking.screeningDate }}</li>
+              <li>Tid: {{ booking.screeningTime }}</li>
+              <li>
+                Antal biljetter:
+                {{
+                  booking.regularTickets +
+                    booking.childTickets +
+                    booking.seniorCitizenTickets
+                }}
+              </li>
+              <li>
+                Referens nummer: {{ booking.customerBookingReferenceNumber }}
+              </li>
+              <li v-for="(seat, i) in booking.seats" :key="seat + i">
+                Rad: {{ seat.y + 1 }} Plats: {{ seat.x + 1 }}
+              </li>
             </ul>
           </div>
         </div>
@@ -64,35 +96,27 @@ export default {
       let allBookings = this.$store.state.bookings;
       let pastBookings = [];
       let today = new Date();
-        allBookings.forEach(booking => {
-          if (
-            today.getDate() >= booking.time.getDate() &&
-            today.getMonth() >= booking.time.getMonth() &&
-            today.getFullYear() >= booking.time.getFullYear()
-          ) {
-            pastBookings.push(booking);
-          }
-        });
+      allBookings.forEach(booking => {
+        if (today.getTime() >= booking.time.getTime()) {
+          pastBookings.push(booking);
+        }
+      });
       return pastBookings;
     },
     future() {
       let allBookings = this.$store.state.bookings;
       let pastBookings = [];
       let today = new Date();
-        allBookings.forEach(booking => {
-          if (
-            today.getDate() <= booking.time.getDate() &&
-            today.getMonth() <= booking.time.getMonth() &&
-            today.getFullYear() <= booking.time.getFullYear()
-          ) {
-            pastBookings.push(booking);
-          }
-        });
+      allBookings.forEach(booking => {
+        if (today.getTime() <= booking.time.getTime()) {
+          pastBookings.push(booking);
+        }
+      });
       return pastBookings;
-    },
+    }
   },
   created() {
-    this.$store.dispatch("getBookings");
+    this.$store.dispatch("getBookings", {account: this.user.data.email});
   }
 };
 </script>
@@ -101,14 +125,17 @@ export default {
 .card {
   border-radius: 5%;
 }
+
 .card:hover {
   box-shadow: 0 0 10px white;
   background-image: white;
   z-index: 1;
 }
+
 .bookingsList {
   width: 25vw !important;
 }
+
 .bookings {
   width: 25vw !important;
 }

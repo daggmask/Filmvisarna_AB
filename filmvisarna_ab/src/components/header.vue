@@ -1,88 +1,68 @@
 <template>
-  <div class="main">
-    <header
-      class="backgroundColour row  header light-blue darken-4 valign-wrapper"
-      :class="{ 'hidden-header': !showheader }"
-    >
-      <div class="col s2 m4 l4 xl4 valign-wrapper left ">
-        <ul class="valign-wrapper ">
-          <li>
-            <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu"
-              >menu</i
-            >
-          </li>
-          <li>
-            <router-link class="col hide-on-med-and-down desktop-link" to="/"
-              >Hem</router-link
-            >
-          </li>
-          <li>
-            <router-link
-              class="col hide-on-med-and-down desktop-link"
-              to="/movies"
-              >Filmer</router-link
-            >
-          </li>
-          <li>
-            <router-link
-              class="col hide-on-med-and-down desktop-link"
-              to="/about"
-              >Om oss</router-link
-            >
-          </li>
-        </ul>
-      </div>
-      <div id="tablet-menu">
-        <div class="tablet-menu-links container">
-          <ul class="tablet-links-list container">
-            <li class="tablet-link">
-              <a href="#" @click.prevent="closeSlideMenu">
-                <router-link class="tablet-link" to="/">HEM</router-link>
-              </a>
-            </li>
-            <li class="tablet-link">
-              <a href="#" @click.prevent="closeSlideMenu">
-                <router-link class="tablet-link" to="/movies"
-                  >FILMER</router-link
-                >
-              </a>
-            </li>
-            <li class="tablet-link">
-              <a href="#" @click.prevent="closeSlideMenu">
-                <router-link class="tablet-link" to="/about"
-                  >OM OSS</router-link
-                >
-              </a>
-            </li>
-             <li class="tablet-link" v-if="user.loggedIn">
-              <a href="#" @click.prevent="closeSlideMenu">
-                <router-link class="tablet-link" to="/account">MINA SIDOR</router-link>
-              </a>
-            </li>
-            <li class="tablet-link" v-if="user.loggedIn">
-              <a href="#" @click.prevent="closeSlideMenu ();signOut();">
-                <router-link class="tablet-link" to="/">LOGGA UT</router-link>
-              </a>
-            </li>
-            <li class="tablet-link" v-if="!user.loggedIn">
-              <a href="#" @click.prevent="closeSlideMenu ()">
-                <router-link class="tablet-link" to="/login">LOGGA IN</router-link>
-              </a>
-            </li>
-           
-            <a href="#" class="material-icons" @click.prevent="closeSlideMenu">
-              <i class="material-icons btn-close">close</i></a
-            >
-          </ul>
-          </div>
+<div class="main">
+    <header class="backgroundColour row  header light-blue darken-4 valign-wrapper" :class="{ 'hidden-header': !showheader }">
+        <div class="col s2 m4 l4 xl4 valign-wrapper left ">
+            <ul class="valign-wrapper ">
+                <li>
+                    <i class="material-icons hide-on-large-only center-align valign-wrapper" @click="openSlideMenu">menu</i>
+                </li>
+                <li>
+                    <router-link class="col hide-on-med-and-down desktop-link" to="/">Hem</router-link>
+                </li>
+                <li>
+                    <router-link class="col hide-on-med-and-down desktop-link" to="/movies">Filmer</router-link>
+                </li>
+                <li>
+                    <router-link class="col hide-on-med-and-down desktop-link" to="/about">Om oss</router-link>
+                </li>
+            </ul>
+        </div>
+        <div id="tablet-menu">
+            <div class="tablet-menu-links container">
+                <ul class="tablet-links-list container ">
+                    <li class="tablet-link">
+                        <a href="#" @click.prevent="closeSlideMenu">
+                            <router-link class="tablet-link" to="/">HEM</router-link>
+                        </a>
+                    </li>
+                    <li class="tablet-link">
+                        <a href="#" @click.prevent="closeSlideMenu">
+                            <router-link class="tablet-link" to="/movies">FILMER</router-link>
+                        </a>
+                    </li>
+                    <li class="tablet-link">
+                        <a href="#" @click.prevent="closeSlideMenu">
+                            <router-link class="tablet-link" to="/about">OM OSS</router-link>
+                        </a>
+                    </li>
+                    <li class="tablet-link" v-if="user.loggedIn">
+                        <a href="#" @click.prevent="closeSlideMenu">
+                            <router-link class="tablet-link" to="/account">MINA SIDOR</router-link>
+                        </a>
+                    </li>
+                    <li class="tablet-link" v-if="user.loggedIn">
+                        <a href="#" @click.prevent="closeSlideMenu ();signOut();">
+                            <router-link class="tablet-link" to="/">LOGGA UT</router-link>
+                        </a>
+                    </li>
+                    <li class="tablet-link" v-if="!user.loggedIn">
+                        <a href="#" @click.prevent="closeSlideMenu ()">
+                            <router-link class="tablet-link" to="/login">LOGGA IN</router-link>
+                        </a>
+                    </li>
+
+                    <a href="#" class="material-icons" @click.prevent="closeSlideMenu">
+                        <i class="material-icons btn-close">close</i></a>
+                </ul>
+            </div>
         </div>
         <div class="col s8 m4 l4 xl4 valign-wrapper center">
             <router-link to="/">
-                <h1 class="center-align center-block">Filmvisarna</h1>
+                <img src="@/images/logo_2.png" class="responsive-img" v-show="!user.loggedIn">
+                <img src="@/images/logo_1.png" class="responsive-img" v-show="user.loggedIn">
             </router-link>
         </div>
-       
-            
+
         <div class="col s2 m4 l4 valign-wrapper right">
             <div v-if="user.loggedIn" class="userName center-align valign-wrapper">
                 <router-link class="account" to="/account">
@@ -90,18 +70,16 @@
                 </router-link>
             </div>
             <div class="loginIcon">
-                <router-link to="/login" v-if="!user.loggedIn">
+                <router-link to="/inloggning" v-if="!user.loggedIn">
                     <a class="material-icons user">account_circle</a>
                 </router-link>
                 <router-link to="/account" v-if="user.loggedIn">
                     <a class="material-icons user">account_circle</a>
                 </router-link>
             </div>
-            <div v-if="user.loggedIn">
-                <li>
-                    <p class="sign-out hide-on-med-and-down" @click.prevent="signOut">Logga ut</p>
-                </li>
-            </div>
+            <router-link class="account" to="/" v-if="user.loggedIn">
+                <p class="sign-out hide-on-med-and-down" @click="signOut">Logga ut</p>
+            </router-link>
         </div>
     </header>
 </div>
@@ -147,7 +125,6 @@ export default {
         async signOut() {
             let result = await firebase.auth().signOut()
             let isLoggedIn = this.$store.state.user.loggedIn;
-            console.log(isLoggedIn)
         }
     },
     watch: {
@@ -174,11 +151,9 @@ export default {
     height: 9.5vh;
 }
 
-h1 {
-    font-family: "Monoton", cursive;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 2.9rem;
+img {
+    margin-top: 3%;
+    height: 11vh !important;
 }
 
 .header {
@@ -206,10 +181,10 @@ h1 {
 }
 
 .tablet-menu-links {
-    height: 70vh;
-    width: 90vw;
-    justify-content: space-between;
-    flex-direction: column;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
 }
 
 .tablet-links-list {
@@ -263,8 +238,8 @@ li {
     cursor: pointer;
 }
 
-.user{
-  font-size: 2.5rem;
+.user {
+    font-size: 2.5rem;
 }
 
 .user:hover {
@@ -290,11 +265,13 @@ li {
     .tablet-links-list {
         margin-top: 5vh;
     }
-    h1{
-      font-size: 2rem;
+
+    h1 {
+        font-size: 2rem;
     }
-    .user{
-      font-size: 2rem;
+
+    .user {
+        font-size: 2rem;
     }
 }
 </style>

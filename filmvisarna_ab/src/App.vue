@@ -13,14 +13,15 @@ import mainHeader from '@/components/header.vue'
 import Footer from '@/components/footer.vue'
 
 export default {
-    components: {
-        Footer,
-        mainHeader
-    },
-    created() {
-        this.$store.dispatch("getMovies");
-        this.$store.dispatch("getScreenings");
-    }
+  components:{
+    Footer,
+    mainHeader
+  },
+  created(){
+    this.$store.dispatch("getAuditoriums");
+    this.$store.dispatch("getMovies");
+    this.$store.dispatch("getScreenings");
+  }
 }
 </script>
 

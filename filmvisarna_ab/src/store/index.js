@@ -5,6 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    numberOfTickets: {},
+    auditoriums: [],
     publishMovies: false,
     movies: [],
     screenings: [], 
@@ -42,21 +44,36 @@ export default new Vuex.Store({
     setUser(state, data) {
       state.user.data = data;
     },
-    publishBooking(state, data) {
+    setBooking(state, data) {
       state.booking = data;
       state.publishBooking = true;
+    },
+    setAuditoriums(state, data){
+      state.auditoriums = data;
+    },
+    setNumberOfTickets(state, data){
+      state.numberOfTickets = data;
+    },
+    updateBooking(state, data){
+      state.booking.bookedSeats = data.bookedSeats;
+      state.booking.auditoriumSeats = data.auditoriumSeats;
+      state.booking.account = data.account;
     }
   },
   actions: {
-    async getBookings({commit}){
-      let querySnapshot = await db.collection("bookings").get()
+    async getBookings({commit}, payload){
+
       let bookings = [];
-      querySnapshot.forEach((booking) => {
-        let data = booking.data();
-        data.id = booking.id;
-        data.time = data.time.toDate();
-        bookings.push(data);
+      const col = db.collection("bookings")
+      const query = col.where('account', '==', payload.account)
+      query.get().then(snapshot => {
+        snapshot.docs.forEach(doc => {
+          let booking = doc.data()
+          booking.time = booking.time.toDate()
+          bookings.push(booking)
+        })
       })
+
       commit('setBookings', bookings)
      },
     async getMovies({commit}){
@@ -69,7 +86,7 @@ export default new Vuex.Store({
       })
       commit('setMovies', movies)
      },
-     async getScreenings({commit}){
+     async getScreenings({commit, dispatch}){
       let querySnapshot = await db.collection("screenings").get();
       let screenings = [];
       querySnapshot.forEach(screening => {
@@ -81,6 +98,25 @@ export default new Vuex.Store({
             screening.film = movie;
           }
         })
+        this.state.auditoriums.forEach( auditorium => {
+          if(auditorium.id == data.auditoriumId){
+            data.auditorium = auditorium;
+          }
+        })
+        if(data.seats.length === 0){
+          for(let row = 0; row < data.auditorium.seatsPerRow.length; row++) {
+            data.seats[row] = {}
+            for(let col = 0; col < data.auditorium.seatsPerRow[row]; col++) {
+              let seat = {
+                  x: col,
+                  y: row, 
+                  isAvailable: true
+                }
+              data.seats[row][col]=seat; 
+            }
+          }
+          dispatch("updateScreeningSeats", data)
+        }
         screenings.push(data);
       });
       commit("setScreenings", screenings);
@@ -93,7 +129,7 @@ export default new Vuex.Store({
         data.id = auditorium.id;
         auditoriums.push(data);
       });
-      commit("setScreenings", auditoriums);
+      commit("setAuditoriums", auditoriums);
     },
     async publishMovies({ commit }) {
       let documents = require("@/data/movies.json");
@@ -103,13 +139,18 @@ export default new Vuex.Store({
       }
       commit("publishMovies");
     },
+    async updateScreeningSeats({commit}, payload){
+      db.collection("screenings").doc(payload.id).update({seats: payload.seats})
+    },
     async publishBooking({ commit }, payload) {
       //Screening update
-      db.collection("screenings")
+        db.collection("screenings")
         .doc(payload.screeningID)
         .update({
+          seats: payload.auditoriumSeats,
           seatsAvailable: payload.seatsLeft
-        });
+        })
+      
       //Booking added to Bookings
       let booking = {
         childTickets: payload.childTickets,
@@ -122,13 +163,12 @@ export default new Vuex.Store({
         seniorCitizenTickets: payload.seniorCitizenTickets,
         totalPriceForPurchase: payload.totalPriceForPurchase,
         account: payload.account,
+        seats: payload.bookedSeats,
         time: payload.screeningTimeStamp,
       };
       await db.collection("bookings").add(booking);
-      commit("publishBooking", booking);
     },
     async createUser(user){
-      console.log(user)
      await db.collection('accounts').add(user);
   },
     async registerUser({ commit },form){

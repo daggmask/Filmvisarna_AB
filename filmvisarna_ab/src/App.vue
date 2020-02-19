@@ -1,32 +1,65 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<div id="app">
+    <mainHeader />
+    <main>
+        <router-view />
+    </main>
+    <Footer />
+</div>
 </template>
 
+<script>
+import mainHeader from '@/components/header.vue'
+import Footer from '@/components/footer.vue'
+
+export default {
+  components:{
+    Footer,
+    mainHeader
+  },
+  created(){
+    this.$store.dispatch("getAuditoriums");
+    this.$store.dispatch("getMovies");
+    this.$store.dispatch("getScreenings");
+  }
+}
+</script>
+
 <style>
+@import url("https://fonts.googleapis.com/css?family=Squada+One&display=swap");
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white !important;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.container {
+    display: flex;
+}
+
+.col {
+    flex-direction: column;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgb(0, 0, 0);
+    flex-direction: column;
+    display: flex;
+
 }
 
-#nav {
-  padding: 30px;
+body {
+    overflow-x: hidden;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+main {
+    flex: 1;
+    margin: 2% 0;
 
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

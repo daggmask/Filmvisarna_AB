@@ -5,7 +5,7 @@
       :class="{ 'hidden-header': !showheader }"
     >
       <div class="col s2 m4 l4 xl4 valign-wrapper center-align">
-        <ul class="valign-wrapper ">
+        <ul class="valign-wrapper">
           <li>
             <i
               class="material-icons hide-on-large-only center-align valign-wrapper"
@@ -233,7 +233,6 @@ img {
 
 .tablet-link {
   font-family: "Squada One", cursive;
-
   color: white;
   font-size: 1.25em;
   margin: 1em;
@@ -242,7 +241,7 @@ img {
 .desktop-link {
   font-family: "Squada One", cursive;
   color: white;
-  margin: 1em;
+  margin: 0.05em;
   width: 100%;
   height: 100%;
   font-size: 2.5em;
@@ -250,13 +249,7 @@ img {
 .desktop-link:hover {
     background-color: rgba(0, 0, 0, 0.041);
 }
-.desktop-link {
-  font-family: "Squada One", cursive;
-  color: white;
-  margin: 1em;
-  width: 100%;
-  font-size: 2.5em;
-}
+
 
 .btn-close {
   margin-top: 10vh;

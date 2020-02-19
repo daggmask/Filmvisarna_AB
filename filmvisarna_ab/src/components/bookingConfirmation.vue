@@ -10,11 +10,11 @@
       </div>
     </div>
 
-    <div class="col s12 m6 l6 xl6">
-      <h5 class="title">Tack för din bokning!</h5>
+    <div class="col s12 m6 l6 xl6 center-align">
+      <h4 class="title">Tack för din bokning!</h4>
       <p>{{ booking.screeningTitle }} - {{ booking.screeningTime }}</p>
       <p>{{ booking.screeningDate }}</p>
-
+      <br>
       <p>
         Bokningsnummer : {{ booking.customerBookingReferenceNumber }}
       </p>
@@ -28,13 +28,14 @@
         Pensionärbiljetter : {{ booking.seniorCitizenTickets }}
       </p>
       <p>Email: {{ booking.account }}</p>
-
+      <br>
       <p>Platser:</p>
       <ul>
         <p v-for="(seat, i) in booking.bookedSeats" :key="seat + i">
         Rad: {{ seat.y + 1 }} Plats: {{ seat.x + 1 }}
         </p>
       </ul>
+      <br>
       <p>Pris: {{ booking.totalPriceForPurchase }}kr</p>
     </div>
 </div>
@@ -60,5 +61,8 @@ export default {
 <style scoped>
 .responsive-img{
     max-height: 75vh;
+}
+.title{
+    margin-top: 0%
 }
 </style>

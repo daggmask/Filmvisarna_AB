@@ -250,13 +250,7 @@ img {
 .desktop-link:hover {
     background-color: rgba(0, 0, 0, 0.041);
 }
-.desktop-link {
-  font-family: "Squada One", cursive;
-  color: white;
-  margin: 1em;
-  width: 100%;
-  font-size: 2.5em;
-}
+
 
 .btn-close {
   margin-top: 10vh;

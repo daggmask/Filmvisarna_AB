@@ -36,9 +36,6 @@
               <li>
                 Referens nummer: {{ booking.customerBookingReferenceNumber }}
               </li>
-              <li v-for="(seat, i) in booking.seats" :key="seat + i">
-                Rad: {{ seat.y + 1 }} Plats: {{ seat.x + 1 }}
-              </li>
             </ul>
           </div>
         </div>
@@ -71,9 +68,6 @@
               </li>
               <li>
                 Referens nummer: {{ booking.customerBookingReferenceNumber }}
-              </li>
-              <li v-for="(seat, i) in booking.seats" :key="seat + i">
-                Rad: {{ seat.y + 1 }} Plats: {{ seat.x + 1 }}
               </li>
             </ul>
           </div>
@@ -139,4 +133,5 @@ export default {
 .bookings {
   width: 25vw !important;
 }
+
 </style>

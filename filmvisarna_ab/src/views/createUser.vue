@@ -51,14 +51,12 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
-
 .createUser {
     background-color: transparent;
 }
 
 h1 {
-    font-family: 'Monoton', cursive;
+  font-family: "Squada One", cursive;
     font-size: 3rem
 }
 

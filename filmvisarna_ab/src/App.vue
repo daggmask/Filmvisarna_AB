@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Squada+One&display=swap");
 * {
     box-sizing: border-box;
     margin: 0;
